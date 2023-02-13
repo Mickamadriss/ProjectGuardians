@@ -120,14 +120,6 @@
 		}
 		#endregion
 
-		#region Callbacks to events issued by Score items
-		private void ScoreHasBeenGained(ScoreItemEvent e)
-		{
-			if (IsPlaying)
-				IncrementScore(e.eScore);
-		}
-		#endregion
-
 		#region Callbacks to Events issued by MenuManager
 		private void MainMenuButtonClicked(MainMenuButtonClickedEvent e)
 		{

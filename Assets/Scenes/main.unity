@@ -262,7 +262,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_DoNotDestroyGameObjectOnLoad: 0
   life: 100
-  lifeText: {fileID: 617428243}
 --- !u!1 &617100595 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1389201559671664, guid: 2d4cc07e22d85374b8d15cd15f4e18e1,
@@ -438,6 +437,11 @@ PrefabInstance:
       propertyPath: m_ResourcesFolderName
       value: Audio/SFX
       objectReference: {fileID: 0}
+    - target: {fileID: 114721918857949744, guid: 68480a01e4a00ab45b3d746ae2fc86ee,
+        type: 3}
+      propertyPath: m_CityLife
+      value: 
+      objectReference: {fileID: 617428243}
     - target: {fileID: 114746243097493696, guid: 68480a01e4a00ab45b3d746ae2fc86ee,
         type: 3}
       propertyPath: m_Clips.Array.data[0]

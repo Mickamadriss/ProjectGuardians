@@ -9,24 +9,42 @@
 	public class HudManager : Manager<HudManager>
 	{
 
-		//[Header("HudManager")]
-		#region Labels & Values
-		// TO DO
-		#endregion
+        //[Header("HudManager")]
+        #region Labels & Values
+		
+        [Header("Labels & Values")]
+        [SerializeField] Text m_CityLife;
 
-		#region Manager implementation
-		protected override IEnumerator InitCoroutine()
+        #endregion
+
+        #region Events' subscription
+        public override void SubscribeEvents()
+        {
+            base.SubscribeEvents();
+            EventManager.Instance.AddListener<CityLifeChanged>(cityLifeChanged);
+        }
+
+        public override void UnsubscribeEvents()
+        {
+            base.UnsubscribeEvents();
+            EventManager.Instance.AddListener<CityLifeChanged>(cityLifeChanged);
+        }
+
+        #endregion
+
+        #region Event callback
+        private void cityLifeChanged(CityLifeChanged e)
+        {
+            m_CityLife.text = e.eLife.ToString();
+        }
+
+        #endregion
+
+        #region Manager implementation
+        protected override IEnumerator InitCoroutine()
 		{
 			yield break;
 		}
 		#endregion
-
-		#region Callbacks to GameManager events
-		protected override void GameStatisticsChanged(GameStatisticsChangedEvent e)
-		{
-			//TO DO
-		}
-		#endregion
-
 	}
 }

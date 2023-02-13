@@ -53,11 +53,11 @@ public class QuitButtonClickedEvent : SDD.Events.Event
 
 public class CityAttacked : SDD.Events.Event
 {
-    public int eLife { get; }
+    public int eDamage { get; set; }
 }
 
 public class CityLifeChanged : SDD.Events.Event
 {
-    public int eLife { get; }
+    public int eLife { get; set; }
 }
 #endregion

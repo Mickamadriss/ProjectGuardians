@@ -8,30 +8,27 @@ using UnityEngine.UI;
 public class CityManager : Manager<CityManager>
 {
     [SerializeField] private int life;
-    [SerializeField] private Text lifeText;
 
     protected override IEnumerator InitCoroutine()
     {
         throw new System.NotImplementedException();
     }
 
-    private void Awake()
+    private void Start()
     {
-        lifeText.text = life.ToString();
+        EventManager.Instance.Raise(new CityLifeChanged() { eLife = life });
     }
 
     #region Events' subscription
     public override void SubscribeEvents()
     {
         base.SubscribeEvents();
-        EventManager.Instance.AddListener<CityLifeChanged>(changeLife);
         EventManager.Instance.AddListener<CityAttacked>(cityAttacked);
     }
 
     public override void UnsubscribeEvents()
     {
         base.UnsubscribeEvents();
-        EventManager.Instance.RemoveListener<CityLifeChanged>(changeLife);
         EventManager.Instance.AddListener<CityAttacked>(cityAttacked);
     }
 
@@ -41,14 +38,8 @@ public class CityManager : Manager<CityManager>
 
     private void cityAttacked(CityAttacked e)
     {
-        life -= e.eLife;
-        lifeText.text = life.ToString();
-    }
-
-    private void changeLife(CityLifeChanged e)
-    {
-        life -= e.eLife;
-        lifeText.text = life.ToString();
+        life -= e.eDamage;
+        EventManager.Instance.Raise(new CityLifeChanged() { eLife = life });
     }
 
     #endregion
