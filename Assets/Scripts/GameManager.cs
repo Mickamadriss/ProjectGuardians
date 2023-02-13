@@ -7,7 +7,7 @@
 	using SDD.Events;
 	using System.Linq;
 
-	public enum GameState { gameMenu, gamePlay, gameNextLevel, gamePause, gameOver, gameVictory }
+	public enum GameState { gameMenu, gamePlay, gamePause, gameOver, gameVictory }
 
 	public class GameManager : Manager<GameManager>
 	{
@@ -88,9 +88,6 @@
 			EventManager.Instance.AddListener<ResumeButtonClickedEvent>(ResumeButtonClicked);
 			EventManager.Instance.AddListener<EscapeButtonClickedEvent>(EscapeButtonClicked);
 			EventManager.Instance.AddListener<QuitButtonClickedEvent>(QuitButtonClicked);
-
-			//Score Item
-			EventManager.Instance.AddListener<ScoreItemEvent>(ScoreHasBeenGained);
 		}
 
 		public override void UnsubscribeEvents()
@@ -103,9 +100,6 @@
 			EventManager.Instance.RemoveListener<ResumeButtonClickedEvent>(ResumeButtonClicked);
 			EventManager.Instance.RemoveListener<EscapeButtonClickedEvent>(EscapeButtonClicked);
 			EventManager.Instance.RemoveListener<QuitButtonClickedEvent>(QuitButtonClicked);
-
-			//Score Item
-			EventManager.Instance.RemoveListener<ScoreItemEvent>(ScoreHasBeenGained);
 		}
 		#endregion
 

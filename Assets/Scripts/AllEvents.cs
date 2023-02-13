@@ -49,9 +49,15 @@ public class QuitButtonClickedEvent : SDD.Events.Event
 { }
 #endregion
 
-#region Score Event
-public class ScoreItemEvent : SDD.Events.Event
+#region City Events
+
+public class CityAttacked : SDD.Events.Event
 {
-	public float eScore;
+    public int eLife { get; }
+}
+
+public class CityLifeChanged : SDD.Events.Event
+{
+    public int eLife { get; }
 }
 #endregion
