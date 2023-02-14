@@ -5,7 +5,6 @@ using UnityEngine.Windows;
 
 public abstract class AIEntity : MovableEntity
 {
-    [SerializeField] MovementBehaviour movementBehaviour;
-    [SerializeField] AggroBehaviour aggroBehaviour;
-
+    [SerializeField] protected MovementBehaviour movementBehaviour;
+    [SerializeField] protected AggroBehaviour aggroBehaviour;
 }
