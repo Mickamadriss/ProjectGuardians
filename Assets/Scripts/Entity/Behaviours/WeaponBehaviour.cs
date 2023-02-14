@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface WeaponBehaviour
 {
-    
+    bool isInRange();
+    void useAttack();
 }

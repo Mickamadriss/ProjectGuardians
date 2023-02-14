@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Numerics;
 using System.Threading;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
+using Vector3 = UnityEngine.Vector3;
 
 public abstract class MovableEntity : Entity
 {
@@ -15,13 +17,29 @@ public abstract class MovableEntity : Entity
         //transform.position = position.position;
     }
 
-    protected void Move(UnityEngine.Vector3 mouvement)
+    public void Move(UnityEngine.Vector3 mouvement)
     {
         m_CharacterController.Move(mouvement * speed * Time.fixedDeltaTime);
     }
 
-    protected void Rotate(UnityEngine.Vector3 rotation)
+    public void Rotate(UnityEngine.Vector3 rotation)
     {
         transform.Rotate(rotation * m_RotationSpeed * Time.fixedDeltaTime);
+    }
+
+    public void RotateTo(GameObject destination)
+    {
+        // Calculer la direction vers le mur
+        Vector3 direction = destination.transform.position - transform.position;
+        direction.y = 0f;
+        
+        // Calculer l'angle de rotation nécessaire pour faire face au mur
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+        // Calculer la rotation à appliquer à l'objet
+        Quaternion newRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, m_RotationSpeed * Time.deltaTime);
+
+        // Appliquer la rotation à l'objet
+        Rotate(newRotation.eulerAngles - transform.eulerAngles);
     }
 }

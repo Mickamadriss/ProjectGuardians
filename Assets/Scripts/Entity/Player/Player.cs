@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Player : MovableEntity, IEventHandler
 {
-    [SerializeField] private float m_RotationSpeed = 100f;
     private bool m_IsPlaying = false;
 
     private void Awake()
