@@ -58,8 +58,8 @@ public class Player : MovableEntity, IEventHandler
         vInput = Input.GetAxisRaw("Vertical");
         mouseX = Input.GetAxisRaw("Mouse X");
 
-        Move(transform.forward * speed * vInput * Time.fixedDeltaTime);
-        Move(transform.right * speed * hInput * Time.fixedDeltaTime);
-        Rotate(Vector3.up * m_RotationSpeed * mouseX * Time.fixedDeltaTime);
+        Move(transform.forward * vInput);
+        Move(transform.right * hInput);
+        Rotate(Vector3.up * mouseX);
     }
 }
