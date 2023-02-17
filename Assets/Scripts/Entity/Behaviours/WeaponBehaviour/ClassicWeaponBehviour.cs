@@ -4,31 +4,39 @@ using UnityEngine;
 
 public class ClassicWeaponBehviour : MonoBehaviour, WeaponBehaviour
 {
-    private bool inRange;
-    
-    public bool isInRange()
+    [SerializeField] private int damage;
+    private float timerAttack;
+    private float durationAttack = 1.0f;
+    private bool isAttacking = false;
+    private Collider m_Collider;
+
+    private void Awake()
     {
-        return inRange;
+        m_Collider = GetComponent<Collider>();
+        m_Collider.enabled = false;
     }
 
-    public void useAttack()
+    private void Update()
     {
-        
+        if (isAttacking && Time.time - timerAttack > durationAttack)
+        {
+            isAttacking = false;
+            m_Collider.enabled = false;
+        }
+    }
+
+    public void Attack()
+    {
+        timerAttack = Time.time;
+        isAttacking = true;
+        m_Collider.enabled = true;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<IEnnemy>() == null)
+        if (other.gameObject.GetComponent<IDamageable>() != null && isAttacking)
         {
-            inRange = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.GetComponent<IEnnemy>() == null)
-        {
-            inRange = false;
+            other.gameObject.GetComponent<IDamageable>().TakeDamage(damage);
         }
     }
 }

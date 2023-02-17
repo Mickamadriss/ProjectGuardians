@@ -7,27 +7,37 @@ public class ClassicMovementBehaviour : MonoBehaviour, MovementBehaviour
 {
     [SerializeField] private GameObject wall;
     private AIEntity m_AIEntity;
+    private WeaponBehaviour weapon;
     private bool aggro;
+    private float timerAttack = 0.0f;
 
 
     private void Awake()
     {
         //cherche le component AIEntity dans les parents
         m_AIEntity = GetComponentInParent<AIEntity>();
+        weapon = m_AIEntity.GetComponentInChildren<WeaponBehaviour>();
     }
 
-    private void Start()
-    {
-        
-    }
-
+    //todo passer en fixed update
     void Update()
     {
+        //Debug.Log(aggro);
         if (!aggro)
         {
             m_AIEntity.RotateTo(wall);
         }
         m_AIEntity.Move(transform.forward);
+
+        if (aggro)
+        {
+            if (timerAttack > 5.0f)
+            {
+                weapon.Attack();
+                timerAttack = 0.0f;
+            }
+            timerAttack += Time.deltaTime;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
