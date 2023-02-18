@@ -58,7 +58,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f8d601fd63419c44b6450139b2158cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wall: {fileID: 0}
 --- !u!1 &7962698081248045309
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,10 +231,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4d101a312044c649b1c9057abfa954e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 0
+  life: 10
   speed: 1
   m_RotationSpeed: 100
   m_CharacterController: {fileID: 7962698081259243982}
+  destination: {fileID: 0}
 --- !u!143 &7962698081259243982
 CharacterController:
   m_ObjectHideFlags: 0
