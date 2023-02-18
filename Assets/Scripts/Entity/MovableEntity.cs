@@ -27,10 +27,10 @@ public abstract class MovableEntity : Entity
         transform.Rotate(rotation * m_RotationSpeed * Time.fixedDeltaTime);
     }
 
-    public void RotateTo(GameObject destination)
+    public void RotateTo(Transform destination)
     {
         // Calculer la direction vers le mur
-        Vector3 direction = destination.transform.position - transform.position;
+        Vector3 direction = destination.position - transform.position;
         direction.y = 0f;
         
         // Calculer l'angle de rotation nécessaire pour faire face au mur

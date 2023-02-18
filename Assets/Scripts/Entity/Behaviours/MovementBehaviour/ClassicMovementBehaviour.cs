@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
-public class ClassicMovementBehaviour : MonoBehaviour, MovementBehaviour
+public class ClassicMovementBehaviour : MonoBehaviour
 {
-    [SerializeField] private GameObject wall;
     private AIEntity m_AIEntity;
     private WeaponBehaviour weapon;
     private GameObject aggro = null;
@@ -24,7 +23,7 @@ public class ClassicMovementBehaviour : MonoBehaviour, MovementBehaviour
     {
         if (aggro == null)
         {
-            m_AIEntity.RotateTo(wall);
+            m_AIEntity.RotateTo(m_AIEntity.destination);
         }
         m_AIEntity.Move(transform.forward);
 
@@ -59,7 +58,7 @@ public class ClassicMovementBehaviour : MonoBehaviour, MovementBehaviour
     {
         if (other.gameObject.GetComponent<IEnnemy>() == null && other.gameObject == aggro.gameObject)
         {
-            m_AIEntity.RotateTo(other.gameObject);
+            m_AIEntity.RotateTo(other.gameObject.transform);
         }
     }
 }
