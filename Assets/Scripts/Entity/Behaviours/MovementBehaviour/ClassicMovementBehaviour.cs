@@ -8,7 +8,7 @@ public class ClassicMovementBehaviour : MonoBehaviour, MovementBehaviour
     [SerializeField] private GameObject wall;
     private AIEntity m_AIEntity;
     private WeaponBehaviour weapon;
-    private bool aggro;
+    private GameObject aggro = null;
     private float timerAttack = 0.0f;
 
 
@@ -22,7 +22,7 @@ public class ClassicMovementBehaviour : MonoBehaviour, MovementBehaviour
     //todo passer en fixed update
     void Update()
     {
-        if (!aggro)
+        if (aggro == null)
         {
             m_AIEntity.RotateTo(wall);
         }
@@ -41,23 +41,23 @@ public class ClassicMovementBehaviour : MonoBehaviour, MovementBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<IEnnemy>() == null)
+        if (aggro == null && other.gameObject.GetComponent<IEnnemy>() == null)
         {
-            aggro = true;
+            aggro = other.gameObject;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.GetComponent<IEnnemy>() == null)
+        if (other.gameObject.GetComponent<IEnnemy>() == null && other.gameObject == aggro.gameObject)
         {
-            aggro = false;
+            aggro = null;
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.GetComponent<IEnnemy>() == null)
+        if (other.gameObject.GetComponent<IEnnemy>() == null && other.gameObject == aggro.gameObject)
         {
             m_AIEntity.RotateTo(other.gameObject);
         }
