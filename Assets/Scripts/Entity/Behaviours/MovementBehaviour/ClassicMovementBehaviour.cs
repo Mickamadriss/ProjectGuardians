@@ -22,7 +22,6 @@ public class ClassicMovementBehaviour : MonoBehaviour, MovementBehaviour
     //todo passer en fixed update
     void Update()
     {
-        //Debug.Log(aggro);
         if (!aggro)
         {
             m_AIEntity.RotateTo(wall);
@@ -58,7 +57,6 @@ public class ClassicMovementBehaviour : MonoBehaviour, MovementBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        //test si le game object n'intégres pas l'interface IEnnemy
         if(other.gameObject.GetComponent<IEnnemy>() == null)
         {
             m_AIEntity.RotateTo(other.gameObject);
