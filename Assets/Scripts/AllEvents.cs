@@ -61,3 +61,20 @@ public class CityLifeChanged : SDD.Events.Event
     public int eLife { get; set; }
 }
 #endregion
+
+#region WaveManager Events
+
+public class EnnemyCountChanged : SDD.Events.Event
+{
+    public int eNumberEnnemy { get; set; }
+}
+
+public class EnnemyKilled : SDD.Events.Event
+{
+}
+
+public class WaveChanged : SDD.Events.Event
+{
+    public int eWave { get; set; }
+}
+#endregion

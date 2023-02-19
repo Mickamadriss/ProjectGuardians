@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveManger : Manager<WaveManger>
+public class WaveManger : Manager<WaveManger>, IEventHandler
 {
     //liste de AIEnnemy 
     [SerializeField] List<AIEntity> m_Ennemies;
@@ -12,6 +12,7 @@ public class WaveManger : Manager<WaveManger>
     [SerializeField] GameObject m_City;
     private float LastSpawnTime = 0;
     private float SpawnDelay = 5;
+    private int ennemyCount = 0;
 
     protected override void Awake()
     {
@@ -29,7 +30,9 @@ public class WaveManger : Manager<WaveManger>
             //set la direction de l'ennemy vers la ville
             m_Ennemies[random].destination = m_City.transform;
             Instantiate(m_Ennemies[random], pos, Quaternion.identity);
+            ennemyCount++;
             LastSpawnTime = Time.time;
+            EventManager.Instance.Raise(new EnnemyCountChanged() { eNumberEnnemy = ennemyCount } );
         }
     }
 
@@ -48,11 +51,21 @@ public class WaveManger : Manager<WaveManger>
     public override void SubscribeEvents()
     {
         base.SubscribeEvents();
+        EventManager.Instance.AddListener<EnnemyKilled>(ennemyKilled);
     }
 
     public override void UnsubscribeEvents()
     {
         base.UnsubscribeEvents();
+        EventManager.Instance.RemoveListener<EnnemyKilled>(ennemyKilled);
+    }
+    #endregion
+
+    #region Event callback
+    private void ennemyKilled(EnnemyKilled e)
+    {
+        ennemyCount--;
+        EventManager.Instance.Raise(new EnnemyCountChanged() { eNumberEnnemy = ennemyCount });
     }
     #endregion
 }
