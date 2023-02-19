@@ -56,7 +56,7 @@ public class ClassicMovementBehaviour : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.GetComponent<IEnnemy>() == null && other.gameObject == aggro.gameObject)
+        if (other.gameObject.GetComponent<IEnnemy>() == null && aggro != null && other.gameObject == aggro.gameObject)
         {
             m_AIEntity.RotateTo(other.gameObject.transform);
         }
