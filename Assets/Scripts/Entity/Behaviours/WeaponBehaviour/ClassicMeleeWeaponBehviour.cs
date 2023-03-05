@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClassicWeaponBehviour : MonoBehaviour, WeaponBehaviour
+public class ClassicMeleeWeaponBehviour : WeaponBehaviour
 {
-    [SerializeField] private int damage;
-    private float timerAttack;
-    private float durationAttack = 1.0f;
+    
+    [SerializeField] private float durationAttack = 1.0f;
+    private float timerDurationAttack;
     private bool isAttacking = false;
     private Collider m_Collider;
 
@@ -18,18 +18,26 @@ public class ClassicWeaponBehviour : MonoBehaviour, WeaponBehaviour
 
     private void Update()
     {
-        if (isAttacking && Time.time - timerAttack > durationAttack)
+        //si la période d'attaque est fini
+        if (isAttacking && Time.time - timerDurationAttack > durationAttack)
         {
             isAttacking = false;
             m_Collider.enabled = false;
         }
     }
 
-    public void Attack()
+    public override void Attack()
     {
-        timerAttack = Time.time;
+        //si on peut à nouveau attaquer
+        timerDurationAttack = Time.time;
+        timerCoolDown = Time.time;
         isAttacking = true;
         m_Collider.enabled = true;
+    }
+
+    public override bool canAttack()
+    {
+        return !isAttacking && Time.time - timerCoolDown > coolDown;
     }
 
     private void OnTriggerEnter(Collider other)

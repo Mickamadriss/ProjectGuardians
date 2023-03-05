@@ -8,8 +8,6 @@ public class ClassicMovementBehaviour : MonoBehaviour
     private AIEntity m_AIEntity;
     private WeaponBehaviour weapon;
     private GameObject aggro = null;
-    private float timerAttack = 0.0f;
-
 
     private void Awake()
     {
@@ -29,12 +27,10 @@ public class ClassicMovementBehaviour : MonoBehaviour
 
         if (aggro)
         {
-            if (timerAttack > 5.0f)
+            if (weapon.canAttack())
             {
                 weapon.Attack();
-                timerAttack = 0.0f;
             }
-            timerAttack += Time.deltaTime;
         }
     }
 
