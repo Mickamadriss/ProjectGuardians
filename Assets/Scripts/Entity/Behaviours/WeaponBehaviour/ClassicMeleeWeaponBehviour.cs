@@ -28,7 +28,6 @@ public class ClassicMeleeWeaponBehviour : WeaponBehaviour
 
     public override void Attack()
     {
-        //si on peut à nouveau attaquer
         timerDurationAttack = Time.time;
         timerCoolDown = Time.time;
         isAttacking = true;

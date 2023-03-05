@@ -569,7 +569,7 @@ Transform:
   m_Children:
   - {fileID: 389928947}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &527298554 stripped
 GameObject:
@@ -832,7 +832,7 @@ PrefabInstance:
     - target: {fileID: 3717946794689639132, guid: 4c471512bb99b42469eb4ee09fcb713b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3717946794689639132, guid: 4c471512bb99b42469eb4ee09fcb713b,
         type: 3}
@@ -999,13 +999,19 @@ PrefabInstance:
     - target: {fileID: 8488117380123235764, guid: 68480a01e4a00ab45b3d746ae2fc86ee,
         type: 3}
       propertyPath: m_Ennemies.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8488117380123235764, guid: 68480a01e4a00ab45b3d746ae2fc86ee,
         type: 3}
       propertyPath: m_Ennemies.Array.data[0]
       value: 
-      objectReference: {fileID: 7962698081259243981, guid: 8244d81475af7e04ab85f8b3c93bb23e,
+      objectReference: {fileID: 664909047480675305, guid: c2af11c01d1176e4d98619176b00d199,
+        type: 3}
+    - target: {fileID: 8488117380123235764, guid: 68480a01e4a00ab45b3d746ae2fc86ee,
+        type: 3}
+      propertyPath: m_Ennemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 2264370059467863879, guid: 2b56fc50dbd0b6d42953bc45b0f0622d,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68480a01e4a00ab45b3d746ae2fc86ee, type: 3}

@@ -26,7 +26,7 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
         if (Time.time - LastSpawnTime > SpawnDelay)
         {
             int random = Random.Range(0, m_Ennemies.Count);
-            Vector3 pos = new Vector3(Random.Range(-100, 100), 1, Random.Range(-100, 100));
+            Vector3 pos = new Vector3(Random.Range(-100, 100), 0, Random.Range(-100, 100));
             //set la direction de l'ennemy vers la ville
             m_Ennemies[random].destination = m_City.transform;
             Instantiate(m_Ennemies[random], pos, Quaternion.identity);
