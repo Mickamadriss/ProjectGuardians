@@ -2,14 +2,18 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PT_Medieval_Modular_NPC_Material
+  m_Name: Archer
   m_Shader: {fileID: 4800000, guid: 5fdb92501eac48d4a87329098a14e790, type: 3}
-  m_ShaderKeywords: _METALICON_ON _METALLICON_ON _SMOOTHNESSON_ON
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _METALICON_ON
+  - _METALLICON_ON
+  - _SMOOTHNESSON_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -47,6 +51,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _CEL1POWER: 0.15
     - _CEL1SIZE: 0.1
@@ -75,7 +80,7 @@ Material:
     - _MetallicON: 1
     - _OCCLUSION: 0.5
     - _OTHERSMOOTHNESS: 0.504
-    - _SCLERASMOOTHNESS: 0.5
+    - _SCLERASMOOTHNESS: 0.553
     - _SKINSMOOTHNESS: 0
     - _SmoothnessOn: 1
     - __dirty: 0
@@ -87,18 +92,18 @@ Material:
     - _CLOTH1COLOR1: {r: 0, g: 0.1792453, b: 0.05062231, a: 0}
     - _CLOTH2COLOR: {r: 0.16834283, g: 0.2833042, b: 0.3679245, a: 0}
     - _CLOTH2COLOR1: {r: 1, g: 0, b: 0, a: 0}
-    - _CLOTH3COLOR: {r: 0.38679248, g: 0.016420428, b: 0.016420428, a: 0}
+    - _CLOTH3COLOR: {r: 0.22459063, g: 0.46226418, b: 0.23391119, a: 0}
     - _CLOTH3COLOR1: {r: 0.3962264, g: 0.3391397, b: 0.2710039, a: 0}
-    - _CLOTH4COLOR: {r: 0.6037736, g: 0.09973892, b: 0.03702387, a: 0}
+    - _CLOTH4COLOR: {r: 0.22322798, g: 0.46207705, b: 0.23455065, a: 0}
     - _CLOTH4COLOR1: {r: 0.2011392, g: 0.3773585, b: 0.3739074, a: 0}
     - _COATOFARMSCOLOR: {r: 1, g: 0, b: 0, a: 0}
     - _EYESCOLOR: {r: 0.0734529, g: 0.1320755, b: 0.05046281, a: 1}
     - _EYESCOLOR1: {r: 0.0734529, g: 0.1320755, b: 0.05046281, a: 1}
     - _FEATHERS1COLOR: {r: 0.7735849, g: 0.492613, b: 0.492613, a: 0}
     - _FEATHERS1COLOR1: {r: 0.7735849, g: 0.492613, b: 0.492613, a: 0}
-    - _FEATHERS2COLOR: {r: 1, g: 0, b: 0, a: 0}
+    - _FEATHERS2COLOR: {r: 0.22322798, g: 0.46207705, b: 0.23455065, a: 0}
     - _FEATHERS2COLOR1: {r: 0.6792453, g: 0, b: 0, a: 0}
-    - _HAIRCOLOR: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 0}
+    - _HAIRCOLOR: {r: 0, g: 0, b: 0, a: 0}
     - _HAIRCOLOR1: {r: 1, g: 0, b: 0, a: 0}
     - _LEATHER1COLOR: {r: 0.4811321, g: 0.2041155, b: 0.08851016, a: 1}
     - _LEATHER1COLOR1: {r: 0.4811321, g: 0.2041155, b: 0.08851016, a: 1}
@@ -122,5 +127,6 @@ Material:
     - _OTHERCOLOR1: {r: 0.5188679, g: 0.4637216, b: 0.3206212, a: 0}
     - _SCLERACOLOR: {r: 0.9056604, g: 0.8159487, b: 0.8159487, a: 0}
     - _SCLERACOLOR1: {r: 0.9056604, g: 0.8159487, b: 0.8159487, a: 0}
-    - _SKINCOLOR: {r: 0.745283, g: 0.66442686, b: 0.66442686, a: 0}
+    - _SKINCOLOR: {r: 0.6603774, g: 0.56381273, b: 0.56381273, a: 0}
     - _SKINCOLOR1: {r: 2.02193, g: 1.0081, b: 0.6199315, a: 0}
+  m_BuildTextureStacks: []

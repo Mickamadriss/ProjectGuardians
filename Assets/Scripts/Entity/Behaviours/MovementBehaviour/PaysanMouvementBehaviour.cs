@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
-public class ClassicMovementBehaviour : MonoBehaviour
+public class PaysanMouvementBehaviour : MonoBehaviour
 {
     private AIEntity m_AIEntity;
     private WeaponBehaviour weapon;
