@@ -1,3 +1,4 @@
+using System;
 using SDD.Events;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,10 +7,12 @@ using UnityEngine;
 public class Player : MovableEntity, IEventHandler
 {
     private bool m_IsPlaying = false;
+    private WeaponBehaviour weapon;
 
     private void Awake()
     {
         SubscribeEvents();
+        weapon = this.GetComponentInChildren<WeaponBehaviour>();
     }
 
     // Update is called once per frame
@@ -19,7 +22,10 @@ public class Player : MovableEntity, IEventHandler
         {
             return;
         }
+
+        Debug.Log(weapon.getIsAttacking());
         Mouvement();
+        Attack();
     }
 
     void onDestroy()
@@ -60,5 +66,17 @@ public class Player : MovableEntity, IEventHandler
         Move(transform.forward * vInput);
         Move(transform.right * hInput);
         Rotate(Vector3.up * mouseX);
+    }
+
+    private void Attack()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (weapon.canAttack())
+            {
+                Debug.Log("attackiiing");
+                weapon.Attack();
+            }
+        }
     }
 }

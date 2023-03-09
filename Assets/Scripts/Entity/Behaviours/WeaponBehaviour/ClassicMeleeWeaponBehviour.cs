@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,11 +40,31 @@ public class ClassicMeleeWeaponBehviour : WeaponBehaviour
         return !isAttacking && Time.time - timerCoolDown > coolDown;
     }
 
+    public override bool getIsAttacking()
+    {
+        return isAttacking;
+    }
+
+    private bool IsFromOtherSide(Collider other)
+    {
+        //Si this = player && other == enemy
+        if (this.gameObject.GetComponent<IEnnemy>() == null)
+            return other.gameObject.GetComponent<IEnnemy>() != null;
+        
+        //Si this = enemy && other == player
+        if (this.gameObject.GetComponent<IEnnemy>() != null)
+            return other.gameObject.GetComponent<IEnnemy>() == null;
+
+        return false;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         //todo /!\ si le collider est du même camps que l'ennemi, ne pas le toucher
-        if (other.gameObject.GetComponent<IDamageable>() != null && isAttacking && other.gameObject.GetComponent<IEnnemy>() == null)
+        if (other.gameObject.GetComponent<IDamageable>() != null && getIsAttacking() && this.IsFromOtherSide(other) /*other.gameObject.GetComponent<IEnnemy>() == null*/)
         {
+            if (this.gameObject.GetComponent<IEnnemy>() == null)
+                Debug.Log("Player attaque en l'état: "+ getIsAttacking());
             other.gameObject.GetComponent<IDamageable>().TakeDamage(damage);
         }
     }

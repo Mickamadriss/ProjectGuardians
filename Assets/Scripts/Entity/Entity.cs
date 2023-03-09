@@ -10,9 +10,10 @@ public abstract class Entity : MonoBehaviour, IDamageable
     public void TakeDamage(int damage)
     {
         life -= damage;
+        Debug.Log(life);
         if(life <= 0)
         {
-            Destroy(this); // ATTENTION PAS DUTOUT OPTIMAL, déjà psk le player ne peut pas disparaître comme ça
+            Destroy(this); // ATTENTION PAS DUTOUT OPTIMAL, d?j? psk le player ne peut pas dispara?tre comme ?a
         }
     }
 
