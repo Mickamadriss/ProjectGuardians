@@ -22,6 +22,7 @@ public class ClassicMeleeWeaponBehviour : WeaponBehaviour
         //si la période d'attaque est fini
         if (isAttacking && Time.time - timerDurationAttack > durationAttack)
         {
+            Debug.Log("SEEEEEN");
             isAttacking = false;
             m_Collider.enabled = false;
         }
@@ -63,8 +64,6 @@ public class ClassicMeleeWeaponBehviour : WeaponBehaviour
         //todo /!\ si le collider est du même camps que l'ennemi, ne pas le toucher
         if (other.gameObject.GetComponent<IDamageable>() != null && getIsAttacking() && this.IsFromOtherSide(other) /*other.gameObject.GetComponent<IEnnemy>() == null*/)
         {
-            if (this.gameObject.GetComponent<IEnnemy>() == null)
-                Debug.Log("Player attaque en l'état: "+ getIsAttacking());
             other.gameObject.GetComponent<IDamageable>().TakeDamage(damage);
         }
     }

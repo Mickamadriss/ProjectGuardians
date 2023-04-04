@@ -22,8 +22,7 @@ public class Player : MovableEntity, IEventHandler
         {
             return;
         }
-
-        Debug.Log(weapon.getIsAttacking());
+        
         Mouvement();
         Attack();
     }
@@ -72,11 +71,7 @@ public class Player : MovableEntity, IEventHandler
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (weapon.canAttack())
-            {
-                Debug.Log("attackiiing");
-                weapon.Attack();
-            }
+            if (weapon.canAttack()) weapon.Attack();
         }
     }
 }
