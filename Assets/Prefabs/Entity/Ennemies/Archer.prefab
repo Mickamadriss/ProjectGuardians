@@ -2830,7 +2830,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3132019740719605203}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1, z: 1.572}
+  m_LocalPosition: {x: 0, y: 1, z: 4.293}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2848,7 +2848,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 2, z: 2}
+  m_Size: {x: 8, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4567760709930353219
 MonoBehaviour:
@@ -2875,7 +2875,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7208885464349721236}
   - component: {fileID: 3714269147124867887}
-  - component: {fileID: 503555797205487997}
+  - component: {fileID: 3773561443606256804}
   m_Layer: 0
   m_Name: 'movement '
   m_TagString: Untagged
@@ -2911,7 +2911,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 8
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &503555797205487997
+--- !u!114 &3773561443606256804
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2920,6 +2920,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7628389421277958603}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f8d601fd63419c44b6450139b2158cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 13c10065aa9f2444d917d8f1c9465278, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

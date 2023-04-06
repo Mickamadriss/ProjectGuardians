@@ -71,7 +71,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7257410667786854366}
   - component: {fileID: 6762327597472073384}
-  - component: {fileID: 5102470667717957409}
+  - component: {fileID: 6275917042376093507}
   m_Layer: 0
   m_Name: 'movement '
   m_TagString: Untagged
@@ -107,7 +107,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 8
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5102470667717957409
+--- !u!114 &6275917042376093507
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,7 +116,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4232719887833032563}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3585bcbd2599dcb4dbf35fe31f9205bb, type: 3}
+  m_Script: {fileID: 11500000, guid: c8a968eb897ebf04ea0fcd46d7a906a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &8541613427666832498

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wall : MonoBehaviour, IDamageable
+public class Wall : MonoBehaviour, IDamageable, ICity
 {
     void IDamageable.TakeDamage(int damage)
     {

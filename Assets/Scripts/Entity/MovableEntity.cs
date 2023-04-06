@@ -42,4 +42,20 @@ public abstract class MovableEntity : Entity
         // Appliquer la rotation à l'objet
         Rotate(newRotation.eulerAngles - transform.eulerAngles);
     }
+
+    public void RotateAwayFrom(Transform destination)
+    {
+        // Calculer la direction opposée à la destination
+        Vector3 direction = transform.position - destination.position;
+        direction.y = 0f;
+
+        // Calculer l'angle de rotation nécessaire pour faire face à la direction opposée
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+        // Calculer la rotation à appliquer à l'objet
+        Quaternion newRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, m_RotationSpeed * Time.deltaTime);
+
+        // Appliquer la rotation à l'objet
+        Rotate(newRotation.eulerAngles - transform.eulerAngles);
+    }
 }

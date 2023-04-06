@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
-public class PaysanMouvementBehaviour : MouvementBehaviour
+public class PriestMouvementBehaviour : MouvementBehaviour
 {
     public override bool isTarget(GameObject g)
     {
-        return aggro == null && g.GetComponent<IEnnemy>() == null;
+        return aggro == null && g.GetComponent<IEnnemy>() != null && g.GetComponent<IHealer>() == null;
     }
 }
