@@ -3,6 +3,7 @@ using STUDENT_NAME;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class WaveManger : Manager<WaveManger>, IEventHandler
 {
@@ -13,6 +14,8 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
     private float LastSpawnTime = 0;
     private float SpawnDelay = 5;
     private int ennemyCount = 0;
+    private bool m_IsPlaying = false;
+    private List<AIEntity> spawnEnnemies = new List<AIEntity>();
 
     protected override void Awake()
     {
@@ -22,17 +25,20 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
 
     private void Update()
     {
-        //toute les 10 secondes fait spawn un ennemy à une position aléatoire
-        if (Time.time - LastSpawnTime > SpawnDelay)
+        if (m_IsPlaying)
         {
-            int random = Random.Range(0, m_Ennemies.Count);
-            Vector3 pos = new Vector3(Random.Range(-100, 100), 0, Random.Range(-100, 100));
-            //set la direction de l'ennemy vers la ville
-            m_Ennemies[random].destination = m_City.transform;
-            Instantiate(m_Ennemies[random], pos, Quaternion.identity);
-            ennemyCount++;
-            LastSpawnTime = Time.time;
-            EventManager.Instance.Raise(new EnnemyCountChanged() { eNumberEnnemy = ennemyCount } );
+            //toute les 10 secondes fait spawn un ennemy à une position aléatoire
+            if (Time.time - LastSpawnTime > SpawnDelay)
+            {
+                int random = Random.Range(0, m_Ennemies.Count);
+                Vector3 pos = new Vector3(Random.Range(-100, 100), 0, Random.Range(-100, 100));
+                //set la direction de l'ennemy vers la ville
+                m_Ennemies[random].destination = m_City.transform;
+                spawnEnnemies.Add(Instantiate(m_Ennemies[random], pos, Quaternion.identity));
+                ennemyCount++;
+                LastSpawnTime = Time.time;
+                EventManager.Instance.Raise(new EnnemyCountChanged() { eNumberEnnemy = ennemyCount });
+            }
         }
     }
 
@@ -62,10 +68,38 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
     #endregion
 
     #region Event callback
+
+    protected override void GameOver(GameOverEvent e)
+    {
+        foreach (AIEntity aIEntity in spawnEnnemies)
+        {
+            Destroy(aIEntity.gameObject);
+        }
+        m_IsPlaying = false;
+    }
+
     private void ennemyKilled(EnnemyKilled e)
     {
         ennemyCount--;
+        spawnEnnemies.Remove(e.eEntity);
         EventManager.Instance.Raise(new EnnemyCountChanged() { eNumberEnnemy = ennemyCount });
     }
+
+    protected override void GamePlay(GamePlayEvent e)
+    {
+        m_IsPlaying = true;
+        LastSpawnTime = Time.time;
+    }
+
+    protected override void GamePause(GamePauseEvent e)
+    {
+        m_IsPlaying = false;
+    }
+
+    protected override void GameResume(GameResumeEvent e)
+    {
+        m_IsPlaying = true;
+    }
+
     #endregion
 }

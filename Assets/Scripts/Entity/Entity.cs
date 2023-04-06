@@ -5,20 +5,22 @@ using UnityEngine;
 
 public abstract class Entity : MonoBehaviour, IDamageable
 {
-    [SerializeField] private int life;
+    [SerializeField] protected int life;
+    [SerializeField] protected int maxLife;
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         life -= damage;
         Debug.Log(life);
         if(life <= 0)
         {
-            Destroy(this); // ATTENTION PAS DUTOUT OPTIMAL, d?j? psk le player ne peut pas dispara?tre comme ?a
+            Destroy(gameObject);
         }
     }
 
-    private void heal(int n)
+    public virtual void heal(int n)
     {
         life += n;
+        if (life > maxLife) life = maxLife;
     }
 }

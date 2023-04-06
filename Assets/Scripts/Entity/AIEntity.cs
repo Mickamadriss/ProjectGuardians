@@ -10,7 +10,7 @@ public abstract class AIEntity : MovableEntity, IEnnemy, IEventHandler
 
     private void OnDestroy()
     {
-        EventManager.Instance.Raise(new EnnemyKilled() { });
+        EventManager.Instance.Raise(new EnnemyKilled() { eEntity = this});
     }
 
     #region event subscription

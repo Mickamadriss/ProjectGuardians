@@ -6,54 +6,40 @@ using UnityEngine;
 
 public class Player : MovableEntity, IEventHandler
 {
-    private bool m_IsPlaying = false;
     private WeaponBehaviour weapon;
 
     private void Awake()
     {
         SubscribeEvents();
+        EventManager.Instance.Raise(new PlayerLifeChanged() { eLife = life });
         weapon = this.GetComponentInChildren<WeaponBehaviour>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (!m_IsPlaying)
-        {
-            return;
-        }
-        
         Mouvement();
         Attack();
     }
 
-    void onDestroy()
+    public override void TakeDamage(int damage)
     {
-        UnsubscribeEvents();
+        life -= damage;
+        EventManager.Instance.Raise(new PlayerLifeChanged() { eLife = life });
+        if (life <= 0)
+        {
+            //todo event game over
+            EventManager.Instance.Raise(new GameOverEvent());
+            Destroy(gameObject);
+        }
     }
 
-    #region Event's subscription
-
-    public void SubscribeEvents()
+    public override void heal(int n)
     {
-        EventManager.Instance.AddListener<PlayButtonClickedEvent>(PlayButtonClicked);
+        life += n;
+        if (life > maxLife) life = maxLife;
+        EventManager.Instance.Raise(new PlayerLifeChanged() { eLife = life });
     }
-
-    public void UnsubscribeEvents()
-    {
-        EventManager.Instance.RemoveListener<PlayButtonClickedEvent>(PlayButtonClicked);
-    }
-
-    #endregion
-
-    #region Event's callback
-
-    void PlayButtonClicked(PlayButtonClickedEvent e)
-    {
-        m_IsPlaying = true;
-    }
-
-    #endregion
 
     private void Mouvement()
     {

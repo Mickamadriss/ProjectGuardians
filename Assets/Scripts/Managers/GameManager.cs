@@ -6,68 +6,20 @@
 	using System.Collections.Generic;
 	using SDD.Events;
 	using System.Linq;
+    using static UnityEditor.PlayerSettings;
+    using System;
 
 	public enum GameState { gameMenu, gamePlay, gamePause, gameOver, gameVictory }
 
 	public class GameManager : Manager<GameManager>
 	{
+		[SerializeField] Player player;
 		#region Game State
 		private GameState m_GameState;
 		public bool IsPlaying { get { return m_GameState == GameState.gamePlay; } }
 		#endregion
 
 		//LIVES
-		#region Lives
-		[Header("GameManager")]
-		[SerializeField]
-		private int m_NStartLives;
-
-		private int m_NLives;
-		public int NLives { get { return m_NLives; } }
-		void DecrementNLives(int decrement)
-		{
-			SetNLives(m_NLives - decrement);
-		}
-
-		void SetNLives(int nLives)
-		{
-			m_NLives = nLives;
-			EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eBestScore = BestScore, eScore = m_Score, eNLives = m_NLives});
-		}
-		#endregion
-
-
-		#region Score
-		private float m_Score;
-		public float Score
-		{
-			get { return m_Score; }
-			set
-			{
-				m_Score = value;
-				BestScore = Mathf.Max(BestScore, value);
-			}
-		}
-
-		public float BestScore
-		{
-			get { return PlayerPrefs.GetFloat("BEST_SCORE", 0); }
-			set { PlayerPrefs.SetFloat("BEST_SCORE", value); }
-		}
-
-		void IncrementScore(float increment)
-		{
-			SetScore(m_Score + increment);
-		}
-
-		void SetScore(float score, bool raiseEvent = true)
-		{
-			Score = score;
-
-			if (raiseEvent)
-				EventManager.Instance.Raise(new GameStatisticsChangedEvent() { eBestScore = BestScore, eScore = m_Score, eNLives = m_NLives });
-		}
-		#endregion
 
 		#region Time
 		void SetTimeScale(float newTimeScale)
@@ -107,17 +59,16 @@
 		protected override IEnumerator InitCoroutine()
 		{
 			Menu();
-			InitNewGame(); // essentiellement pour que les statistiques du jeu soient mise à jour en HUD
 			yield break;
 		}
-		#endregion
 
-		#region Game flow & Gameplay
-		//Game initialization
-		void InitNewGame(bool raiseStatsEvent = true)
+        #endregion
+        #region Game flow & Gameplay
+        //Game initialization
+        void InitNewGame(bool raiseStatsEvent = true)
 		{
-			SetScore(0);
-		}
+            Instantiate(player, new Vector3(0,1,0), Quaternion.identity);
+        }
 		#endregion
 
 		#region Callbacks to Events issued by MenuManager

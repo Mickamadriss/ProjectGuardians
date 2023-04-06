@@ -71,10 +71,20 @@ public class EnnemyCountChanged : SDD.Events.Event
 
 public class EnnemyKilled : SDD.Events.Event
 {
+    public AIEntity eEntity { get; set; }
 }
 
 public class WaveChanged : SDD.Events.Event
 {
     public int eWave { get; set; }
 }
+#endregion
+
+#region player Events
+
+public class PlayerLifeChanged : SDD.Events.Event
+{
+    public int eLife { get; set; }
+}
+
 #endregion

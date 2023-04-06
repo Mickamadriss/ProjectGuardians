@@ -5,8 +5,9 @@
 	using UnityEngine;
 	using UnityEngine.UI;
 	using SDD.Events;
+    using System;
 
-	public class HudManager : Manager<HudManager>
+    public class HudManager : Manager<HudManager>
 	{
 
         //[Header("HudManager")]
@@ -16,6 +17,7 @@
         [SerializeField] Text m_CityLife;
         [SerializeField] Text m_Waves;
         [SerializeField] Text m_EnnemyRemaining;
+        [SerializeField] Text m_PlayerLife;
 
         #endregion
 
@@ -26,6 +28,7 @@
             EventManager.Instance.AddListener<CityLifeChanged>(cityLifeChanged);
             EventManager.Instance.AddListener<WaveChanged>(waveChanged);
             EventManager.Instance.AddListener<EnnemyCountChanged>(ennemyCountChanged);
+            EventManager.Instance.AddListener<PlayerLifeChanged>(playerLifeChanged);
         }
 
         public override void UnsubscribeEvents()
@@ -52,6 +55,12 @@
         private void ennemyCountChanged(EnnemyCountChanged e)
         {
             m_EnnemyRemaining.text = e.eNumberEnnemy.ToString();
+        }
+
+
+        private void playerLifeChanged(PlayerLifeChanged e)
+        {
+            m_PlayerLife.text = e.eLife.ToString();
         }
 
         #endregion

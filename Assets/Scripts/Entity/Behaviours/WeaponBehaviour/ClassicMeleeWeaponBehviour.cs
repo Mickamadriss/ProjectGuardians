@@ -7,14 +7,17 @@ public class ClassicMeleeWeaponBehviour : WeaponBehaviour
 {
     
     [SerializeField] private float durationAttack = 1.0f;
+    [SerializeField] private GameObject weaponGFX;
     private float timerDurationAttack;
     private bool isAttacking = false;
     private Collider m_Collider;
+    
 
     private void Awake()
     {
         m_Collider = GetComponent<Collider>();
         m_Collider.enabled = false;
+        weaponGFX.GetComponent<Renderer>().material.color = Color.white;
     }
 
     private void Update()
@@ -22,9 +25,9 @@ public class ClassicMeleeWeaponBehviour : WeaponBehaviour
         //si la période d'attaque est fini
         if (isAttacking && Time.time - timerDurationAttack > durationAttack)
         {
-            Debug.Log("SEEEEEN");
             isAttacking = false;
             m_Collider.enabled = false;
+            weaponGFX.GetComponent<Renderer>().material.color = Color.white;
         }
     }
 
@@ -34,6 +37,7 @@ public class ClassicMeleeWeaponBehviour : WeaponBehaviour
         timerCoolDown = Time.time;
         isAttacking = true;
         m_Collider.enabled = true;
+        weaponGFX.GetComponent<Renderer>().material.color = Color.red;
     }
 
     public override bool canAttack()
@@ -46,23 +50,9 @@ public class ClassicMeleeWeaponBehviour : WeaponBehaviour
         return isAttacking;
     }
 
-    private bool IsFromOtherSide(Collider other)
-    {
-        //Si this = player && other == enemy
-        if (this.gameObject.GetComponent<IEnnemy>() == null)
-            return other.gameObject.GetComponent<IEnnemy>() != null;
-        
-        //Si this = enemy && other == player
-        if (this.gameObject.GetComponent<IEnnemy>() != null)
-            return other.gameObject.GetComponent<IEnnemy>() == null;
-
-        return false;
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        //todo /!\ si le collider est du même camps que l'ennemi, ne pas le toucher
-        if (other.gameObject.GetComponent<IDamageable>() != null && getIsAttacking() && this.IsFromOtherSide(other) /*other.gameObject.GetComponent<IEnnemy>() == null*/)
+        if (other.gameObject.GetComponent<IDamageable>() != null && getIsAttacking() && Utils.IsFromOtherSide(gameObject, other.gameObject))
         {
             other.gameObject.GetComponent<IDamageable>().TakeDamage(damage);
         }
