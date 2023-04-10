@@ -12,18 +12,4 @@ public abstract class AIEntity : MovableEntity, IEnnemy, IEventHandler
     {
         EventManager.Instance.Raise(new EnnemyKilled() { eEntity = this});
     }
-
-    #region event subscription
-    public void SubscribeEvents()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void UnsubscribeEvents()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    #endregion
-
 }

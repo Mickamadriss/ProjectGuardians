@@ -52,9 +52,9 @@ public class ClassicMeleeWeaponBehviour : WeaponBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<IDamageable>() != null && getIsAttacking() && Utils.IsFromOtherSide(gameObject, other.gameObject))
+        if (other.gameObject.GetComponentInParent<IDamageable>() != null && getIsAttacking() && Utils.IsFromOtherSide(gameObject, other.gameObject))
         {
-            other.gameObject.GetComponent<IDamageable>().TakeDamage(damage);
+            other.gameObject.GetComponentInParent<IDamageable>().TakeDamage(damage);
         }
     }
 }

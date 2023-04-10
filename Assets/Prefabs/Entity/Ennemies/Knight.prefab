@@ -109,7 +109,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3951045326095971338}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1, z: 1.5}
+  m_LocalPosition: {x: 0, y: 1, z: 1.872}
   m_LocalScale: {x: 0.83333343, y: 0.8333334, z: 0.83333343}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -314,6 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 100
+  maxLife: 0
   speed: 1
   m_RotationSpeed: 100
   m_CharacterController: {fileID: 1874529991}

@@ -13,7 +13,7 @@
 
 	public class GameManager : Manager<GameManager>
 	{
-		[SerializeField] Player player;
+		[SerializeField] GameObject player;
 		#region Game State
 		private GameState m_GameState;
 		public bool IsPlaying { get { return m_GameState == GameState.gamePlay; } }
@@ -67,7 +67,7 @@
         //Game initialization
         void InitNewGame(bool raiseStatsEvent = true)
 		{
-            Instantiate(player, new Vector3(0,1,0), Quaternion.identity);
+            Instantiate(player, new Vector3(0,0,0), Quaternion.identity);
         }
 		#endregion
 
@@ -103,7 +103,7 @@
 		{
 			SetTimeScale(1);
 			m_GameState = GameState.gameMenu;
-			if(MusicLoopsManager.Instance)MusicLoopsManager.Instance.PlayMusic(Constants.MENU_MUSIC);
+			//if(MusicLoopsManager.Instance)MusicLoopsManager.Instance.PlayMusic(Constants.MENU_MUSIC);
 			EventManager.Instance.Raise(new GameMenuEvent());
 		}
 
@@ -113,7 +113,7 @@
 			SetTimeScale(1);
 			m_GameState = GameState.gamePlay;
 
-			if (MusicLoopsManager.Instance) MusicLoopsManager.Instance.PlayMusic(Constants.GAMEPLAY_MUSIC);
+			//if (MusicLoopsManager.Instance) MusicLoopsManager.Instance.PlayMusic(Constants.GAMEPLAY_MUSIC);
 			EventManager.Instance.Raise(new GamePlayEvent());
 		}
 

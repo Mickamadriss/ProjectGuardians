@@ -9,6 +9,6 @@ public class Utils : MonoBehaviour
         if (gameObject.GetComponentInParent<IEnnemy>() == null)
             return other.GetComponentInParent<IEnnemy>() != null;
         else
-            return other.GetComponentInParent<IEnnemy>() == null;
+            return other.GetComponentInParent<IAlly>() != null;
     }
 }

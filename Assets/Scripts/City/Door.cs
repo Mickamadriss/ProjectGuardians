@@ -10,7 +10,7 @@ public class Door : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //si le gameobject est de la class player -> faut peut-être créé une interface pour les entités jouables
-        if (other.GetComponent<Player>() != null)
+        if (other.GetComponentInParent<IAlly>() != null)
         {
             //à modifier si possible psk je pense pas que ce sois optimal, voir si séparer en deux sous objet est mieux
             //si le joueur est plus proche de la porte d'entrée, il sort sinon il rentre 
