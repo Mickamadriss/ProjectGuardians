@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerDash : MonoBehaviour
 {
+    public Player player;
+
     [Header("References")]
     public Transform orientation;
     public Transform playerCam;
@@ -41,6 +43,7 @@ public class PlayerDash : MonoBehaviour
 
     private void Update()
     {
+        if (!player.m_IsPlaying) return;
         if (Input.GetKeyDown(dashKey))
         {
             Dash();

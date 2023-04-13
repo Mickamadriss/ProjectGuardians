@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 200
   maxLife: 200
+  m_IsPlaying: 1
 --- !u!114 &34807608061936682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb65a185156281e4e9f19d1754229e1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: -5904902406852186909}
   orientation: {fileID: 745965689500852010}
   playerCam: {fileID: 745965689861491778}
   dashForce: 30
@@ -138,6 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5990e1568f16bcf43a71971c75caaa84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: -5904902406852186909}
   walkSpeed: 7
   runSpeed: 12
   dashSpeed: 17
@@ -171,6 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 608f6a9d334a8ce4488fb2dc50a2b844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: -5904902406852186909}
   cam: {fileID: 745965689861491778}
   attackPoint: {fileID: 5698785141304307669}
   objectToThrow: {fileID: 6158986230157310442, guid: debf7c61f1220cb4d8e57954a1606c32,

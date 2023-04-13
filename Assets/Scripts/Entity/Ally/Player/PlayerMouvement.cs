@@ -1,3 +1,4 @@
+using SDD.Events;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,6 +6,8 @@ using UnityEngine;
 
 public class PlayerMouvement : MonoBehaviour
 {
+    public Player player;
+
     [Header("Mouvement")]
     private float moveSpeed;
     public float walkSpeed;
@@ -66,6 +69,7 @@ public class PlayerMouvement : MonoBehaviour
 
     private void Update()
     {
+        if (!player.m_IsPlaying) return;
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
 
         MyInput();
@@ -85,6 +89,7 @@ public class PlayerMouvement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!player.m_IsPlaying) return;
         MovePlayer();
     }
 

@@ -17,8 +17,9 @@ namespace STUDENT_NAME
 		[SerializeField] GameObject m_PanelMainMenu;
 		[SerializeField] GameObject m_PanelInGameMenu;
 		[SerializeField] GameObject m_PanelGameOver;
+        [SerializeField] GameObject m_PanelHUD;
 
-		List<GameObject> m_AllPanels;
+        List<GameObject> m_AllPanels;
 		#endregion
 
 		#region Events' subscription
@@ -63,6 +64,7 @@ namespace STUDENT_NAME
 			m_AllPanels.Add(m_PanelMainMenu);
 			m_AllPanels.Add(m_PanelInGameMenu);
 			m_AllPanels.Add(m_PanelGameOver);
+			m_AllPanels.Add(m_PanelHUD);
 		}
 
 		void OpenPanel(GameObject panel)
@@ -108,7 +110,7 @@ namespace STUDENT_NAME
 
 		protected override void GamePlay(GamePlayEvent e)
 		{
-			OpenPanel(null);
+			OpenPanel(m_PanelHUD);
 		}
 
 		protected override void GamePause(GamePauseEvent e)
@@ -118,7 +120,8 @@ namespace STUDENT_NAME
 
 		protected override void GameResume(GameResumeEvent e)
 		{
-			OpenPanel(null);
+            Debug.Log("ehyo");
+            OpenPanel(m_PanelHUD);
 		}
 
 		protected override void GameOver(GameOverEvent e)

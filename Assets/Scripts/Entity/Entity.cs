@@ -8,7 +8,7 @@ public abstract class Entity : MonoBehaviour, IDamageable
 {
     [SerializeField] protected int life;
     [SerializeField] protected int maxLife;
-    protected bool m_IsPlaying = true;
+    public bool m_IsPlaying = true;
 
     private void Awake()
     {

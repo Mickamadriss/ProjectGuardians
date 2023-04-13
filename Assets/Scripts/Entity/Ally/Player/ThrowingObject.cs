@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ThrowingObject : MonoBehaviour
 {
+    public Player player;
+
     [Header("References")]
     public Transform cam;
     public Transform attackPoint;
@@ -27,7 +29,8 @@ public class ThrowingObject : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(throwKey) && readyToThrow)
+        if (!player.m_IsPlaying) return;
+        if (Input.GetKeyDown(throwKey) && readyToThrow)
         {
             Throw();
         }
