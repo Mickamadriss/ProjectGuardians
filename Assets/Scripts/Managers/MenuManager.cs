@@ -120,7 +120,6 @@ namespace STUDENT_NAME
 
 		protected override void GameResume(GameResumeEvent e)
 		{
-            Debug.Log("ehyo");
             OpenPanel(m_PanelHUD);
 		}
 

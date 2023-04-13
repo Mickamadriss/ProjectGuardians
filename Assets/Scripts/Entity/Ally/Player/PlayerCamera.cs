@@ -38,6 +38,8 @@ public class PlayerCamera : MonoBehaviour, IEventHandler
 
     private void OnDestroy()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         UnsubscribeEvents();
     }
 
@@ -64,14 +66,12 @@ public class PlayerCamera : MonoBehaviour, IEventHandler
 
     private void DisableMouse(GameResumeEvent e)
     {
-        Debug.Log("souris desactivated");
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
     private void EnableMouse(SDD.Events.Event e)
     {
-        Debug.Log("souris activated");
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
