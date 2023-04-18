@@ -6,7 +6,6 @@
 	using System.Collections.Generic;
 	using SDD.Events;
 	using System.Linq;
-    using static UnityEditor.PlayerSettings;
     using System;
 
 	public enum GameState { gameMenu, gamePlay, gamePause, gameOver, gameVictory }
@@ -14,6 +13,7 @@
 	public class GameManager : Manager<GameManager>
 	{
 		[SerializeField] GameObject player;
+		[SerializeField] WaveManger waveManager;
 		#region Game State
 		private GameState m_GameState;
 		public bool IsPlaying { get { return m_GameState == GameState.gamePlay; } }
@@ -67,7 +67,7 @@
         //Game initialization
         void InitNewGame(bool raiseStatsEvent = true)
 		{
-            Instantiate(player, new Vector3(0,0,0), Quaternion.identity);
+            waveManager.player = Instantiate(player, new Vector3(0, 0, 0), Quaternion.identity);
         }
 		#endregion
 

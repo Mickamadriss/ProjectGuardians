@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4684572830250202}
   - component: {fileID: 33612012187027086}
   - component: {fileID: 23500541308379416}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EA03_Village_Hut_Wall_Front_01i_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4845165394164946}
   - component: {fileID: 33336357742086794}
   - component: {fileID: 23131716774232292}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EA03_Village_Hut_Wall_Front_01i_LOD3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 4884690093378932}
   - component: {fileID: 33426709831893810}
   - component: {fileID: 23163114096843344}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EA03_Village_Hut_Wall_Front_01i_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 8472500367525347705}
   - component: {fileID: 6184990927042395402}
   - component: {fileID: 487118445191279580}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -371,7 +371,7 @@ GameObject:
   - component: {fileID: 4506672379567398}
   - component: {fileID: 33811026818049478}
   - component: {fileID: 23304233369703982}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EA03_Village_Hut_Wall_Front_01i_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

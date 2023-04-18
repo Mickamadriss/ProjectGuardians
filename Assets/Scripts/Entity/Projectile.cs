@@ -11,16 +11,16 @@ public class Projectile : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        Invoke(nameof(killProjectile), liveTime*3);
+        Invoke(nameof(killProjectile), liveTime);
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        if(other.gameObject.GetComponentInParent<IDamageable>() != null && Utils.IsFromOtherSide(gameObject, other.gameObject))
+        /*if(other.gameObject.GetComponentInParent<IDamageable>() != null && Utils.IsFromOtherSide(gameObject, other.gameObject))
         {
             other.gameObject.GetComponentInParent<IDamageable>().TakeDamage(damage);
         }
-        killProjectile();
+        killProjectile();*/
     }
 
     private void killProjectile()

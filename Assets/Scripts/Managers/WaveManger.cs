@@ -8,14 +8,15 @@ using UnityEngine.Analytics;
 public class WaveManger : Manager<WaveManger>, IEventHandler
 {
     //liste de AIEnnemy 
-    [SerializeField] List<AIEntity> m_Ennemies;
+    [SerializeField] List<AIEnnemy> m_Ennemies;
+    public GameObject player;
     //Gameobject city
     [SerializeField] GameObject m_City;
     private float LastSpawnTime = 0;
     private float SpawnDelay = 5;
     private int ennemyCount = 0;
     private bool m_IsPlaying = false;
-    private List<AIEntity> spawnEnnemies = new List<AIEntity>();
+    private List<AIEnnemy> spawnEnnemies = new List<AIEnnemy>();
 
     protected override void Awake()
     {
@@ -33,7 +34,8 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
                 int random = Random.Range(0, m_Ennemies.Count);
                 Vector3 pos = new Vector3(Random.Range(-100, 100), 0, Random.Range(-100, 100));
                 //set la direction de l'ennemy vers la ville
-                m_Ennemies[random].destination = m_City.transform;
+                m_Ennemies[random].player = player.transform;
+                m_Ennemies[random].city = m_City.transform;
                 spawnEnnemies.Add(Instantiate(m_Ennemies[random], pos, Quaternion.identity));
                 ennemyCount++;
                 LastSpawnTime = Time.time;
@@ -71,7 +73,7 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
 
     protected override void GameOver(GameOverEvent e)
     {
-        foreach (AIEntity aIEntity in spawnEnnemies)
+        foreach (AIEnnemy aIEntity in spawnEnnemies)
         {
             Destroy(aIEntity.gameObject);
         }

@@ -71,7 +71,7 @@ public class EnnemyCountChanged : SDD.Events.Event
 
 public class EnnemyKilled : SDD.Events.Event
 {
-    public AIEntity eEntity { get; set; }
+    public AIEnnemy eEntity { get; set; }
 }
 
 public class WaveChanged : SDD.Events.Event

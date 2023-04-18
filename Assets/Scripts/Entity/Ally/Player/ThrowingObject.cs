@@ -55,7 +55,6 @@ public class ThrowingObject : MonoBehaviour
         projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
 
         Invoke(nameof(resetThrow), throwCooldown);
-
     }
 
     private void resetThrow()
