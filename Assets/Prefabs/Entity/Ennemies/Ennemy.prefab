@@ -134,8 +134,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45bb6031441b1e140a66888e7d19659a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 0
-  maxLife: 0
+  life: 250
+  maxLife: 250
   m_IsPlaying: 1
   agent: {fileID: 8226519961847151143}
   player: {fileID: 0}
@@ -146,6 +146,9 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
+  whatIsCity:
+    serializedVersion: 2
+    m_Bits: 256
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
   timeBetweenAttacks: 0.5

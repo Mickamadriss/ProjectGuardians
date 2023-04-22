@@ -1,3 +1,4 @@
+using DG.Tweening;
 using SDD.Events;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ public class AIEnnemy : Entity, IEventHandler
     public Transform player;
     public Transform city;
 
-    public LayerMask whatIsGround, whatIsPlayer;
+    public LayerMask whatIsGround, whatIsPlayer, whatIsCity;
 
     //Patrolling
     public Vector3 walkPoint;
@@ -34,12 +35,17 @@ public class AIEnnemy : Entity, IEventHandler
 
     private void Update()
     {
+        Collider[] cityWallInSight = Physics.OverlapSphere(transform.position, sightRange, whatIsCity);
+        Collider[] cityWallInAttack = Physics.OverlapSphere(transform.position, attackRange, whatIsCity);
+
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if (!playerInSightRange && !playerInAttackRange) Patroling();
-        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if (playerInSightRange && playerInAttackRange) AttackPlayer();
+        if (!playerInSightRange && !playerInAttackRange && cityWallInSight.Length == 0) Patroling();
+        if (playerInSightRange && !playerInAttackRange) Chase(player.position);
+        if (cityWallInSight.Length != 0) Chase(cityWallInSight[0].gameObject.transform.position);
+        if (playerInSightRange && playerInAttackRange) Attack(player.position);
+        if (cityWallInAttack.Length != 0) Attack(cityWallInAttack[0].gameObject.transform.position);
     }
 
     private void OnDestroy()
@@ -49,36 +55,19 @@ public class AIEnnemy : Entity, IEventHandler
 
     private void Patroling()
     {
-        //if (!walkPointSet) SearchWalkPoint();
-        //else agent.SetDestination(walkPoint);
-
-        //Vector3 distanceToWalkPoint = transform.position - walkPoint;
-
-        //if (distanceToWalkPoint.magnitude < 1f) walkPointSet = false;
         agent.SetDestination(city.position);
     }
 
-    private void SearchWalkPoint()
+    private void Chase(Vector3 destination)
     {
-        float randomZ = Random.Range(-walkPointRange, walkPointRange);
-        float randomX = Random.Range(-walkPointRange, walkPointRange);
-
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
-            walkPointSet = true;
+        agent.SetDestination(destination);
     }
 
-    private void ChasePlayer()
-    {
-        agent.SetDestination(player.position);
-    }
-
-    private void AttackPlayer()
+    private void Attack(Vector3 target)
     {
         agent.SetDestination(transform.position);
 
-        transform.LookAt(player);
+        transform.LookAt(target);
 
         if (!alreadyAttacked)
         {
