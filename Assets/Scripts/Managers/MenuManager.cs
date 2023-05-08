@@ -113,7 +113,7 @@ namespace STUDENT_NAME
 			OpenPanel(m_PanelHUD);
 		}
 
-		protected override void GamePause(GamePauseEvent e)
+        protected override void GamePause(GamePauseEvent e)
 		{
 			OpenPanel(m_PanelInGameMenu);
 		}

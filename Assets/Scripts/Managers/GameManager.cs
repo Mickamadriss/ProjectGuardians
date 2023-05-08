@@ -13,7 +13,8 @@
 	public class GameManager : Manager<GameManager>
 	{
 		[SerializeField] GameObject player;
-		[SerializeField] WaveManger waveManager;
+		[SerializeField] Transform playerSpawnPosition;
+        [SerializeField] WaveManger waveManager;
 		#region Game State
 		private GameState m_GameState;
 		public bool IsPlaying { get { return m_GameState == GameState.gamePlay; } }
@@ -67,7 +68,7 @@
         //Game initialization
         void InitNewGame(bool raiseStatsEvent = true)
 		{
-            waveManager.player = Instantiate(player, new Vector3(0, 0, 0), Quaternion.identity);
+            waveManager.player = Instantiate(player, playerSpawnPosition.position, Quaternion.identity);
         }
 		#endregion
 

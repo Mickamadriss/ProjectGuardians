@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5647378139397884418}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: in
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8476562930727094207}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: out
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,9 +69,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 365695053231719585}
     m_Modifications:
+    - target: {fileID: 1175404056824248, guid: 225337266f16dc04aa201f020490e7cb, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465969545959742, guid: 225337266f16dc04aa201f020490e7cb, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1523541185172058, guid: 225337266f16dc04aa201f020490e7cb, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1787558474563518, guid: 225337266f16dc04aa201f020490e7cb, type: 3}
       propertyPath: m_Name
       value: DoorWall
+      objectReference: {fileID: 0}
+    - target: {fileID: 1787558474563518, guid: 225337266f16dc04aa201f020490e7cb, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1795796448295856, guid: 225337266f16dc04aa201f020490e7cb, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4326247580731288, guid: 225337266f16dc04aa201f020490e7cb, type: 3}
       propertyPath: m_RootOrder
@@ -87,7 +107,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4326247580731288, guid: 225337266f16dc04aa201f020490e7cb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.87
+      value: -0.532
       objectReference: {fileID: 0}
     - target: {fileID: 4326247580731288, guid: 225337266f16dc04aa201f020490e7cb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -136,23 +156,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1089790835833514, guid: a6fc57c8e1ca6d644b9befadd181a591, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1272297037271932, guid: a6fc57c8e1ca6d644b9befadd181a591, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1701149949056394, guid: a6fc57c8e1ca6d644b9befadd181a591, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1779332594564648, guid: a6fc57c8e1ca6d644b9befadd181a591, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1893516640677914, guid: a6fc57c8e1ca6d644b9befadd181a591, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1907079012912306, guid: a6fc57c8e1ca6d644b9befadd181a591, type: 3}
       propertyPath: m_Name
@@ -160,7 +180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1907079012912306, guid: a6fc57c8e1ca6d644b9befadd181a591, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4648308779318768, guid: a6fc57c8e1ca6d644b9befadd181a591, type: 3}
       propertyPath: m_RootOrder
@@ -218,6 +238,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6fc57c8e1ca6d644b9befadd181a591, type: 3}
+--- !u!1 &361818835205617123 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1907079012912306, guid: a6fc57c8e1ca6d644b9befadd181a591,
+    type: 3}
+  m_PrefabInstance: {fileID: 361332687268903249}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8867877588199946411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361818835205617123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26c31e2a7da646547a0e4dded40e2b25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prompt: Open Door
+  enter: {fileID: 5647378139397884418}
+  outer: {fileID: 8476562930727094207}
 --- !u!4 &365695053231719585 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4648308779318768, guid: a6fc57c8e1ca6d644b9befadd181a591,

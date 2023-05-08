@@ -60,6 +60,16 @@ public class CityLifeChanged : SDD.Events.Event
 {
     public int eLife { get; set; }
 }
+
+public class DrawInteractionHud : SDD.Events.Event
+{
+    public string prompt { get; set; }
+}
+
+public class EraseInteractionHud : SDD.Events.Event
+{
+}
+
 #endregion
 
 #region WaveManager Events

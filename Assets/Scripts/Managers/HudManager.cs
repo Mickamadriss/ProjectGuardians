@@ -6,6 +6,7 @@
 	using UnityEngine.UI;
 	using SDD.Events;
     using System;
+    using TMPro;
 
     public class HudManager : Manager<HudManager>
 	{
@@ -18,6 +19,8 @@
         [SerializeField] Text m_Waves;
         [SerializeField] Text m_EnnemyRemaining;
         [SerializeField] Text m_PlayerLife;
+        [SerializeField] GameObject m_InteractionHUD;
+        [SerializeField] TextMeshProUGUI m_InteractionPromt;
 
         #endregion
 
@@ -29,6 +32,8 @@
             EventManager.Instance.AddListener<WaveChanged>(waveChanged);
             EventManager.Instance.AddListener<EnnemyCountChanged>(ennemyCountChanged);
             EventManager.Instance.AddListener<PlayerLifeChanged>(playerLifeChanged);
+            EventManager.Instance.AddListener<DrawInteractionHud>(drawInteractionHUD);
+            EventManager.Instance.AddListener<EraseInteractionHud>(eraseInteractionHUD);
         }
 
         public override void UnsubscribeEvents()
@@ -37,6 +42,9 @@
             EventManager.Instance.RemoveListener<CityLifeChanged>(cityLifeChanged);
             EventManager.Instance.RemoveListener<WaveChanged>(waveChanged);
             EventManager.Instance.RemoveListener<EnnemyCountChanged>(ennemyCountChanged);
+            EventManager.Instance.RemoveListener<PlayerLifeChanged>(playerLifeChanged);
+            EventManager.Instance.RemoveListener<DrawInteractionHud>(drawInteractionHUD);
+            EventManager.Instance.RemoveListener<EraseInteractionHud>(eraseInteractionHUD);
         }
 
         #endregion
@@ -61,6 +69,17 @@
         private void playerLifeChanged(PlayerLifeChanged e)
         {
             m_PlayerLife.text = e.eLife.ToString();
+        }
+
+        private void drawInteractionHUD(DrawInteractionHud e)
+        {
+            m_InteractionPromt.text = e.prompt;
+            m_InteractionHUD.SetActive(true);
+        }
+
+        private void eraseInteractionHUD(EraseInteractionHud e)
+        {
+            m_InteractionHUD.SetActive(false);
         }
 
         #endregion
