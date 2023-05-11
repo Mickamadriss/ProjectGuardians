@@ -72,7 +72,6 @@ public class AIEnnemy : Entity, IEventHandler
         if (!alreadyAttacked)
         {
             //ATTACK
-            Debug.Log("Attack");
             Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 7f, ForceMode.Impulse);
             rb.AddForce(transform.up * 0f, ForceMode.Impulse);

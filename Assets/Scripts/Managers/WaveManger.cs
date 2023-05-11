@@ -3,7 +3,7 @@ using STUDENT_NAME;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Analytics;
+
 
 public class WaveManger : Manager<WaveManger>, IEventHandler
 {
@@ -17,6 +17,7 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
     private int ennemyCount = 0;
     private bool m_IsPlaying = false;
     private List<AIEnnemy> spawnEnnemies = new List<AIEnnemy>();
+    [SerializeField] LayerMask ground;
 
     protected override void Awake()
     {
@@ -32,15 +33,22 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
             if (Time.time - LastSpawnTime > SpawnDelay)
             {
                 int random = Random.Range(0, m_Ennemies.Count);
-                //todo FAIRE SPAWN LES ENNEMIES DIRECT SUR LE SOL POUR EVITER UN BUG LIE AU NAVMESH
+                //Trouve le point sur le sol où faire spawn l'ennemie
                 Vector3 pos = new Vector3(Random.Range(-100, 100) + m_City.transform.position.x, 20, Random.Range(-100, 100) + m_City.transform.position.z);
-                //set la direction de l'ennemy vers la ville
-                m_Ennemies[random].player = player.transform;
-                m_Ennemies[random].city = m_City.transform;
-                spawnEnnemies.Add(Instantiate(m_Ennemies[random], pos, Quaternion.identity));
-                ennemyCount++;
-                LastSpawnTime = Time.time;
-                EventManager.Instance.Raise(new EnnemyCountChanged() { eNumberEnnemy = ennemyCount });
+                Ray ray = new Ray(pos, Vector3.down);
+                RaycastHit[] results = new RaycastHit[3];
+                int i = Physics.RaycastNonAlloc(ray, results, 100, ground);
+                Debug.Log("number found: "+i);
+                if(i > 0)
+                {
+                    //set la direction de l'ennemy vers la ville
+                    m_Ennemies[random].player = player.transform;
+                    m_Ennemies[random].city = m_City.transform;
+                    spawnEnnemies.Add(Instantiate(m_Ennemies[random], results[0].point, Quaternion.identity));
+                    ennemyCount++;
+                    LastSpawnTime = Time.time;
+                    EventManager.Instance.Raise(new EnnemyCountChanged() { eNumberEnnemy = ennemyCount });
+                }
             }
         }
     }

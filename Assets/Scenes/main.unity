@@ -527,6 +527,11 @@ PrefabInstance:
       objectReference: {fileID: 47160870}
     - target: {fileID: 8488117380123235764, guid: 68480a01e4a00ab45b3d746ae2fc86ee,
         type: 3}
+      propertyPath: ground.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 8488117380123235764, guid: 68480a01e4a00ab45b3d746ae2fc86ee,
+        type: 3}
       propertyPath: m_Ennemies.Array.size
       value: 1
       objectReference: {fileID: 0}
