@@ -1,44 +1,48 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThrowingObject : MonoBehaviour
+public class Pistol : MonoBehaviour, IWeapon
 {
-    public Player player;
-
-    [Header("References")]
-    public Transform cam;
-    public Transform attackPoint;
-    public GameObject objectToThrow;
-
     [Header("Settings")]
     public float throwCooldown;
-
+    
+    [Header("References")]
+    public GameObject objectToThrow;
+    public Transform attackPoint;
+    public Transform cam;
+    
     [Header("Throwing")]
-    public KeyCode throwKey = KeyCode.Mouse0;
     public float throwForce;
-
-    bool readyToThrow;
-
-    private void Start()
+    private bool readyToThrow;
+    
+    
+    // Start is called before the first frame update
+    void Start()
     {
         readyToThrow = true;
     }
 
-    private void Update()
+    // Update is called once per frame
+    void Update()
     {
-        if (!player.m_IsPlaying) return;
-        if (Input.GetKeyDown(throwKey) && readyToThrow)
-        {
-            Throw();
-        }
     }
-
-    private void Throw()
+    
+    //Indique si oui ou non l'arme est prête à être utilisée
+    public bool CanAttack()
     {
+        //readyToThrow = true après X secondes de cooldown
+        return readyToThrow;
+    }
+    
+    //Lance un projectile
+    public void Attack()
+    {
+        Debug.Log("Attacking with pistol...");
         readyToThrow = false;
 
         //instantiate object to throw
+        //todo: faire en sorte que attackPoint et cam proviennent de la cam du player et non de la copie dégueulasse dans le prefab de Pistol
         GameObject projectile = Instantiate(objectToThrow, attackPoint.position, cam.rotation);
 
         //get rigidbody component
@@ -54,9 +58,9 @@ public class ThrowingObject : MonoBehaviour
 
         Invoke(nameof(resetThrow), throwCooldown);
     }
-
+    
     private void resetThrow()
     {
         readyToThrow = true;
     }
-}*/
+}

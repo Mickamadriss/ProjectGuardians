@@ -45,7 +45,6 @@ GameObject:
   - component: {fileID: -5904902406852186909}
   - component: {fileID: 34807608061936682}
   - component: {fileID: 964885522228628087}
-  - component: {fileID: 8625808332920420063}
   - component: {fileID: 7018154155872987953}
   m_Layer: 7
   m_Name: Player
@@ -103,6 +102,9 @@ MonoBehaviour:
   life: 200
   maxLife: 200
   m_IsPlaying: 1
+  throwKey: 323
+  defaultWeapon: {fileID: 1587938220433994610, guid: 939c55370621e2841883952087559a52,
+    type: 3}
 --- !u!114 &34807608061936682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,26 +165,6 @@ MonoBehaviour:
   orientation: {fileID: 745965689500852010}
   state: 0
   dashing: 0
---- !u!114 &8625808332920420063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 745965689458715291}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 608f6a9d334a8ce4488fb2dc50a2b844, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: -5904902406852186909}
-  cam: {fileID: 745965689861491778}
-  attackPoint: {fileID: 5698785141304307669}
-  objectToThrow: {fileID: 6158986230157310442, guid: debf7c61f1220cb4d8e57954a1606c32,
-    type: 3}
-  throwCooldown: 0.1
-  throwKey: 323
-  throwForce: 70
 --- !u!114 &7018154155872987953
 MonoBehaviour:
   m_ObjectHideFlags: 0

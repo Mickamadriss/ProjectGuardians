@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f2300ed7d30f5d64e957edabe176007e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - objectToThrow: {fileID: 6158986230157310442, guid: debf7c61f1220cb4d8e57954a1606c32,
+      type: 3}
+  - attackPoint: {instanceID: 0}
+  - cam: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
