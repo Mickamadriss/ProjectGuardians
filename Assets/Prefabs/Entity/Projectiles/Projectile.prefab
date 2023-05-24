@@ -127,5 +127,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15d08d21c6274b849b66c7b99bb52dbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  liveTime: 2
+  liveTime: 50
   damage: 200

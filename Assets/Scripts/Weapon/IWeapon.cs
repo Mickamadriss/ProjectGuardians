@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IWeapon
+public abstract class IWeapon : MonoBehaviour
 {
-    public bool CanAttack();
-    public void Attack();
+    public abstract void Attack();
 }
