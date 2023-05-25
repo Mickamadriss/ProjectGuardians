@@ -489,11 +489,16 @@ PrefabInstance:
         type: 3}
       propertyPath: attackPoint
       value: 
-      objectReference: {fileID: 3460968476347314427}
+      objectReference: {fileID: 5698785141304307669}
     - target: {fileID: -7447459295366731190, guid: 939c55370621e2841883952087559a52,
         type: 3}
       propertyPath: readyToThrow
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7447459295366731190, guid: 939c55370621e2841883952087559a52,
+        type: 3}
+      propertyPath: throwCooldown
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 1587938220433994610, guid: 939c55370621e2841883952087559a52,
         type: 3}
@@ -560,12 +565,6 @@ PrefabInstance:
 --- !u!4 &360467945422742979 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2867988008333663528, guid: 939c55370621e2841883952087559a52,
-    type: 3}
-  m_PrefabInstance: {fileID: 2507801624023972075}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &3460968476347314427 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1353987221444167696, guid: 939c55370621e2841883952087559a52,
     type: 3}
   m_PrefabInstance: {fileID: 2507801624023972075}
   m_PrefabAsset: {fileID: 0}
