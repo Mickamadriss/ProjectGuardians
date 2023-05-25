@@ -2,6 +2,7 @@ using DG.Tweening;
 using SDD.Events;
 using System.Collections;
 using System.Collections.Generic;
+using STUDENT_NAME.Entity;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -53,6 +54,11 @@ public class AIEnnemy : Entity, IEventHandler
         EventManager.Instance.Raise(new EnnemyKilled() { eEntity = this});
     }
 
+    public override Side getSide()
+    {
+        return Side.Ennemy;
+    }
+
     private void Patroling()
     {
         agent.SetDestination(city.position);
@@ -75,7 +81,10 @@ public class AIEnnemy : Entity, IEventHandler
             Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 7f, ForceMode.Impulse);
             rb.AddForce(transform.up * 0f, ForceMode.Impulse);
-
+            
+            Projectile projectileScript = projectile.GetComponent<Projectile>();    //Script du projectile
+            projectileScript.side = Side.Ennemy;
+            
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }

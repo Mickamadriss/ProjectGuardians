@@ -2,6 +2,7 @@ using Newtonsoft.Json.Bson;
 using SDD.Events;
 using System.Collections;
 using System.Collections.Generic;
+using STUDENT_NAME.Entity;
 using UnityEngine;
 
 public abstract class Entity : MonoBehaviour, IDamageable
@@ -64,11 +65,16 @@ public abstract class Entity : MonoBehaviour, IDamageable
 
     #endregion
 
+    public virtual Side getSide()
+    {
+        return Side.Neutral;
+    }
+    
     public virtual void TakeDamage(int damage)
     {
         life -= damage;
-        Debug.Log(life);
-        if(life <= 0)
+        Debug.Log(gameObject + " // HP = "+life+"/"+maxLife);
+        if (life <= 0)
         {
             Destroy(gameObject);
         }

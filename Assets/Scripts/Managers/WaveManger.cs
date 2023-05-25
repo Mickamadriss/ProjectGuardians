@@ -38,7 +38,6 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
                 Ray ray = new Ray(pos, Vector3.down);
                 RaycastHit[] results = new RaycastHit[3];
                 int i = Physics.RaycastNonAlloc(ray, results, 100, ground);
-                Debug.Log("number found: "+i);
                 if(i > 0)
                 {
                     //set la direction de l'ennemy vers la ville
