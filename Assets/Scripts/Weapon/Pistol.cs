@@ -1,3 +1,4 @@
+using STUDENT_NAME.Entity;
 using UnityEngine;
 
 public class Pistol : IWeapon
@@ -18,27 +19,27 @@ public class Pistol : IWeapon
     public override void Attack()
     {
         if (!canAttack) return;
-        Debug.Log("Attacking with pistol...");
         canAttack = false;
 
-        //instantiate object to throw
-        //todo: faire en sorte que attackPoint et cam proviennent de la cam du player et non de la copie dégueulasse dans le prefab de Pistol
+        //Instancie la balle
         GameObject projectile = Instantiate(objectToThrow, attackPoint.position, cam.rotation);
+        //--Variables--
+        Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();      //RigidBody du projectile
+        Projectile projectileScript = projectile.GetComponent<Projectile>();    //Script du projectile
+        projectileScript.side = Side.Ally;
 
-        //get rigidbody component
-        Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
-
-        //calculate direction
+        //Calcul direction
         Vector3 forceDirection = attackPoint.transform.forward;
 
-        //add force
+        //Ajout force sur la balle
         Vector3 forceToAdd =  forceDirection * throwForce;
-
         projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
 
+        //Repasse le canAttack à true dans X secondes
         Invoke(nameof(resetThrow), throwCooldown);
     }
     
+    //Repasse le canAttack à true
     private void resetThrow()
     {
         canAttack = true;

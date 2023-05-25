@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using STUDENT_NAME.Entity;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
     public float liveTime;
     public int damage;
+    public Side side;
     private Rigidbody rb;
 
     private void Start()
@@ -16,11 +18,19 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        /*if(other.gameObject.GetComponentInParent<IDamageable>() != null && Utils.IsFromOtherSide(gameObject, other.gameObject))
+        //On ne peut attaquer qu'un gameObject damageable
+        IDamageable target = other.gameObject.GetComponentInParent<IDamageable>();
+        if (target != null)
         {
-            other.gameObject.GetComponentInParent<IDamageable>().TakeDamage(damage);
+            //Détecter que c'est bien une collision avec le camp ennemi
+            if (this.side != target.getSide())
+            {
+                //Applique l'attaque + détruit le projectile
+                target.TakeDamage(damage);
+                killProjectile();
+            }
+            
         }
-        killProjectile();*/
     }
 
     private void killProjectile()

@@ -2,6 +2,7 @@ using System;
 using SDD.Events;
 using System.Collections;
 using System.Collections.Generic;
+using STUDENT_NAME.Entity;
 using UnityEngine;
 
 public class Player : Entity, IEventHandler, IAlly
@@ -38,6 +39,11 @@ public class Player : Entity, IEventHandler, IAlly
         {
             weapon.Attack();
         }
+    }
+
+    public override Side getSide()
+    {
+        return Side.Ally;
     }
 
     public override void TakeDamage(int damage)
