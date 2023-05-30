@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class IAStatic : Entity
 {
+    // turret head
+    public Transform head;
+    
     public Transform target;
     public LayerMask whatIsEnnemy;
     
@@ -29,14 +32,14 @@ public class IAStatic : Entity
     
     private void Attack(Vector3 target)
     {
-        transform.LookAt(target);
+        head.LookAt(target);
 
         if (!alreadyAttacked)
         {
             //ATTACK
             Rigidbody rb = Instantiate(projectile, attackPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 7f, ForceMode.Impulse);
-            rb.AddForce(transform.up * 0f, ForceMode.Impulse);
+            rb.AddForce(head.forward * 7f, ForceMode.Impulse);
+            rb.AddForce(head.up * 0f, ForceMode.Impulse);
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);

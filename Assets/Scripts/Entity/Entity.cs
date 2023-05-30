@@ -9,6 +9,7 @@ public abstract class Entity : MonoBehaviour, IDamageable
 {
     [SerializeField] protected int life;
     [SerializeField] protected int maxLife;
+    [SerializeField] protected Side side;
     public bool m_IsPlaying = true;
 
     private void Awake()
@@ -67,7 +68,7 @@ public abstract class Entity : MonoBehaviour, IDamageable
 
     public virtual Side getSide()
     {
-        return Side.Neutral;
+        return side;
     }
     
     public virtual void TakeDamage(int damage)

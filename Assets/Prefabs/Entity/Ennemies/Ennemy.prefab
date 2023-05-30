@@ -136,6 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 250
   maxLife: 250
+  side: 1
   m_IsPlaying: 1
   agent: {fileID: 8226519961847151143}
   player: {fileID: 0}
