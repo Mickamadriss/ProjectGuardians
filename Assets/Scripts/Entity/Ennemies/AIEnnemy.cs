@@ -17,13 +17,10 @@ public class AIEnnemy : Entity, IEventHandler
 
     //Patrolling
     public Vector3 walkPoint;
-    bool walkPointSet;
     public float walkPointRange;
 
     //Attacking
-    public float timeBetweenAttacks;
-    bool alreadyAttacked;
-    public GameObject projectile;
+    [SerializeField] private IWeapon weapon;
 
     //States
     public float sightRange, attackRange;
@@ -75,29 +72,7 @@ public class AIEnnemy : Entity, IEventHandler
 
         transform.LookAt(target);
 
-        if (!alreadyAttacked)
-        {
-            //ATTACK
-            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 7f, ForceMode.Impulse);
-            rb.AddForce(transform.up * 0f, ForceMode.Impulse);
-            
-            Projectile projectileScript = projectile.GetComponent<Projectile>();    //Script du projectile
-            projectileScript.side = Side.Ennemy;
-            
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
-        }
-    }
-
-    private void ResetAttack()
-    {
-        alreadyAttacked = false;
-    }
-
-    private void DestroyEnemy()
-    {
-        Destroy(gameObject);
+        weapon.Attack();
     }
 
     private void OnDrawGizmosSelected()

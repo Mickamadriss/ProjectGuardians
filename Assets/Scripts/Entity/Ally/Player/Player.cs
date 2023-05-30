@@ -10,23 +10,11 @@ public class Player : Entity, IEventHandler, IAlly
     [Header("Parameters")]
     [SerializeField] private IWeapon weapon;
     public KeyCode throwKey = KeyCode.Mouse0;
-    public GameObject defaultWeapon;
 
     private void Awake()
     {
         SubscribeEvents();
         EventManager.Instance.Raise(new PlayerLifeChanged() { eLife = life });
-    }
-
-    private void Start()
-    {
-        //Spawn du weapon par défaut
-        //GameObject defaultWeaoponSpawn = Instantiate(defaultWeapon, transform.position + new Vector3(0.2f, 0, 0), Quaternion.identity);
-        //Faire que le weapon suive le player (todo: faire aussi la rotation)
-        //defaultWeaoponSpawn.transform.SetParent(transform, true);
-
-        //Récupération script weapon
-        //weapon = defaultWeapon.GetComponent<Pistol>();
     }
 
     // Update is called once per frame

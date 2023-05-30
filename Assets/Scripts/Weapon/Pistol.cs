@@ -7,9 +7,8 @@ public class Pistol : SidedWeapon
     public float throwCooldown;
     
     [Header("References")]
-    public GameObject objectToThrow;
+    [SerializeField] Projectile projectileObject = null;
     public Transform attackPoint;
-    public Transform cam;
     public bool canAttack = true;
 
     [Header("Throwing")]
@@ -22,10 +21,11 @@ public class Pistol : SidedWeapon
         canAttack = false;
 
         //Instancie la balle
-        GameObject projectile = Instantiate(objectToThrow, attackPoint.position, cam.rotation);
+        GameObject projectile = Instantiate(projectileObject.gameObject, attackPoint.position, attackPoint.rotation);
         //--Variables--
         Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();      //RigidBody du projectile
         Projectile projectileScript = projectile.GetComponent<Projectile>();    //Script du projectile
+        projectileScript.damage = damage;
         projectileScript.side = side;
 
         //Calcul direction
