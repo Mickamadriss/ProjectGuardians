@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 200
   maxLife: 200
+  side: 0
   m_IsPlaying: 1
   weapon: {fileID: 4208841935670252193}
   throwKey: 323

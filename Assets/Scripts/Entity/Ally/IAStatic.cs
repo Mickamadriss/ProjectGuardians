@@ -6,6 +6,7 @@ public class IAStatic : Entity
 {
     // turret head
     public Transform head;
+    public IWeapon weapon;
     
     public Transform target;
     public LayerMask whatIsEnnemy;
@@ -34,16 +35,7 @@ public class IAStatic : Entity
     {
         head.LookAt(target);
 
-        if (!alreadyAttacked)
-        {
-            //ATTACK
-            Rigidbody rb = Instantiate(projectile, attackPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(head.forward * 7f, ForceMode.Impulse);
-            rb.AddForce(head.up * 0f, ForceMode.Impulse);
-
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
-        }
+        weapon.Attack();
     }
     
     private void ResetAttack()

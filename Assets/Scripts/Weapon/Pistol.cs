@@ -1,7 +1,7 @@
 using STUDENT_NAME.Entity;
 using UnityEngine;
 
-public class Pistol : IWeapon
+public class Pistol : SidedWeapon
 {
     [Header("Settings")]
     public float throwCooldown;
@@ -26,7 +26,7 @@ public class Pistol : IWeapon
         //--Variables--
         Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();      //RigidBody du projectile
         Projectile projectileScript = projectile.GetComponent<Projectile>();    //Script du projectile
-        projectileScript.side = Side.Ally;
+        projectileScript.side = side;
 
         //Calcul direction
         Vector3 forceDirection = attackPoint.transform.forward;

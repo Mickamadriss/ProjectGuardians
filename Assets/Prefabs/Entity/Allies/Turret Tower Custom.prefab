@@ -30,8 +30,7 @@ Transform:
   m_LocalPosition: {x: 0, y: -4.582049, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6274074071464948212}
+  m_Children: []
   m_Father: {fileID: 3866662852665593069}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -108,6 +107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4939996705135754}
   - component: {fileID: 1116545025123856106}
+  - component: {fileID: 7297626919784857843}
   m_Layer: 8
   m_Name: Turret Tower Custom
   m_TagString: Untagged
@@ -149,6 +149,7 @@ MonoBehaviour:
   side: 0
   m_IsPlaying: 1
   head: {fileID: 3866662852665593069}
+  weapon: {fileID: 7297626919784857843}
   target: {fileID: 0}
   whatIsEnnemy:
     serializedVersion: 2
@@ -158,6 +159,25 @@ MonoBehaviour:
     type: 3}
   attackPoint: {fileID: 6274074071464948212}
   attackRange: 50
+--- !u!114 &7297626919784857843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1326093064322132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2300ed7d30f5d64e957edabe176007e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  throwCooldown: 0.5
+  objectToThrow: {fileID: 6158986230157310442, guid: debf7c61f1220cb4d8e57954a1606c32,
+    type: 3}
+  attackPoint: {fileID: 6274074071464948212}
+  cam: {fileID: 6274074071464948212}
+  canAttack: 1
+  throwForce: 20
 --- !u!1 &1414511323558576
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,6 +304,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4519941387849242}
+  - {fileID: 6274074071464948212}
   m_Father: {fileID: 4939996705135754}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -311,10 +332,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2243405462844318325}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.515, z: 1.541}
+  m_LocalPosition: {x: 0, y: -0.06704903, z: 1.541}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4519941387849242}
-  m_RootOrder: 0
+  m_Father: {fileID: 3866662852665593069}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
