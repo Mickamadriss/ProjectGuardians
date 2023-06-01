@@ -7,27 +7,16 @@ using UnityEngine;
 
 public class Player : Entity, IEventHandler, IAlly
 {
-    [Header("Parameters")]
-    [SerializeField] private IWeapon weapon;
-    public KeyCode throwKey = KeyCode.Mouse0;
-
     private void Awake()
     {
         SubscribeEvents();
         EventManager.Instance.Raise(new PlayerLifeChanged() { eLife = life });
     }
 
+    private void Start() { }
+
     // Update is called once per frame
-    void Update()
-    {
-        if (!m_IsPlaying) return;
-        
-        //Event pour déclencher l'attaque du joueur
-        if (Input.GetKeyDown(throwKey))
-        {
-            weapon.Attack();
-        }
-    }
+    void Update() { }
 
     public override Side getSide()
     {
