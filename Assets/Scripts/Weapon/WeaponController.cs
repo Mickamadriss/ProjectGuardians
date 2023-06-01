@@ -14,7 +14,6 @@ public class WeaponController : MonoBehaviour
         //Event pour déclencher l'attaque du joueur
         if (Input.GetKeyDown(throwKey))
         {
-            Debug.Log("attack mouse");
             weapon.Attack();
         }
     }

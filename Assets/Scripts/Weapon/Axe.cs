@@ -24,7 +24,7 @@ public class Axe : SidedWeapon
         Animator anim = this.GetComponent<Animator>();
         anim.SetTrigger("Attack");
         
-        //Son - NE MARCHE PAS ? OU COMMENT ALLUMER LE SON SUR UNITY
+        //Son
         AudioSource ac = GetComponent<AudioSource>();
         ac.PlayOneShot(AttackSound);
 
