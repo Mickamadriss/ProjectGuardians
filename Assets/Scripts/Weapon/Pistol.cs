@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using STUDENT_NAME.Entity;
 using UnityEngine;
 
-public class Pistol : IWeapon
+public class Pistol : SidedWeapon
 {
     [Header("Settings")]
     public float AttackCooldown;
     public bool CanAttack = true;
 
     [Header("References")]
-    public GameObject objectToThrow;
+    [SerializeField] Projectile projectileObject = null;
     public Transform attackPoint;
-    public Transform cam;
 
     [Header("Throwing")]
     public float throwForce;
@@ -24,11 +23,12 @@ public class Pistol : IWeapon
         CanAttack = false;
 
         //Instancie la balle
-        GameObject projectile = Instantiate(objectToThrow, attackPoint.position, cam.rotation);
+        GameObject projectile = Instantiate(projectileObject.gameObject, attackPoint.position, attackPoint.rotation);
         //--Variables--
-        Rigidbody projectileRb = projectile.GetComponent<Rigidbody>(); //RigidBody du projectile
-        Projectile projectileScript = projectile.GetComponent<Projectile>(); //Script du projectile
-        projectileScript.side = Side.Ally;
+        Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();      //RigidBody du projectile
+        Projectile projectileScript = projectile.GetComponent<Projectile>();    //Script du projectile
+        projectileScript.damage = damage;
+        projectileScript.side = side;
 
         //Calcul direction
         Vector3 forceDirection = attackPoint.transform.forward;
