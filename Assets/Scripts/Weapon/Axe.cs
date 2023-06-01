@@ -1,12 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using STUDENT_NAME.Entity;
 using UnityEngine;
 
-public class Axe : IWeapon
+public class Axe : SidedWeapon
 {
     [Header("Settings")]
-    public int Damage;
     public float AttackCooldown;
     public bool CanAttack = true;
     private bool IsAttacking = false;
@@ -48,11 +48,14 @@ public class Axe : IWeapon
 
     private void OnTriggerEnter(Collider other)
     {
-        //Si collision avec un ennemi alors dégats
-        if (other.GetComponentInParent<AIEnnemy>() != null && IsAttacking)
+        //On vérifie bien que ce soit un ennemi ce qu'on frappe
+        if (other.GetComponentInParent<Entity>() != null)
         {
-            other.GetComponent<AIEnnemy>().TakeDamage(Damage);
-            IsAttacking = false;
+            if (other.GetComponentInParent<Entity>().getSide() == Side.Ennemy && IsAttacking)
+            {
+                other.GetComponent<AIEnnemy>().TakeDamage(damage);
+                IsAttacking = false;
+            }
         }
     }
 }
