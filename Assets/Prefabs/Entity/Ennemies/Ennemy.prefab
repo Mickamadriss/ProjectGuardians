@@ -187,6 +187,11 @@ PrefabInstance:
       objectReference: {fileID: 6108043274283971628}
     - target: {fileID: -7447459295366731190, guid: 939c55370621e2841883952087559a52,
         type: 3}
+      propertyPath: AttackCooldown
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -7447459295366731190, guid: 939c55370621e2841883952087559a52,
+        type: 3}
       propertyPath: projectileObject
       value: 
       objectReference: {fileID: -4239139962212848624, guid: debf7c61f1220cb4d8e57954a1606c32,

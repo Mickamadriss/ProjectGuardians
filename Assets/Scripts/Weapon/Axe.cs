@@ -12,6 +12,16 @@ public class Axe : SidedWeapon
     private bool IsAttacking = false;
     [Header("References")]
     public AudioClip AttackSound;
+    private Animator anim;
+    private AudioSource ac;
+    private Collider collider;
+
+    private void Awake()
+    {
+       anim = GetComponent<Animator>();
+       ac = GetComponent<AudioSource>();
+       collider = GetComponent<Collider>();
+    }
 
     //L'attaque lance une animation, et donc si le collider de la Axe touche un ennemy ça va déclencher le OnTriggerEnter
     public override void Attack()
@@ -19,13 +29,12 @@ public class Axe : SidedWeapon
         if (!CanAttack) return;
         CanAttack = false;
         IsAttacking = true;
+        collider.enabled = true;
 
         //Animation
-        Animator anim = this.GetComponent<Animator>();
         anim.SetTrigger("Attack");
         
         //Son
-        AudioSource ac = GetComponent<AudioSource>();
         ac.PlayOneShot(AttackSound);
 
         //Cooldown de l'arme
@@ -44,6 +53,7 @@ public class Axe : SidedWeapon
     {
         yield return new WaitForSeconds(1.0f);
         IsAttacking = false;
+        collider.enabled = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -51,7 +61,7 @@ public class Axe : SidedWeapon
         //On vérifie bien que ce soit un ennemi ce qu'on frappe
         if (other.GetComponentInParent<Entity>() != null)
         {
-            if (other.GetComponentInParent<Entity>().getSide() == Side.Ennemy && IsAttacking)
+            if (other.GetComponentInParent<Entity>().getSide() != side && IsAttacking)
             {
                 other.GetComponent<AIEnnemy>().TakeDamage(damage);
                 IsAttacking = false;
