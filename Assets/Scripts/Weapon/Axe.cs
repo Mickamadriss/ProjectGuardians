@@ -14,13 +14,13 @@ public class Axe : SidedWeapon
     public AudioClip AttackSound;
     private Animator anim;
     private AudioSource ac;
-    private Collider collider;
+    private Collider axeCcollider;
 
     private void Awake()
     {
        anim = GetComponent<Animator>();
        ac = GetComponent<AudioSource>();
-       collider = GetComponent<Collider>();
+        axeCcollider = GetComponent<Collider>();
     }
 
     //L'attaque lance une animation, et donc si le collider de la Axe touche un ennemy ça va déclencher le OnTriggerEnter
@@ -29,7 +29,7 @@ public class Axe : SidedWeapon
         if (!CanAttack) return;
         CanAttack = false;
         IsAttacking = true;
-        collider.enabled = true;
+        GetComponent<Collider>().enabled = true;
 
         //Animation
         anim.SetTrigger("Attack");
@@ -53,17 +53,18 @@ public class Axe : SidedWeapon
     {
         yield return new WaitForSeconds(1.0f);
         IsAttacking = false;
-        collider.enabled = false;
+        GetComponent<Collider>().enabled = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        //On vérifie bien que ce soit un ennemi ce qu'on frappe
-        if (other.GetComponentInParent<Entity>() != null)
+        //On ne peut attaquer qu'un gameObject damageable
+        IDamageable target = other.gameObject.GetComponentInParent<IDamageable>();
+        if (target != null)
         {
-            if (other.GetComponentInParent<Entity>().getSide() != side && IsAttacking)
+            if (side != target.getSide() && IsAttacking)
             {
-                other.GetComponent<AIEnnemy>().TakeDamage(damage);
+                target.TakeDamage(damage);
                 IsAttacking = false;
             }
         }

@@ -37,9 +37,4 @@ public class IAStatic : Entity
 
         weapon.Attack();
     }
-    
-    private void ResetAttack()
-    {
-        alreadyAttacked = false;
-    }
 }
