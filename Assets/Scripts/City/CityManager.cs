@@ -7,16 +7,12 @@ using UnityEngine.UI;
 
 public class CityManager : Manager<CityManager>
 {
-    [SerializeField] private int life;
+    [SerializeField] private int MaxLife;
+    private int life;
 
     protected override IEnumerator InitCoroutine()
     {
         throw new System.NotImplementedException();
-    }
-
-    private void Start()
-    {
-        EventManager.Instance.Raise(new CityLifeChanged() { eLife = life });
     }
 
     #region Events' subscription
@@ -24,12 +20,15 @@ public class CityManager : Manager<CityManager>
     {
         base.SubscribeEvents();
         EventManager.Instance.AddListener<CityAttacked>(cityAttacked);
+        EventManager.Instance.AddListener<GamePlayEvent>(gameStarted);
     }
 
     public override void UnsubscribeEvents()
     {
         base.UnsubscribeEvents();
-        EventManager.Instance.AddListener<CityAttacked>(cityAttacked);
+        EventManager.Instance.RemoveListener<CityAttacked>(cityAttacked);
+        EventManager.Instance.RemoveListener<GamePlayEvent>(gameStarted);
+
     }
 
     #endregion
@@ -39,6 +38,17 @@ public class CityManager : Manager<CityManager>
     private void cityAttacked(CityAttacked e)
     {
         life -= e.eDamage;
+        if(life <= 0)
+        {
+            life = 0;
+            EventManager.Instance.Raise(new GameOverEvent());
+        }
+        EventManager.Instance.Raise(new CityLifeChanged() { eLife = life });
+    }
+
+    private void gameStarted(GamePlayEvent e)
+    {
+        life = MaxLife;
         EventManager.Instance.Raise(new CityLifeChanged() { eLife = life });
     }
 

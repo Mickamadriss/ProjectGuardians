@@ -2,11 +2,7 @@
 {
 	using System.Collections;
 	using UnityEngine;
-	using UnityEngine.UI;
-	using System.Collections.Generic;
 	using SDD.Events;
-	using System.Linq;
-    using System;
 
 	public enum GameState { gameMenu, gamePlay, gamePause, gameOver, gameVictory }
 
@@ -15,8 +11,9 @@
 		[SerializeField] GameObject player;
 		[SerializeField] Transform playerSpawnPosition;
         [SerializeField] WaveManger waveManager;
-		#region Game State
-		private GameState m_GameState;
+		GameObject playerInGame;
+        #region Game State
+        private GameState m_GameState;
 		public bool IsPlaying { get { return m_GameState == GameState.gamePlay; } }
 		#endregion
 
@@ -41,7 +38,8 @@
 			EventManager.Instance.AddListener<ResumeButtonClickedEvent>(ResumeButtonClicked);
 			EventManager.Instance.AddListener<EscapeButtonClickedEvent>(EscapeButtonClicked);
 			EventManager.Instance.AddListener<QuitButtonClickedEvent>(QuitButtonClicked);
-		}
+			EventManager.Instance.AddListener<GameOverEvent>(Over);
+        }
 
 		public override void UnsubscribeEvents()
 		{
@@ -53,11 +51,12 @@
 			EventManager.Instance.RemoveListener<ResumeButtonClickedEvent>(ResumeButtonClicked);
 			EventManager.Instance.RemoveListener<EscapeButtonClickedEvent>(EscapeButtonClicked);
 			EventManager.Instance.RemoveListener<QuitButtonClickedEvent>(QuitButtonClicked);
-		}
-		#endregion
+            EventManager.Instance.RemoveListener<GameOverEvent>(Over);
+        }
+        #endregion
 
-		#region Manager implementation
-		protected override IEnumerator InitCoroutine()
+        #region Manager implementation
+        protected override IEnumerator InitCoroutine()
 		{
 			Menu();
 			yield break;
@@ -66,9 +65,10 @@
         #endregion
         #region Game flow & Gameplay
         //Game initialization
-        void InitNewGame(bool raiseStatsEvent = true)
+        void InitNewGame()
 		{
-            waveManager.player = Instantiate(player, playerSpawnPosition.position, Quaternion.identity);
+			playerInGame = Instantiate(player, playerSpawnPosition.position, Quaternion.identity);
+			waveManager.player = playerInGame;
         }
 		#endregion
 
@@ -97,10 +97,19 @@
 		{
 			Application.Quit();
 		}
-		#endregion
 
-		#region GameState methods
-		private void Menu()
+        private void Over(GameOverEvent e)
+        {
+            Destroy(playerInGame);
+            SetTimeScale(0);
+            m_GameState = GameState.gameOver;
+            if (SfxManager.Instance) SfxManager.Instance.PlaySfx2D(Constants.GAMEOVER_SFX);
+        }
+
+        #endregion
+
+        #region GameState methods
+        private void Menu()
 		{
 			SetTimeScale(1);
 			m_GameState = GameState.gameMenu;
@@ -134,14 +143,6 @@
 			SetTimeScale(1);
 			m_GameState = GameState.gamePlay;
 			EventManager.Instance.Raise(new GameResumeEvent());
-		}
-
-		private void Over()
-		{
-			SetTimeScale(0);
-			m_GameState = GameState.gameOver;
-			EventManager.Instance.Raise(new GameOverEvent());
-			if(SfxManager.Instance) SfxManager.Instance.PlaySfx2D(Constants.GAMEOVER_SFX);
 		}
 		#endregion
 	}
