@@ -1,5 +1,6 @@
 using SDD.Events;
 using STUDENT_NAME;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,15 +10,24 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
 {
     //liste de AIEnnemy 
     [SerializeField] List<AIEnnemy> m_Ennemies;
+    private List<AIEnnemy> spawnEnnemies = new List<AIEnnemy>();
+
     public GameObject player;
+
     //Gameobject city
     [SerializeField] GameObject m_City;
-    private float LastSpawnTime = 0;
-    private float SpawnDelay = 5;
+
+    //parameters
+    private float LastEndWave = 0;
     private int ennemyCount = 0;
     private bool m_IsPlaying = false;
-    private List<AIEnnemy> spawnEnnemies = new List<AIEnnemy>();
+    
     [SerializeField] LayerMask ground;
+
+    //wave Description
+    private int WaveNumber = 0;
+    [SerializeField] private float WaveDelay = 5;
+    [SerializeField] private int numberEnnemiesToSpawn = 5;
 
     protected override void Awake()
     {
@@ -29,24 +39,28 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
     {
         if (m_IsPlaying)
         {
-            //toute les 10 secondes fait spawn un ennemy à une position aléatoire
-            if (Time.time - LastSpawnTime > SpawnDelay)
+            if(ennemyCount == 0)
             {
-                int random = Random.Range(0, m_Ennemies.Count);
-                //Trouve le point sur le sol où faire spawn l'ennemie
-                Vector3 pos = new Vector3(Random.Range(-100, 100) + m_City.transform.position.x, 20, Random.Range(-100, 100) + m_City.transform.position.z);
-                Ray ray = new Ray(pos, Vector3.down);
-                RaycastHit[] results = new RaycastHit[3];
-                int i = Physics.RaycastNonAlloc(ray, results, 100, ground);
-                if(i > 0)
+                float timeSinceLastWave = Time.time - LastEndWave;
+                EventManager.Instance.Raise(new TimeNextWaveChanged() { eTime = WaveDelay-timeSinceLastWave });
+                if (timeSinceLastWave > WaveDelay) //si le temps d'attente est fini
                 {
-                    //set la direction de l'ennemy vers la ville
-                    m_Ennemies[random].player = player.transform;
-                    m_Ennemies[random].city = m_City.transform;
-                    spawnEnnemies.Add(Instantiate(m_Ennemies[random], results[0].point, Quaternion.identity));
-                    ennemyCount++;
-                    LastSpawnTime = Time.time;
-                    EventManager.Instance.Raise(new EnnemyCountChanged() { eNumberEnnemy = ennemyCount });
+                    WaveNumber++;
+                    EventManager.Instance.Raise(new WaveChanged() { eWave = WaveNumber });
+
+                    //zone de spawn
+                    Vector3 pos = new Vector3(UnityEngine.Random.Range(-100, 100) + m_City.transform.position.x, 20, UnityEngine.Random.Range(-100, 100) + m_City.transform.position.z);
+                    for (int j = 0; j < numberEnnemiesToSpawn; j++)
+                    {
+                        //flou de spawn
+                        Vector3 posSpawn = new Vector3(UnityEngine.Random.Range(-5, 5) + pos.x, 20, UnityEngine.Random.Range(-5, 5) + pos.z);
+                        int random = UnityEngine.Random.Range(0, m_Ennemies.Count);
+
+                        SpawnEnnemy(posSpawn, random);
+                    }
+
+                    //zone pour rendre la prochaine wave plus dur
+                    numberEnnemiesToSpawn++;
                 }
             }
         }
@@ -93,12 +107,16 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
         ennemyCount--;
         spawnEnnemies.Remove(e.eEntity);
         EventManager.Instance.Raise(new EnnemyCountChanged() { eNumberEnnemy = ennemyCount });
+        if (ennemyCount == 0)
+        {
+            LastEndWave = Time.time;
+        }
     }
 
     protected override void GamePlay(GamePlayEvent e)
     {
         m_IsPlaying = true;
-        LastSpawnTime = Time.time;
+        LastEndWave = Time.time;
     }
 
     protected override void GamePause(GamePauseEvent e)
@@ -112,4 +130,22 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
     }
 
     #endregion
+
+    private void SpawnEnnemy(Vector3 coords, int idEnnemy)
+    {
+        //Trouve le point sur le sol où faire spawn l'ennemie
+        Ray ray = new Ray(coords, Vector3.down);
+        RaycastHit[] results = new RaycastHit[3];
+        int i = Physics.RaycastNonAlloc(ray, results, 100, ground);
+        if (i > 0)
+        {
+            //set la direction de l'ennemy vers la ville
+            m_Ennemies[idEnnemy].player = player.transform;
+            m_Ennemies[idEnnemy].city = m_City.transform;
+            spawnEnnemies.Add(Instantiate(m_Ennemies[idEnnemy], results[0].point, Quaternion.identity));
+            ennemyCount++;
+            LastEndWave = Time.time;
+            EventManager.Instance.Raise(new EnnemyCountChanged() { eNumberEnnemy = ennemyCount });
+        }
+    }
 }

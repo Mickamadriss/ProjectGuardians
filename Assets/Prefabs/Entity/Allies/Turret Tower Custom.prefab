@@ -171,12 +171,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2300ed7d30f5d64e957edabe176007e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwCooldown: 0.5
-  objectToThrow: {fileID: 6158986230157310442, guid: debf7c61f1220cb4d8e57954a1606c32,
+  side: 0
+  damage: 10
+  AttackCooldown: 5
+  CanAttack: 1
+  projectileObject: {fileID: -4239139962212848624, guid: debf7c61f1220cb4d8e57954a1606c32,
     type: 3}
   attackPoint: {fileID: 6274074071464948212}
-  cam: {fileID: 6274074071464948212}
-  canAttack: 1
   throwForce: 20
 --- !u!1 &1414511323558576
 GameObject:

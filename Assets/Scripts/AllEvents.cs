@@ -88,6 +88,12 @@ public class WaveChanged : SDD.Events.Event
 {
     public int eWave { get; set; }
 }
+
+public class TimeNextWaveChanged : SDD.Events.Event
+{
+    public float eTime { get; set; }
+}
+
 #endregion
 
 #region player Events

@@ -17,6 +17,8 @@
         [Header("Labels & Values")]
         [SerializeField] Text m_CityLife;
         [SerializeField] Text m_Waves;
+        [SerializeField] Text m_LabelTimeWaves;
+        [SerializeField] Text m_TimeWaves;
         [SerializeField] Text m_EnnemyRemaining;
         [SerializeField] Text m_PlayerLife;
         [SerializeField] GameObject m_InteractionHUD;
@@ -30,6 +32,7 @@
             base.SubscribeEvents();
             EventManager.Instance.AddListener<CityLifeChanged>(cityLifeChanged);
             EventManager.Instance.AddListener<WaveChanged>(waveChanged);
+            EventManager.Instance.AddListener<TimeNextWaveChanged>(timeWaveChanged);
             EventManager.Instance.AddListener<EnnemyCountChanged>(ennemyCountChanged);
             EventManager.Instance.AddListener<PlayerLifeChanged>(playerLifeChanged);
             EventManager.Instance.AddListener<DrawInteractionHud>(drawInteractionHUD);
@@ -41,6 +44,7 @@
             base.UnsubscribeEvents();
             EventManager.Instance.RemoveListener<CityLifeChanged>(cityLifeChanged);
             EventManager.Instance.RemoveListener<WaveChanged>(waveChanged);
+            EventManager.Instance.RemoveListener<TimeNextWaveChanged>(timeWaveChanged);
             EventManager.Instance.RemoveListener<EnnemyCountChanged>(ennemyCountChanged);
             EventManager.Instance.RemoveListener<PlayerLifeChanged>(playerLifeChanged);
             EventManager.Instance.RemoveListener<DrawInteractionHud>(drawInteractionHUD);
@@ -58,6 +62,14 @@
         private void waveChanged(WaveChanged e)
         {
             m_Waves.text = e.eWave.ToString();
+            m_LabelTimeWaves.text = "";
+            m_TimeWaves.text = "";
+        }
+
+        private void timeWaveChanged(TimeNextWaveChanged e)
+        {
+            m_LabelTimeWaves.text = "Time before next wave";
+            m_TimeWaves.text = e.eTime.ToString("n2");
         }
 
         private void ennemyCountChanged(EnnemyCountChanged e)
