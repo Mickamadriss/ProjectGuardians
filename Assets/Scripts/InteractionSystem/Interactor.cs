@@ -14,9 +14,11 @@ public class Interactor : MonoBehaviour
     private void Update()
     {
         _numFound = Physics.OverlapSphereNonAlloc(_interactionPoint.position, _interactionPointRadius, _colliders, _interactionMask);
+        Debug.Log(_numFound);
         if(_numFound > 0)
         {
             var interactableCollider = _colliders[0].GetComponentInParent<IInteractable>();
+            Debug.Log(interactableCollider);
             if (interactableCollider != null)
             {
                 EventManager.Instance.Raise(new DrawInteractionHud() { prompt = interactableCollider.InteractionPrompt });
