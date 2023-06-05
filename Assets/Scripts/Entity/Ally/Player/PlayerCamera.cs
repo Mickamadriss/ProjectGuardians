@@ -4,7 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using SDD.Events;
 
-public class PlayerCamera : MonoBehaviour, IEventHandler
+public class PlayerCamera : MonoBehaviour
 {
     public float sensX;
     public float sensY;
@@ -16,7 +16,6 @@ public class PlayerCamera : MonoBehaviour, IEventHandler
 
     private void Start()
     {
-        SubscribeEvents();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -40,43 +39,7 @@ public class PlayerCamera : MonoBehaviour, IEventHandler
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        UnsubscribeEvents();
     }
-
-    #region Events' subscription
-    public void SubscribeEvents()
-    {
-        EventManager.Instance.AddListener<GameResumeEvent>(DisableMouse);
-        EventManager.Instance.AddListener<GamePauseEvent>(EnableMouse);
-        EventManager.Instance.AddListener<GameOverEvent>(EnableMouse);
-        EventManager.Instance.AddListener<GameMenuEvent>(EnableMouse);
-    }
-
-    public void UnsubscribeEvents()
-    {
-        EventManager.Instance.RemoveListener<GameResumeEvent>(DisableMouse);
-        EventManager.Instance.RemoveListener<GamePauseEvent>(EnableMouse);
-        EventManager.Instance.RemoveListener<GameOverEvent>(EnableMouse);
-        EventManager.Instance.RemoveListener<GameMenuEvent>(EnableMouse);
-    }
-
-    #endregion
-
-    #region Event callback
-
-    private void DisableMouse(GameResumeEvent e)
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
-
-    private void EnableMouse(SDD.Events.Event e)
-    {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-    }
-
-    #endregion
 
     public void DoFov(float endValue)
     {

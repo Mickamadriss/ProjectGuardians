@@ -106,28 +106,45 @@ namespace STUDENT_NAME
 		protected override void GameMenu(GameMenuEvent e)
 		{
 			OpenPanel(m_PanelMainMenu);
+			EnableMouse();
 		}
 
 		protected override void GamePlay(GamePlayEvent e)
 		{
 			OpenPanel(m_PanelHUD);
+			DisableMouse();
 		}
 
         protected override void GamePause(GamePauseEvent e)
 		{
 			OpenPanel(m_PanelInGameMenu);
-		}
+            EnableMouse();
+        }
 
-		protected override void GameResume(GameResumeEvent e)
+        protected override void GameResume(GameResumeEvent e)
 		{
             OpenPanel(m_PanelHUD);
-		}
+            DisableMouse(); 
+        }
 
-		protected override void GameOver(GameOverEvent e)
+        protected override void GameOver(GameOverEvent e)
 		{
 			OpenPanel(m_PanelGameOver);
-		}
-		#endregion
-	}
+            EnableMouse();
+        }
+        #endregion
+
+        private void DisableMouse()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
+        private void EnableMouse()
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+    }
 
 }

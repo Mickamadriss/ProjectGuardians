@@ -348,7 +348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_DoNotDestroyGameObjectOnLoad: 0
-  life: 100
+  MaxLife: 1000
 --- !u!1 &567381895
 GameObject:
   m_ObjectHideFlags: 0
