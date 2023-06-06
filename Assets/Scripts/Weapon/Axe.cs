@@ -64,7 +64,7 @@ public class Axe : SidedWeapon
         {
             if (side != target.getSide() && IsAttacking)
             {
-                target.TakeDamage(damage);
+                target.TakeDamage(damage, this.gameObject);
                 IsAttacking = false;
             }
         }

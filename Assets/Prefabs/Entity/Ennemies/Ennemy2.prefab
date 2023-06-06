@@ -142,6 +142,7 @@ MonoBehaviour:
   agent: {fileID: 8226519961847151143}
   player: {fileID: 0}
   city: {fileID: 0}
+  exp: 2
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64

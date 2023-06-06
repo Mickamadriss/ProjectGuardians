@@ -37,4 +37,9 @@ public class IAStatic : Entity
 
         weapon.Attack();
     }
+
+    public override void kill(GameObject killer)
+    {
+        throw new System.NotImplementedException();
+    }
 }

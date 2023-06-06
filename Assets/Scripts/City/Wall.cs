@@ -11,7 +11,7 @@ public class Wall : MonoBehaviour, IDamageable, ICity
         return Side.Ally;
     }
     
-    void IDamageable.TakeDamage(int damage)
+    void IDamageable.TakeDamage(int damage, GameObject dammager)
     {
         EventManager.Instance.Raise(new CityAttacked() { eDamage = damage });
     }

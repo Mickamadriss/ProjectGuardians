@@ -82,6 +82,7 @@ public class EnnemyCountChanged : SDD.Events.Event
 public class EnnemyKilled : SDD.Events.Event
 {
     public AIEnnemy eEntity { get; set; }
+    public bool ePlayerKill { get; set; }
 }
 
 public class WaveChanged : SDD.Events.Event
@@ -101,6 +102,11 @@ public class TimeNextWaveChanged : SDD.Events.Event
 public class PlayerLifeChanged : SDD.Events.Event
 {
     public float eLife { get; set; }
+}
+
+public class PlayerExpChanged : SDD.Events.Event
+{
+    public float eExp { get; set; }
 }
 
 #endregion

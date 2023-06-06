@@ -4,9 +4,14 @@ using System.Collections;
 using System.Collections.Generic;
 using STUDENT_NAME.Entity;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class Player : Entity, IEventHandler, IAlly
 {
+
+    [SerializeField] private float exp;
+    [SerializeField] private float expNeeded;
+
     private void Awake()
     {
         SubscribeEvents();
@@ -23,15 +28,13 @@ public class Player : Entity, IEventHandler, IAlly
         return Side.Ally;
     }
 
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(int damage, GameObject dammager)
     {
         life -= damage;
         EventManager.Instance.Raise(new PlayerLifeChanged() { eLife = (life / maxLife) * 100 });
         if (life <= 0)
         {
-            //todo event game over
-            EventManager.Instance.Raise(new GameOverEvent());
-            Destroy(gameObject);
+            kill(dammager);
         }
     }
 
@@ -40,5 +43,49 @@ public class Player : Entity, IEventHandler, IAlly
         life += n;
         if (life > maxLife) life = maxLife;
         EventManager.Instance.Raise(new PlayerLifeChanged() { eLife = life / maxLife * 100 });
+    }
+
+    private void levelUp()
+    {
+        maxLife = maxLife + 10;
+        heal((int) maxLife);
+        expNeeded += 10;
+        exp = 0;
+    }
+
+    public override void SubscribeEvents()
+    {
+        base.SubscribeEvents();
+        EventManager.Instance.AddListener<EnnemyKilled>(ennemyKilled);
+    }
+
+    public override void UnsubscribeEvents()
+    {
+        base.UnsubscribeEvents();
+        EventManager.Instance.RemoveListener<EnnemyKilled>(ennemyKilled);
+    }
+
+    private void ennemyKilled(EnnemyKilled e)
+    {
+        if (e.ePlayerKill)
+        {
+            exp += e.eEntity.exp;
+        }
+        else
+        {
+            exp += (float)(e.eEntity.exp * 0.5);
+        }
+        if(exp >= expNeeded)
+        {
+            levelUp();
+        }
+        EventManager.Instance.Raise(new PlayerExpChanged() { eExp = exp / expNeeded * 100 });
+    }
+
+    public override void kill(GameObject killer)
+    {
+        //todo event game over
+        EventManager.Instance.Raise(new GameOverEvent());
+        Destroy(gameObject);
     }
 }

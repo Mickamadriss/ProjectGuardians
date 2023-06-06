@@ -24,7 +24,7 @@ public abstract class Entity : MonoBehaviour, IDamageable
 
     #region Event's subscription
 
-    public void SubscribeEvents()
+    public virtual void SubscribeEvents()
     {
         EventManager.Instance.AddListener<GamePlayEvent>(GamePlaying);
         EventManager.Instance.AddListener<GamePauseEvent>(GamePause);
@@ -32,7 +32,7 @@ public abstract class Entity : MonoBehaviour, IDamageable
         EventManager.Instance.AddListener<GameOverEvent>(GameIsOver);
     }
 
-    public void UnsubscribeEvents()
+    public virtual void UnsubscribeEvents()
     {
         EventManager.Instance.RemoveListener<GamePlayEvent>(GamePlaying);
         EventManager.Instance.RemoveListener<GamePauseEvent>(GamePause);
@@ -66,17 +66,19 @@ public abstract class Entity : MonoBehaviour, IDamageable
 
     #endregion
 
+    public abstract void kill(GameObject killer);
+
     public virtual Side getSide()
     {
         return side;
     }
     
-    public virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage, GameObject dammager)
     {
         life -= damage;
         if (life <= 0)
         {
-            Destroy(gameObject);
+            kill(dammager);
         }
     }
 

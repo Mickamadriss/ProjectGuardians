@@ -12,6 +12,7 @@ public class AIEnnemy : Entity, IEventHandler
 
     public Transform player;
     public Transform city;
+    public float exp;
 
     public LayerMask whatIsGround, whatIsPlayer, whatIsCity;
 
@@ -46,11 +47,6 @@ public class AIEnnemy : Entity, IEventHandler
         if (cityWallInAttack.Length != 0) Attack(cityWallInAttack[0].gameObject.transform.position);
     }
 
-    private void OnDestroy()
-    {
-        EventManager.Instance.Raise(new EnnemyKilled() { eEntity = this});
-    }
-
     public override Side getSide()
     {
         return Side.Ennemy;
@@ -81,5 +77,12 @@ public class AIEnnemy : Entity, IEventHandler
         Gizmos.DrawWireSphere(transform.position, attackRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
+    }
+
+    public override void kill(GameObject killer)
+    {
+        bool isPlayer = killer.layer == whatIsPlayer;
+        EventManager.Instance.Raise(new EnnemyKilled() { eEntity = this , ePlayerKill = isPlayer});
+        Destroy(gameObject);
     }
 }

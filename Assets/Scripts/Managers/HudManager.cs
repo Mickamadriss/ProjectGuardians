@@ -23,6 +23,7 @@
         [SerializeField] GameObject m_UITimeWave;
         [SerializeField] Slider m_PlayerHealth;
         [SerializeField] Slider m_CityHealth;
+        [SerializeField] Slider m_PlayerExp;
 
         #endregion
 
@@ -37,6 +38,7 @@
             EventManager.Instance.AddListener<PlayerLifeChanged>(playerLifeChanged);
             EventManager.Instance.AddListener<DrawInteractionHud>(drawInteractionHUD);
             EventManager.Instance.AddListener<EraseInteractionHud>(eraseInteractionHUD);
+            EventManager.Instance.AddListener<PlayerExpChanged>(playerExpChanged);
         }
 
         public override void UnsubscribeEvents()
@@ -49,6 +51,7 @@
             EventManager.Instance.RemoveListener<PlayerLifeChanged>(playerLifeChanged);
             EventManager.Instance.RemoveListener<DrawInteractionHud>(drawInteractionHUD);
             EventManager.Instance.RemoveListener<EraseInteractionHud>(eraseInteractionHUD);
+            EventManager.Instance.RemoveListener<PlayerExpChanged>(playerExpChanged);
         }
 
         #endregion
@@ -80,6 +83,11 @@
         private void playerLifeChanged(PlayerLifeChanged e)
         {
             m_PlayerHealth.value = e.eLife;
+        }
+
+        private void playerExpChanged(PlayerExpChanged e)
+        {
+            m_PlayerExp.value = e.eExp;
         }
 
         private void drawInteractionHUD(DrawInteractionHud e)

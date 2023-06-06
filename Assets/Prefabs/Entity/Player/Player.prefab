@@ -107,6 +107,8 @@ MonoBehaviour:
   maxLife: 200
   side: 0
   m_IsPlaying: 1
+  exp: 0
+  expNeeded: 20
 --- !u!114 &34807608061936682
 MonoBehaviour:
   m_ObjectHideFlags: 0

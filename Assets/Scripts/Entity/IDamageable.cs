@@ -6,5 +6,5 @@ using UnityEngine;
 public interface IDamageable
 {
     public Side getSide();
-    public virtual void TakeDamage(int damage) { }
+    public virtual void TakeDamage(int damage, GameObject dammager) { }
 }
