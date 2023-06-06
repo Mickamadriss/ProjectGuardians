@@ -69,4 +69,9 @@ public class Axe : SidedWeapon
             }
         }
     }
+
+    private void OnEnable()
+    {
+        CanAttack = true;
+    }
 }
