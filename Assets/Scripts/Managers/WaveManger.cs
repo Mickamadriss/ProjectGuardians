@@ -26,7 +26,7 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
 
     //wave Description
     private int WaveNumber = 0;
-    [SerializeField] private float WaveDelay = 5;
+    [SerializeField] private float WaveDelay = 10;
     [SerializeField] private int numberEnnemiesToSpawn = 5;
 
     protected override void Awake()
@@ -50,7 +50,7 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
 
                     //zone de spawn
                     Vector3 pos = new Vector3(UnityEngine.Random.Range(-100, 100) + m_City.transform.position.x, 20, UnityEngine.Random.Range(-100, 100) + m_City.transform.position.z);
-                    for (int j = 0; j < numberEnnemiesToSpawn; j++)
+                    for (int j = 0; j < (numberEnnemiesToSpawn + WaveNumber); j++)
                     {
                         //flou de spawn
                         Vector3 posSpawn = new Vector3(UnityEngine.Random.Range(-5, 5) + pos.x, 20, UnityEngine.Random.Range(-5, 5) + pos.z);
@@ -58,9 +58,6 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
 
                         SpawnEnnemy(posSpawn, random);
                     }
-
-                    //zone pour rendre la prochaine wave plus dur
-                    numberEnnemiesToSpawn++;
                 }
             }
         }
@@ -98,6 +95,8 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
         foreach (AIEnnemy aIEntity in spawnEnnemies)
         {
             Destroy(aIEntity.gameObject);
+            WaveNumber = 0;
+            EventManager.Instance.Raise(new WaveChanged() { eWave = WaveNumber });
         }
         m_IsPlaying = false;
     }

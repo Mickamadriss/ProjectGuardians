@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5036202, g: 0.65492237, b: 0.71342844, a: 1}
+  m_IndirectSpecularColor: {r: 0.5036715, g: 0.6550534, b: 0.71343476, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -608,6 +608,11 @@ PrefabInstance:
       propertyPath: m_City
       value: 
       objectReference: {fileID: 47160870}
+    - target: {fileID: 8488117380123235764, guid: 68480a01e4a00ab45b3d746ae2fc86ee,
+        type: 3}
+      propertyPath: WaveDelay
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8488117380123235764, guid: 68480a01e4a00ab45b3d746ae2fc86ee,
         type: 3}
       propertyPath: ground.m_Bits
