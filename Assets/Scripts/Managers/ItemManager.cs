@@ -9,18 +9,20 @@ public class ItemManager : MonoBehaviour
     [Header("Items")]
     [SerializeField] private Item meleeWeaponItem;
     [SerializeField] private Item rangeWeaponItem;
+    [SerializeField] private Item turretItem;
     private Item[] _items;
 
     [Header("KeyBinds")]
     public KeyCode meleeWeaponItemKey = KeyCode.Alpha1;
     public KeyCode rangeWeaponItemKey = KeyCode.Alpha2;
+    public KeyCode turretItemKey = KeyCode.Alpha3;
     private KeyCode[] _keyCodes;
     
     private void Awake()
     {
         // Order is important
-        _items = new[] { meleeWeaponItem, rangeWeaponItem };
-        _keyCodes = new[] { meleeWeaponItemKey, rangeWeaponItemKey };
+        _items = new[] { meleeWeaponItem, rangeWeaponItem, turretItem };
+        _keyCodes = new[] { meleeWeaponItemKey, rangeWeaponItemKey, turretItemKey };
     }
 
     // Start is called before the first frame update

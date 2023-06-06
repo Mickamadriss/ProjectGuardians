@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 2485166311227019859}
   - component: {fileID: 4867227579323313523}
   - component: {fileID: 3517289246981595491}
+  - component: {fileID: 4479478591842318798}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -198,8 +199,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meleeWeaponItem: {fileID: 4867227579323313523}
   rangeWeaponItem: {fileID: 3517289246981595491}
+  turretItem: {fileID: 4479478591842318798}
   meleeWeaponItemKey: 49
   rangeWeaponItemKey: 50
+  turretItemKey: 51
 --- !u!114 &4867227579323313523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,6 +231,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 8250900342290448787}
   AttackKey: 323
+--- !u!114 &4479478591842318798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745965689458715291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c46fae808d144a76b8810a52ab7a8bd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turretPrefab: {fileID: 1326093064322132, guid: 74c27615a3fe69e4e9cd5ab9e4dfbd52,
+    type: 3}
+  usePoint: {fileID: 745965689861491778}
+  maxDistance: 10
+  placeKey: 323
 --- !u!1 &745965689500852009
 GameObject:
   m_ObjectHideFlags: 0
