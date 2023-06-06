@@ -6,6 +6,7 @@ public class ItemGameObjectPlacer: Item
     [SerializeField] private GameObject turretPrefab;
     [SerializeField] private Transform usePoint;
     [SerializeField] private float maxDistance;
+    [SerializeField] private LayerMask whatIsGround;
     //TODO Faire comme les armes et afficher un truc dans les mains genre un marteau de construction
 
     [Header("Keybinds")]
@@ -18,7 +19,7 @@ public class ItemGameObjectPlacer: Item
         if (Input.GetKeyDown(placeKey))
         {
             RaycastHit objectHit;
-            if (Physics.Raycast(usePoint.transform.position, usePoint.transform.forward, out objectHit, maxDistance))
+            if (Physics.Raycast(usePoint.transform.position, usePoint.transform.forward, out objectHit, maxDistance, whatIsGround))
             {
                 Transform turretTransform = usePoint.transform;
                 Quaternion normalRot = Quaternion.LookRotation(objectHit.normal);

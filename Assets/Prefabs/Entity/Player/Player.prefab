@@ -250,6 +250,9 @@ MonoBehaviour:
     type: 3}
   usePoint: {fileID: 745965689861491778}
   maxDistance: 10
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
   placeKey: 323
 --- !u!1 &745965689500852009
 GameObject:
