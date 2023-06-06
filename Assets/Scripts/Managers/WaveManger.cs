@@ -42,7 +42,7 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
             if(ennemyCount == 0)
             {
                 float timeSinceLastWave = Time.time - LastEndWave;
-                EventManager.Instance.Raise(new TimeNextWaveChanged() { eTime = WaveDelay-timeSinceLastWave });
+                EventManager.Instance.Raise(new TimeNextWaveChanged() { eTime = (WaveDelay-timeSinceLastWave)/WaveDelay * 100 });
                 if (timeSinceLastWave > WaveDelay) //si le temps d'attente est fini
                 {
                     WaveNumber++;

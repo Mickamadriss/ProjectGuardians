@@ -15,14 +15,14 @@
         #region Labels & Values
 		
         [Header("Labels & Values")]
-        [SerializeField] Text m_CityLife;
         [SerializeField] Text m_Waves;
-        [SerializeField] Text m_LabelTimeWaves;
-        [SerializeField] Text m_TimeWaves;
         [SerializeField] Text m_EnnemyRemaining;
-        [SerializeField] Text m_PlayerLife;
         [SerializeField] GameObject m_InteractionHUD;
         [SerializeField] TextMeshProUGUI m_InteractionPromt;
+        [SerializeField] Slider m_TimeWave;
+        [SerializeField] GameObject m_UITimeWave;
+        [SerializeField] Slider m_PlayerHealth;
+        [SerializeField] Slider m_CityHealth;
 
         #endregion
 
@@ -56,20 +56,19 @@
         #region Event callback
         private void cityLifeChanged(CityLifeChanged e)
         {
-            m_CityLife.text = e.eLife.ToString();
+            m_CityHealth.value = e.eLife;
         }
 
         private void waveChanged(WaveChanged e)
         {
             m_Waves.text = e.eWave.ToString();
-            m_LabelTimeWaves.text = "";
-            m_TimeWaves.text = "";
+            m_UITimeWave.gameObject.SetActive(false);
         }
 
         private void timeWaveChanged(TimeNextWaveChanged e)
         {
-            m_LabelTimeWaves.text = "Time before next wave";
-            m_TimeWaves.text = e.eTime.ToString("n2");
+            m_TimeWave.value = e.eTime;
+            m_UITimeWave.gameObject.SetActive(true);
         }
 
         private void ennemyCountChanged(EnnemyCountChanged e)
@@ -80,7 +79,7 @@
 
         private void playerLifeChanged(PlayerLifeChanged e)
         {
-            m_PlayerLife.text = e.eLife.ToString();
+            m_PlayerHealth.value = e.eLife;
         }
 
         private void drawInteractionHUD(DrawInteractionHud e)

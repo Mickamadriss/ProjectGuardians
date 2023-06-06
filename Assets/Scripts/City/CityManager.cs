@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 public class CityManager : Manager<CityManager>
 {
-    [SerializeField] private int MaxLife;
-    private int life;
+    [SerializeField] private float MaxLife;
+    private float life;
 
     protected override IEnumerator InitCoroutine()
     {
@@ -43,13 +43,13 @@ public class CityManager : Manager<CityManager>
             life = 0;
             EventManager.Instance.Raise(new GameOverEvent());
         }
-        EventManager.Instance.Raise(new CityLifeChanged() { eLife = life });
+        EventManager.Instance.Raise(new CityLifeChanged() { eLife = life / MaxLife * 100 });
     }
 
     private void gameStarted(GamePlayEvent e)
     {
         life = MaxLife;
-        EventManager.Instance.Raise(new CityLifeChanged() { eLife = life });
+        EventManager.Instance.Raise(new CityLifeChanged() { eLife = life / MaxLife * 100 });
     }
 
     #endregion

@@ -7,8 +7,8 @@ using UnityEngine;
 
 public abstract class Entity : MonoBehaviour, IDamageable
 {
-    [SerializeField] protected int life;
-    [SerializeField] protected int maxLife;
+    [SerializeField] protected float life;
+    [SerializeField] protected float maxLife;
     [SerializeField] protected Side side;
     public bool m_IsPlaying = true;
 
@@ -74,7 +74,6 @@ public abstract class Entity : MonoBehaviour, IDamageable
     public virtual void TakeDamage(int damage)
     {
         life -= damage;
-        Debug.Log(gameObject + " // HP = "+life+"/"+maxLife);
         if (life <= 0)
         {
             Destroy(gameObject);

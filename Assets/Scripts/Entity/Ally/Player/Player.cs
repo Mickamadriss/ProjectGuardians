@@ -10,7 +10,7 @@ public class Player : Entity, IEventHandler, IAlly
     private void Awake()
     {
         SubscribeEvents();
-        EventManager.Instance.Raise(new PlayerLifeChanged() { eLife = life });
+        EventManager.Instance.Raise(new PlayerLifeChanged() { eLife = life / maxLife * 100 });
     }
 
     private void Start() { }
@@ -26,7 +26,7 @@ public class Player : Entity, IEventHandler, IAlly
     public override void TakeDamage(int damage)
     {
         life -= damage;
-        EventManager.Instance.Raise(new PlayerLifeChanged() { eLife = life });
+        EventManager.Instance.Raise(new PlayerLifeChanged() { eLife = (life / maxLife) * 100 });
         if (life <= 0)
         {
             //todo event game over
@@ -39,6 +39,6 @@ public class Player : Entity, IEventHandler, IAlly
     {
         life += n;
         if (life > maxLife) life = maxLife;
-        EventManager.Instance.Raise(new PlayerLifeChanged() { eLife = life });
+        EventManager.Instance.Raise(new PlayerLifeChanged() { eLife = life / maxLife * 100 });
     }
 }

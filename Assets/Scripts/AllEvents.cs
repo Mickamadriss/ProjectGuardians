@@ -58,7 +58,7 @@ public class CityAttacked : SDD.Events.Event
 
 public class CityLifeChanged : SDD.Events.Event
 {
-    public int eLife { get; set; }
+    public float eLife { get; set; }
 }
 
 public class DrawInteractionHud : SDD.Events.Event
@@ -100,7 +100,7 @@ public class TimeNextWaveChanged : SDD.Events.Event
 
 public class PlayerLifeChanged : SDD.Events.Event
 {
-    public int eLife { get; set; }
+    public float eLife { get; set; }
 }
 
 #endregion
