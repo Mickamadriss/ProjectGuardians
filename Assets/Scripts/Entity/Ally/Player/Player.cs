@@ -11,6 +11,7 @@ public class Player : Entity, IEventHandler, IAlly
 
     [SerializeField] private float exp;
     [SerializeField] private float expNeeded;
+    [SerializeField] private int gold;
 
     private void Awake()
     {
@@ -75,7 +76,9 @@ public class Player : Entity, IEventHandler, IAlly
         {
             exp += (float)(e.eEntity.exp * 0.5);
         }
-        if(exp >= expNeeded)
+        gold += e.eEntity.gold;
+        EventManager.Instance.Raise(new PlayerGoldChanged() { eGold = gold});
+        if (exp >= expNeeded)
         {
             levelUp();
         }

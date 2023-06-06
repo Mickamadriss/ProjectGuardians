@@ -17,6 +17,7 @@
         [Header("Labels & Values")]
         [SerializeField] Text m_Waves;
         [SerializeField] Text m_EnnemyRemaining;
+        [SerializeField] Text m_NumberGold;
         [SerializeField] GameObject m_InteractionHUD;
         [SerializeField] TextMeshProUGUI m_InteractionPromt;
         [SerializeField] Slider m_TimeWave;
@@ -39,6 +40,7 @@
             EventManager.Instance.AddListener<DrawInteractionHud>(drawInteractionHUD);
             EventManager.Instance.AddListener<EraseInteractionHud>(eraseInteractionHUD);
             EventManager.Instance.AddListener<PlayerExpChanged>(playerExpChanged);
+            EventManager.Instance.AddListener<PlayerGoldChanged>(playerGoldChanged);
         }
 
         public override void UnsubscribeEvents()
@@ -52,6 +54,8 @@
             EventManager.Instance.RemoveListener<DrawInteractionHud>(drawInteractionHUD);
             EventManager.Instance.RemoveListener<EraseInteractionHud>(eraseInteractionHUD);
             EventManager.Instance.RemoveListener<PlayerExpChanged>(playerExpChanged);
+            EventManager.Instance.RemoveListener<PlayerGoldChanged>(playerGoldChanged);
+
         }
 
         #endregion
@@ -88,6 +92,11 @@
         private void playerExpChanged(PlayerExpChanged e)
         {
             m_PlayerExp.value = e.eExp;
+        }
+
+        private void playerGoldChanged(PlayerGoldChanged e)
+        {
+            m_NumberGold.text = e.eGold.ToString();
         }
 
         private void drawInteractionHUD(DrawInteractionHud e)

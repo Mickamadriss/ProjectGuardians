@@ -109,4 +109,9 @@ public class PlayerExpChanged : SDD.Events.Event
     public float eExp { get; set; }
 }
 
+public class PlayerGoldChanged : SDD.Events.Event
+{
+    public float eGold { get; set; }
+}
+
 #endregion

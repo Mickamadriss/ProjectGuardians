@@ -49,11 +49,19 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
                     EventManager.Instance.Raise(new WaveChanged() { eWave = WaveNumber });
 
                     //zone de spawn
-                    Vector3 pos = new Vector3(UnityEngine.Random.Range(-100, 100) + m_City.transform.position.x, 20, UnityEngine.Random.Range(-100, 100) + m_City.transform.position.z);
+                    int posx;
+                    int posz;
+                    do
+                    {
+                        posx = UnityEngine.Random.Range(-100, 100);
+                        posz = UnityEngine.Random.Range(-100, 100);
+                    } while ((posx > 30 || posx < -30) && (posz > 30 || posz < -30));
+                    Vector3 pos = new(posx,20,posz);
+
                     for (int j = 0; j < (numberEnnemiesToSpawn + WaveNumber); j++)
                     {
                         //flou de spawn
-                        Vector3 posSpawn = new Vector3(UnityEngine.Random.Range(-5, 5) + pos.x, 20, UnityEngine.Random.Range(-5, 5) + pos.z);
+                        Vector3 posSpawn = new(UnityEngine.Random.Range(-5, 5) + pos.x, 20, UnityEngine.Random.Range(-5, 5) + pos.z);
                         int random = UnityEngine.Random.Range(0, m_Ennemies.Count);
 
                         SpawnEnnemy(posSpawn, random);

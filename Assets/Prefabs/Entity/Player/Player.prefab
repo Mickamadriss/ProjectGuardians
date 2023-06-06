@@ -109,6 +109,7 @@ MonoBehaviour:
   m_IsPlaying: 1
   exp: 0
   expNeeded: 20
+  gold: 0
 --- !u!114 &34807608061936682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -681,7 +682,7 @@ PrefabInstance:
     - target: {fileID: -7447459295366731190, guid: 939c55370621e2841883952087559a52,
         type: 3}
       propertyPath: throwForce
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: -7447459295366731190, guid: 939c55370621e2841883952087559a52,
         type: 3}

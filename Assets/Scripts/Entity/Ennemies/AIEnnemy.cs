@@ -13,6 +13,7 @@ public class AIEnnemy : Entity, IEventHandler
     public Transform player;
     public Transform city;
     public float exp;
+    public int gold;
 
     public LayerMask whatIsGround, whatIsPlayer, whatIsCity;
 
