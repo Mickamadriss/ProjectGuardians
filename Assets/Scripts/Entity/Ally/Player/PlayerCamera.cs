@@ -4,7 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using SDD.Events;
 
-public class PlayerCamera : MonoBehaviour
+public class PlayerCamera : MonoBehaviour, IEventHandler
 {
     public float sensX;
     public float sensY;
@@ -13,7 +13,22 @@ public class PlayerCamera : MonoBehaviour
 
     float xRotation;
     float yRotation;
+    
+    public bool isInMenu = false;
 
+    #region Events' subscription
+    public virtual void SubscribeEvents()
+    {
+        EventManager.Instance.AddListener<TriggeringMenu>(triggeringMenu);
+    }
+
+    public virtual void UnsubscribeEvents()
+    {
+        EventManager.Instance.RemoveListener<TriggeringMenu>(triggeringMenu);
+    }
+
+    #endregion
+    
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -22,6 +37,9 @@ public class PlayerCamera : MonoBehaviour
 
     private void Update()
     {
+        //Si un menu est ouvert : ne pas bouger la caméra
+        if (isInMenu) return;
+        
         //get mouse input
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
@@ -45,4 +63,13 @@ public class PlayerCamera : MonoBehaviour
     {
         GetComponent<Camera>().DOFieldOfView(endValue, 0.25f);
     }
+    
+    #region Event callback
+
+    private void triggeringMenu(TriggeringMenu e)
+    {
+        Debug.Log(e.menuState);
+        isInMenu = e.menuState;
+    }
+    #endregion
 }
