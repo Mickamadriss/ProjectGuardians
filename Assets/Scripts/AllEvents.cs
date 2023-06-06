@@ -103,4 +103,9 @@ public class PlayerLifeChanged : SDD.Events.Event
     public int eLife { get; set; }
 }
 
+public class TriggeringMenu : SDD.Events.Event
+{
+    public bool menuState { get; set; }
+}
+
 #endregion

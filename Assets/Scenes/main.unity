@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5036715, g: 0.6550534, b: 0.71343476, a: 1}
+  m_IndirectSpecularColor: {r: 0.5036202, g: 0.65492237, b: 0.71342844, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -562,6 +562,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &625089785 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2705465473759129560, guid: 2d4cc07e22d85374b8d15cd15f4e18e1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1872545305}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &845322222
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1782,6 +1788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prompt: Buy
+  m_PanelBlacksmith: {fileID: 625089785}
 --- !u!136 &1555522819
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2280,6 +2287,11 @@ PrefabInstance:
     - target: {fileID: 2666534294985770322, guid: 2d4cc07e22d85374b8d15cd15f4e18e1,
         type: 3}
       propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705465473759129560, guid: 2d4cc07e22d85374b8d15cd15f4e18e1,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3526345102205442501, guid: 2d4cc07e22d85374b8d15cd15f4e18e1,
