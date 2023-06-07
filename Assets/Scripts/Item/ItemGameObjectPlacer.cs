@@ -1,5 +1,7 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.AI;
+
 public class ItemGameObjectPlacer: Item
 {
     [Header("Settings")]

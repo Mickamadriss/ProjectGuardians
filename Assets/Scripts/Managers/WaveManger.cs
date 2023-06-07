@@ -56,7 +56,7 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
                         posx = UnityEngine.Random.Range(-100, 100);
                         posz = UnityEngine.Random.Range(-100, 100);
                     } while ((posx > 30 || posx < -30) && (posz > 30 || posz < -30));
-                    Vector3 pos = new(posx,20,posz);
+                    Vector3 pos = new(posx + m_City.transform.position.x, 20,posz + m_City.transform.position.z);
 
                     for (int j = 0; j < (numberEnnemiesToSpawn + WaveNumber); j++)
                     {
