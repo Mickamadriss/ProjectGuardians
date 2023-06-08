@@ -44,6 +44,9 @@ public class ResumeButtonClickedEvent : SDD.Events.Event
 public class MainMenuButtonClickedEvent : SDD.Events.Event
 {
 }
+public class CreditsButtonClickedEvent : SDD.Events.Event { }
+
+public class QuitButtonCreditsClickedEvent : SDD.Events.Event { }
 
 public class QuitButtonClickedEvent : SDD.Events.Event
 { }

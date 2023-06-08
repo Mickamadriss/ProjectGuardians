@@ -87,26 +87,27 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
     {
         base.SubscribeEvents();
         EventManager.Instance.AddListener<EnnemyKilled>(ennemyKilled);
+        EventManager.Instance.AddListener<MainMenuButtonClickedEvent>(mainMenuHasBeenCliked);
     }
 
     public override void UnsubscribeEvents()
     {
         base.UnsubscribeEvents();
         EventManager.Instance.RemoveListener<EnnemyKilled>(ennemyKilled);
+        EventManager.Instance.RemoveListener<MainMenuButtonClickedEvent>(mainMenuHasBeenCliked);
     }
     #endregion
 
     #region Event callback
 
+    private void mainMenuHasBeenCliked(MainMenuButtonClickedEvent e)
+    {
+        Reset();
+    }
+
     protected override void GameOver(GameOverEvent e)
     {
-        foreach (AIEnnemy aIEntity in spawnEnnemies)
-        {
-            Destroy(aIEntity.gameObject);
-            WaveNumber = 0;
-            EventManager.Instance.Raise(new WaveChanged() { eWave = WaveNumber });
-        }
-        m_IsPlaying = false;
+        Reset();
     }
 
     private void ennemyKilled(EnnemyKilled e)
@@ -154,5 +155,16 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
             LastEndWave = Time.time;
             EventManager.Instance.Raise(new EnnemyCountChanged() { eNumberEnnemy = ennemyCount });
         }
+    }
+
+    private void Reset()
+    {
+        foreach (AIEnnemy aIEntity in spawnEnnemies)
+        {
+            Destroy(aIEntity.gameObject);
+            WaveNumber = 0;
+            EventManager.Instance.Raise(new WaveChanged() { eWave = WaveNumber });
+        }
+        m_IsPlaying = false;
     }
 }

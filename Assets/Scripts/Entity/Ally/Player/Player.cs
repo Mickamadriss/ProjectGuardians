@@ -58,12 +58,14 @@ public class Player : Entity, IEventHandler, IAlly
     {
         base.SubscribeEvents();
         EventManager.Instance.AddListener<EnnemyKilled>(ennemyKilled);
+        EventManager.Instance.AddListener<MainMenuButtonClickedEvent>(mainMenuHasBeenCliked);
     }
 
     public override void UnsubscribeEvents()
     {
         base.UnsubscribeEvents();
         EventManager.Instance.RemoveListener<EnnemyKilled>(ennemyKilled);
+        EventManager.Instance.RemoveListener<MainMenuButtonClickedEvent>(mainMenuHasBeenCliked);
     }
 
     private void ennemyKilled(EnnemyKilled e)
@@ -83,6 +85,11 @@ public class Player : Entity, IEventHandler, IAlly
             levelUp();
         }
         EventManager.Instance.Raise(new PlayerExpChanged() { eExp = exp / expNeeded * 100 });
+    }
+
+    private void mainMenuHasBeenCliked(MainMenuButtonClickedEvent e)
+    {
+        Destroy(gameObject);
     }
 
     public override void kill(GameObject killer)
