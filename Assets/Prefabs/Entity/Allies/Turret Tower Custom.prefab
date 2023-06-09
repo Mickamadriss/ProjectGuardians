@@ -125,7 +125,7 @@ Transform:
   m_GameObject: {fileID: 1326093064322132}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4795538350151362}
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   side: 0
   damage: 10
-  AttackCooldown: 5
+  AttackCooldown: 1
   CanAttack: 1
   projectileObject: {fileID: -4239139962212848624, guid: debf7c61f1220cb4d8e57954a1606c32,
     type: 3}
