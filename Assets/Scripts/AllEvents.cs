@@ -117,4 +117,15 @@ public class PlayerGoldChanged : SDD.Events.Event
     public float eGold { get; set; }
 }
 
+public class PlayerGoldUpdate : SDD.Events.Event
+{
+    public PlayerGoldUpdate(int gold)
+    {
+        Gold = gold;
+    }
+
+    // Positive or negative value that will be + to player balance
+    public int Gold { get; }
+}
+
 #endregion

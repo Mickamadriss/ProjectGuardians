@@ -59,6 +59,7 @@ public class Player : Entity, IEventHandler, IAlly
         base.SubscribeEvents();
         EventManager.Instance.AddListener<EnnemyKilled>(ennemyKilled);
         EventManager.Instance.AddListener<MainMenuButtonClickedEvent>(mainMenuHasBeenCliked);
+        EventManager.Instance.AddListener<PlayerGoldUpdate>(playerGoldUpdate);
     }
 
     public override void UnsubscribeEvents()
@@ -78,13 +79,18 @@ public class Player : Entity, IEventHandler, IAlly
         {
             exp += (float)(e.eEntity.exp * 0.5);
         }
-        gold += e.eEntity.gold;
-        EventManager.Instance.Raise(new PlayerGoldChanged() { eGold = gold});
+        setGold(gold + e.eEntity.gold);
         if (exp >= expNeeded)
         {
             levelUp();
         }
         EventManager.Instance.Raise(new PlayerExpChanged() { eExp = exp / expNeeded * 100 });
+    }
+
+    private void setGold(int gold)
+    {
+        this.gold = gold;
+        EventManager.Instance.Raise(new PlayerGoldChanged() { eGold = gold});
     }
 
     private void mainMenuHasBeenCliked(MainMenuButtonClickedEvent e)
@@ -97,5 +103,10 @@ public class Player : Entity, IEventHandler, IAlly
         //todo event game over
         EventManager.Instance.Raise(new GameOverEvent());
         Destroy(gameObject);
+    }
+
+    private void playerGoldUpdate(PlayerGoldUpdate e)
+    {
+        setGold(gold + e.Gold);
     }
 }

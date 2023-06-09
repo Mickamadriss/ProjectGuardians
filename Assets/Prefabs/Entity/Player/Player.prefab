@@ -248,6 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turretPrefab: {fileID: 1326093064322132, guid: 74c27615a3fe69e4e9cd5ab9e4dfbd52,
     type: 3}
+  turretCost: 10
   usePoint: {fileID: 745965689861491778}
   maxDistance: 10
   whatIsGround:
