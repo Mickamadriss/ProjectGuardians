@@ -6,13 +6,15 @@ using Event = SDD.Events.Event;
 
 public class ItemGameObjectPlacer: Item, IEventHandler
 {
-    [Header("Settings")]
+    [Header("Turret")]
     [SerializeField] private GameObject turretPrefab;
     [SerializeField] private int turretCost;
+    
+    [Header("Item")]
+    [SerializeField] private GameObject tool;
     [SerializeField] private Transform usePoint;
     [SerializeField] private float maxDistance;
     [SerializeField] private LayerMask whatIsGround;
-    //TODO Faire comme les armes et afficher un truc dans les mains genre un marteau de construction
 
     [Header("Keybinds")]
     [SerializeField] private KeyCode placeKey = KeyCode.Mouse0;
@@ -27,6 +29,16 @@ public class ItemGameObjectPlacer: Item, IEventHandler
     private void OnDestroy()
     {
         UnsubscribeEvents();
+    }
+
+    private void OnEnable()
+    {
+        tool.SetActive(true);
+    }
+
+    private void OnDisable()
+    {
+        tool.SetActive(false);
     }
 
     public void SubscribeEvents()
