@@ -12,7 +12,7 @@ public class CityManager : Manager<CityManager>
 
     protected override IEnumerator InitCoroutine()
     {
-        throw new System.NotImplementedException();
+        yield break;
     }
 
     #region Events' subscription
