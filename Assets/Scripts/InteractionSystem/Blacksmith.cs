@@ -8,31 +8,18 @@ using UnityEngine.Purchasing;
 public class Blacksmith : MonoBehaviour, IInteractable
 {
     [SerializeField] string _prompt;
-    [SerializeField] GameObject m_PanelBlacksmith;
     public string InteractionPrompt => _prompt;
     private bool isShopOpened = false;
 
     public void ExitShop()
     {
         //Hide le menu (nécéssaire de réécrire ici, si on quitte le menu avec le bouton quitter)
-        m_PanelBlacksmith.SetActive(false);
+        EventManager.Instance.Raise(new BlacksmithOpenEvent());
         isShopOpened = false;
         
-        //Affiche curseur
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
         
         //Trigger l'event pour bloquer ou non (cam/déplacement) le player
-        EventManager.Instance.Raise(new TriggeringMenu() { menuState = isShopOpened });
-    }
-    public void OpenShop()
-    {
-        //Affiche curseur
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        
-        //Trigger l'event pour bloquer ou non (cam/déplacement) le player
-        EventManager.Instance.Raise(new TriggeringMenu() { menuState = isShopOpened });
+        // EventManager.Instance.Raise(new TriggeringMenu() { menuState = isShopOpened });
     }
     
     private void Update()
@@ -45,9 +32,8 @@ public class Blacksmith : MonoBehaviour, IInteractable
             {
                 //Ferme le menu
                 // EventManager.Instance.Raise(new TriggeringMenu() { menuState = false });
-                //
-                // m_PanelBlacksmith.SetActive(false);
-                // isShopOpened = false;
+                EventManager.Instance.Raise(new BlacksmithCloseEvent());
+                isShopOpened = false;
             }
         }
     }
@@ -55,23 +41,17 @@ public class Blacksmith : MonoBehaviour, IInteractable
     public bool Interact(Interactor interactor)
     {
         //Trigger le menu
-        m_PanelBlacksmith.SetActive(!m_PanelBlacksmith.activeSelf);
         isShopOpened = !isShopOpened;
 
         if (isShopOpened == false)
         {
-            ExitShop();
+            EventManager.Instance.Raise(new BlacksmithCloseEvent());
         }
         else
         {
-            OpenShop();
+            EventManager.Instance.Raise(new BlacksmithOpenEvent());
         }
 
         return true;
-    }
-
-    public void BuyItem(IWeapon weaponToBuy)
-    {
-        return;
     }
 }

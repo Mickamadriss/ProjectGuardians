@@ -109,4 +109,20 @@ public class Player : Entity, IEventHandler, IAlly
     {
         setGold(gold + e.Gold);
     }
+    
+    public void BuyItem(IWeapon weaponToBuy, int price)
+    {
+        //Si on à l'argent : on achète / équipe l'item, et perd l'argent
+        if (gold >= price)
+        {
+            // Code pour équiper l'item //
+            setGold(gold - price);
+        }
+
+        //Si on n'a pas l'argent : popup "t'es pauvre"
+        else
+        {
+            // Code pour afficher une popup //
+        }
+    }
 }
