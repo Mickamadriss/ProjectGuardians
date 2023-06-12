@@ -26,7 +26,7 @@ public class Projectile : MonoBehaviour
             if (this.side != target.getSide())
             {
                 //Applique l'attaque + détruit le projectile
-                target.TakeDamage(damage);
+                target.TakeDamage(damage, this.gameObject);
                 killProjectile();
             }
             

@@ -18,6 +18,7 @@ namespace STUDENT_NAME
 		[SerializeField] GameObject m_PanelInGameMenu;
 		[SerializeField] GameObject m_PanelGameOver;
         [SerializeField] GameObject m_PanelHUD;
+		[SerializeField] GameObject m_PanelCredits;
 
         List<GameObject> m_AllPanels;
 		#endregion
@@ -65,7 +66,8 @@ namespace STUDENT_NAME
 			m_AllPanels.Add(m_PanelInGameMenu);
 			m_AllPanels.Add(m_PanelGameOver);
 			m_AllPanels.Add(m_PanelHUD);
-		}
+            m_AllPanels.Add(m_PanelCredits);
+        }
 
 		void OpenPanel(GameObject panel)
 		{
@@ -100,10 +102,20 @@ namespace STUDENT_NAME
 			EventManager.Instance.Raise(new QuitButtonClickedEvent());
 		}
 
-		#endregion
+        public void QuitButtonCreditsHasBeenClicked()
+        {
+            OpenPanel(m_PanelMainMenu);
+        }
 
-		#region Callbacks to GameManager events
-		protected override void GameMenu(GameMenuEvent e)
+        public void CreditsButtonHasBeenClicked()
+        {
+            OpenPanel(m_PanelCredits);
+        }
+
+        #endregion
+
+        #region Callbacks to GameManager events
+        protected override void GameMenu(GameMenuEvent e)
 		{
 			OpenPanel(m_PanelMainMenu);
 			EnableMouse();

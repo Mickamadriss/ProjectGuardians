@@ -44,6 +44,9 @@ public class ResumeButtonClickedEvent : SDD.Events.Event
 public class MainMenuButtonClickedEvent : SDD.Events.Event
 {
 }
+public class CreditsButtonClickedEvent : SDD.Events.Event { }
+
+public class QuitButtonCreditsClickedEvent : SDD.Events.Event { }
 
 public class QuitButtonClickedEvent : SDD.Events.Event
 { }
@@ -58,7 +61,7 @@ public class CityAttacked : SDD.Events.Event
 
 public class CityLifeChanged : SDD.Events.Event
 {
-    public int eLife { get; set; }
+    public float eLife { get; set; }
 }
 
 public class DrawInteractionHud : SDD.Events.Event
@@ -82,6 +85,7 @@ public class EnnemyCountChanged : SDD.Events.Event
 public class EnnemyKilled : SDD.Events.Event
 {
     public AIEnnemy eEntity { get; set; }
+    public bool ePlayerKill { get; set; }
 }
 
 public class WaveChanged : SDD.Events.Event
@@ -100,7 +104,28 @@ public class TimeNextWaveChanged : SDD.Events.Event
 
 public class PlayerLifeChanged : SDD.Events.Event
 {
-    public int eLife { get; set; }
+    public float eLife { get; set; }
+}
+
+public class PlayerExpChanged : SDD.Events.Event
+{
+    public float eExp { get; set; }
+}
+
+public class PlayerGoldChanged : SDD.Events.Event
+{
+    public float eGold { get; set; }
+}
+
+public class PlayerGoldUpdate : SDD.Events.Event
+{
+    public PlayerGoldUpdate(int gold)
+    {
+        Gold = gold;
+    }
+
+    // Positive or negative value that will be + to player balance
+    public int Gold { get; }
 }
 
 public class TriggeringMenu : SDD.Events.Event

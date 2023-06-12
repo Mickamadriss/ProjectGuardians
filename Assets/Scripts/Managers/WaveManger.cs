@@ -26,7 +26,7 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
 
     //wave Description
     private int WaveNumber = 0;
-    [SerializeField] private float WaveDelay = 5;
+    [SerializeField] private float WaveDelay = 10;
     [SerializeField] private int numberEnnemiesToSpawn = 5;
 
     protected override void Awake()
@@ -42,25 +42,30 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
             if(ennemyCount == 0)
             {
                 float timeSinceLastWave = Time.time - LastEndWave;
-                EventManager.Instance.Raise(new TimeNextWaveChanged() { eTime = WaveDelay-timeSinceLastWave });
+                EventManager.Instance.Raise(new TimeNextWaveChanged() { eTime = (WaveDelay-timeSinceLastWave)/WaveDelay * 100 });
                 if (timeSinceLastWave > WaveDelay) //si le temps d'attente est fini
                 {
                     WaveNumber++;
                     EventManager.Instance.Raise(new WaveChanged() { eWave = WaveNumber });
 
                     //zone de spawn
-                    Vector3 pos = new Vector3(UnityEngine.Random.Range(-100, 100) + m_City.transform.position.x, 20, UnityEngine.Random.Range(-100, 100) + m_City.transform.position.z);
-                    for (int j = 0; j < numberEnnemiesToSpawn; j++)
+                    int posx;
+                    int posz;
+                    do
+                    {
+                        posx = UnityEngine.Random.Range(-100, 100);
+                        posz = UnityEngine.Random.Range(-100, 100);
+                    } while ((posx > 30 || posx < -30) && (posz > 30 || posz < -30));
+                    Vector3 pos = new(posx + m_City.transform.position.x, 20,posz + m_City.transform.position.z);
+
+                    for (int j = 0; j < (numberEnnemiesToSpawn + WaveNumber); j++)
                     {
                         //flou de spawn
-                        Vector3 posSpawn = new Vector3(UnityEngine.Random.Range(-5, 5) + pos.x, 20, UnityEngine.Random.Range(-5, 5) + pos.z);
+                        Vector3 posSpawn = new(UnityEngine.Random.Range(-5, 5) + pos.x, 20, UnityEngine.Random.Range(-5, 5) + pos.z);
                         int random = UnityEngine.Random.Range(0, m_Ennemies.Count);
 
                         SpawnEnnemy(posSpawn, random);
                     }
-
-                    //zone pour rendre la prochaine wave plus dur
-                    numberEnnemiesToSpawn++;
                 }
             }
         }
@@ -82,24 +87,27 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
     {
         base.SubscribeEvents();
         EventManager.Instance.AddListener<EnnemyKilled>(ennemyKilled);
+        EventManager.Instance.AddListener<MainMenuButtonClickedEvent>(mainMenuHasBeenCliked);
     }
 
     public override void UnsubscribeEvents()
     {
         base.UnsubscribeEvents();
         EventManager.Instance.RemoveListener<EnnemyKilled>(ennemyKilled);
+        EventManager.Instance.RemoveListener<MainMenuButtonClickedEvent>(mainMenuHasBeenCliked);
     }
     #endregion
 
     #region Event callback
 
+    private void mainMenuHasBeenCliked(MainMenuButtonClickedEvent e)
+    {
+        Reset();
+    }
+
     protected override void GameOver(GameOverEvent e)
     {
-        foreach (AIEnnemy aIEntity in spawnEnnemies)
-        {
-            Destroy(aIEntity.gameObject);
-        }
-        m_IsPlaying = false;
+        Reset();
     }
 
     private void ennemyKilled(EnnemyKilled e)
@@ -147,5 +155,16 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
             LastEndWave = Time.time;
             EventManager.Instance.Raise(new EnnemyCountChanged() { eNumberEnnemy = ennemyCount });
         }
+    }
+
+    private void Reset()
+    {
+        foreach (AIEnnemy aIEntity in spawnEnnemies)
+        {
+            Destroy(aIEntity.gameObject);
+            WaveNumber = 0;
+            EventManager.Instance.Raise(new WaveChanged() { eWave = WaveNumber });
+        }
+        m_IsPlaying = false;
     }
 }

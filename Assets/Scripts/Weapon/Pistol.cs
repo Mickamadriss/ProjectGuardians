@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using STUDENT_NAME.Entity;
@@ -45,6 +46,11 @@ public class Pistol : SidedWeapon
     IEnumerator ResetAttack()
     {
         yield return new WaitForSeconds(AttackCooldown);
+        CanAttack = true;
+    }
+
+    private void OnEnable()
+    {
         CanAttack = true;
     }
 }

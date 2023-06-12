@@ -1,0 +1,50 @@
+les instructions de jeu : les contrôles, les conditions de victoire et de défaite, les capacités du player
+Player:
+	Z,Q,S,D : se déplacer en avant, à gauche, en bas et à droit
+	A : Dash dans la direction sois du regard sois de la touche Z,Q,S,D
+	CTRL : Permet de s'accroupir
+	1: item 1
+	2: item 2
+	3: item 3
+	Clic gauche : utilise l'item
+	E: Permet d'intéragire avec différents objets (portes, pnj, ect...)
+
+	Le but est simple survivre au plus de manches (wave) possible. Si la vie de la ville ou du joueur tombe à zéro: GameOver.
+	Le joueur dois s'aider de ses items (armes, potions et tourelles) pour défendre la ville.
+
+Vos remarques particulières : limitations, bugs connus, voies d'amélioration
+	
+		Les limitations
+	- La courbe d'apprentissage pour le joueur est trop petite à cause d'un système de combat trop basique.
+	- Les tourelles, pas assez diverse, ne permettent pas au joueur de mettre en place une vrai stratégie.
+	- Durée de jeu assez courte car malgré des waves infini on arrive vite à une difficulté trop élevé.
+	
+		Les bugs connues:
+	- On ne peut pas sauter sur autre choses que le ground (terrain).
+	- Les tourrelles peuvent être posé l'une sur l'autre et on du mal à toucher un ennemies proche d'eux.
+	- Il arrive que les balles passent à travers un ennemie sans le toucher.	
+
+		La principale amélioration serais probablement d'ajouter plus d'ennemies, d'armes et de tourelles pour ajouter de la diversité.
+	On aurait aussi aimé pouvoir passer plus de temps sur les décorts et rendre l'environnement plus vivant ainsi qu'ajouter de l'exploration.
+	Pour le reste les idées de manque pas ( quêtes, amélioration de ville, sauvegarde, multijoueur...) seulement avec le temps d'ont nous disposons nous
+	pensons avoir réussie à réaliser un prototype convaincant facilement extensible.
+
+
+Qui a fait quoi sur le projet ?
+	
+	Player Mouvement, Environnement, Ville, UI & Menus, Ennemies, Waves, Système d'intéraction : Idriss
+	Armes, PNJ : Amalaric
+	Tourelles : Mickael
+
+
+L’origine des assets (modèles 3D, textures, sprites, animations, images, sons, musiques, etc) non fabriqués par vous-mêmes. Pour chaque asset, ou groupe d’assets :
+
+o   URL du site d’origine de(s) l’asset(s)
+
+o   Gratuit / payant ?
+
+o   Quelle licence d’utilisation ?
+
+- Pièce de monnaie pour l'UI: "https://www.flaticon.com/fr/icones-gratuites/piece-de-monnaie", Gratuite avec Mention du Graphiste.
+- Ville, Arbres et Textures: "https://assetstore.unity.com/packages/3d/environments/fantasy/free-slavic-medieval-environment-town-interior-and-exterior-167010#publisher" 
+- Herbes et fleurs: "https://assetstore.unity.com/packages/2d/textures-materials/nature/grass-and-flowers-pack-1-17100"
