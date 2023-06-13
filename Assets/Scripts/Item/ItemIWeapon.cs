@@ -5,10 +5,15 @@ using UnityEngine;
 
 public class ItemIWeapon : Item
 {
-    [SerializeField] private GameObject weapon;
+    [SerializeField] public GameObject weapon;
     
     [Header("KeyBinds")]
     public KeyCode AttackKey = KeyCode.Mouse0;
+
+    /*public void setWeapon(GameObject newWeapon)
+    {
+        weapon = newWeapon;
+    }*/
 
     private void OnEnable()
     {

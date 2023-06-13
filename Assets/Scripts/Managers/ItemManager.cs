@@ -30,10 +30,10 @@ public class ItemManager : MonoBehaviour
     }
 
     [Header("Items")]
-    [SerializeField] private Item meleeWeaponItem;
-    [SerializeField] private Item rangeWeaponItem;
-    [SerializeField] private Item turretItem;
-    [SerializeField] private ItemPotion potionItem;
+    [SerializeField] private Item meleeWeaponItem = null;
+    [SerializeField] private Item rangeWeaponItem = null;
+    [SerializeField] private Item turretItem = null;
+    [SerializeField] private ItemPotion potionItem = null;
     private Item[] _items;
 
     [Header("KeyBinds")]
@@ -78,7 +78,8 @@ public class ItemManager : MonoBehaviour
     {
         foreach (var item in _items)
         {
-            item.enabled = false;
+            if (item != null)
+                item.enabled = false;
         }
     }
 

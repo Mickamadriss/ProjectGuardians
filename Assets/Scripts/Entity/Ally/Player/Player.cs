@@ -119,19 +119,33 @@ public class Player : Entity, IEventHandler, IAlly
         heal(e.Health);
     }
     
-    public void BuyItem(IWeapon weaponToBuy, int price)
+    public void BuyItem(int price)
     {
         //Si on à l'argent : on achète / équipe l'item, et perd l'argent
+        Debug.Log(gold + " / " + price);
         if (gold >= price)
         {
-            // Code pour équiper l'item //
-            setGold(gold - price);
+            Debug.Log("achat item");
+            //Ajout du prefab requis au WeaponHolder
+            GameObject wpHolder = GameObject.Find("WeaponHolder");
+            GameObject newGo = new GameObject("Pistol");
+            newGo.transform.parent = wpHolder.transform;
+            
+            //Création de l'item
+            GameObject pistolPrefab = GameObject.Find("Pistol");
+            ItemIWeapon newItem = gameObject.AddComponent<ItemIWeapon>();
+            newItem.weapon = pistolPrefab;
+            /*//Ajout de l'item au ItemManager
+            GetComponent<ItemManager>().RangeWeaponItem = newItem;
+            
+            //MaJ du gold du joueur
+            setGold(gold - price);*/
         }
 
         //Si on n'a pas l'argent : popup "t'es pauvre"
         else
         {
-            // Code pour afficher une popup //
+            Debug.Log("achat impossible, gold :"+gold);
         }
     }
 }

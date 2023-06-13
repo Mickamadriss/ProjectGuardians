@@ -2908,12 +2908,12 @@ MonoBehaviour:
       - m_Target: {fileID: -5904902406852186909, guid: 3b9bbc1665a709445939de54522690b8,
           type: 3}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: heal
+        m_MethodName: BuyItem
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -5584,8 +5584,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 161c36afb0cd46d419d1477276f9feaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 25
-  name: Pistol
+  price: 0
+  itemName: Pistol
 --- !u!1 &7071755476242049983
 GameObject:
   m_ObjectHideFlags: 0
