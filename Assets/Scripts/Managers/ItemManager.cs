@@ -5,24 +5,49 @@ using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
+    public Item MeleeWeaponItem
+    {
+        get => meleeWeaponItem;
+        set => meleeWeaponItem = value;
+    }
+
+    public Item RangeWeaponItem
+    {
+        get => rangeWeaponItem;
+        set => rangeWeaponItem = value;
+    }
+
+    public Item TurretItem
+    {
+        get => turretItem;
+        set => turretItem = value;
+    }
+
+    public ItemPotion PotionItem
+    {
+        get => potionItem;
+        set => potionItem = value;
+    }
 
     [Header("Items")]
     [SerializeField] private Item meleeWeaponItem;
     [SerializeField] private Item rangeWeaponItem;
     [SerializeField] private Item turretItem;
+    [SerializeField] private ItemPotion potionItem;
     private Item[] _items;
 
     [Header("KeyBinds")]
     public KeyCode meleeWeaponItemKey = KeyCode.Alpha1;
     public KeyCode rangeWeaponItemKey = KeyCode.Alpha2;
     public KeyCode turretItemKey = KeyCode.Alpha3;
+    public KeyCode potionItemKey = KeyCode.Alpha4;
     private KeyCode[] _keyCodes;
     
     private void Awake()
     {
         // Order is important
-        _items = new[] { meleeWeaponItem, rangeWeaponItem, turretItem };
-        _keyCodes = new[] { meleeWeaponItemKey, rangeWeaponItemKey, turretItemKey };
+        _items = new[] { meleeWeaponItem, rangeWeaponItem, turretItem, potionItem };
+        _keyCodes = new[] { meleeWeaponItemKey, rangeWeaponItemKey, turretItemKey, potionItemKey };
     }
 
     // Start is called before the first frame update
@@ -56,4 +81,11 @@ public class ItemManager : MonoBehaviour
             item.enabled = false;
         }
     }
+
+    public void RefillPotion(int quantity)
+    {
+        potionItem.Refill(quantity);
+    }
+    
+    
 }

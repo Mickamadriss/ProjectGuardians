@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using STUDENT_NAME.Entity;
 using UnityEngine;
 using UnityEngine.Analytics;
+using Event = SDD.Events.Event;
 
 public class Player : Entity, IEventHandler, IAlly
 {
@@ -60,6 +61,7 @@ public class Player : Entity, IEventHandler, IAlly
         EventManager.Instance.AddListener<EnnemyKilled>(ennemyKilled);
         EventManager.Instance.AddListener<MainMenuButtonClickedEvent>(mainMenuHasBeenCliked);
         EventManager.Instance.AddListener<PlayerGoldUpdate>(playerGoldUpdate);
+        EventManager.Instance.AddListener<PlayerHealUpdate>(playerHealUpdate);
     }
 
     public override void UnsubscribeEvents()
@@ -67,6 +69,8 @@ public class Player : Entity, IEventHandler, IAlly
         base.UnsubscribeEvents();
         EventManager.Instance.RemoveListener<EnnemyKilled>(ennemyKilled);
         EventManager.Instance.RemoveListener<MainMenuButtonClickedEvent>(mainMenuHasBeenCliked);
+        EventManager.Instance.RemoveListener<PlayerGoldUpdate>(playerGoldUpdate);
+        EventManager.Instance.RemoveListener<PlayerHealUpdate>(playerHealUpdate);
     }
 
     private void ennemyKilled(EnnemyKilled e)
@@ -108,5 +112,10 @@ public class Player : Entity, IEventHandler, IAlly
     private void playerGoldUpdate(PlayerGoldUpdate e)
     {
         setGold(gold + e.Gold);
+    }
+
+    private void playerHealUpdate(PlayerHealUpdate e)
+    {
+        heal(e.Health);
     }
 }
