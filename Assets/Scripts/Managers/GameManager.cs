@@ -39,6 +39,9 @@
 			EventManager.Instance.AddListener<EscapeButtonClickedEvent>(EscapeButtonClicked);
 			EventManager.Instance.AddListener<QuitButtonClickedEvent>(QuitButtonClicked);
 			EventManager.Instance.AddListener<GameOverEvent>(Over);
+			
+			/*EventManager.Instance.AddListener<BlacksmithOpenEvent>(OpenShop);
+			EventManager.Instance.AddListener<BlacksmithCloseEvent>(CloseShop);*/
         }
 
 		public override void UnsubscribeEvents()
@@ -52,6 +55,9 @@
 			EventManager.Instance.RemoveListener<EscapeButtonClickedEvent>(EscapeButtonClicked);
 			EventManager.Instance.RemoveListener<QuitButtonClickedEvent>(QuitButtonClicked);
             EventManager.Instance.RemoveListener<GameOverEvent>(Over);
+            
+            /*EventManager.Instance.RemoveListener<BlacksmithOpenEvent>(OpenShop);
+            EventManager.Instance.RemoveListener<BlacksmithCloseEvent>(CloseShop);*/
         }
         #endregion
 
@@ -106,6 +112,14 @@
             if (SfxManager.Instance) SfxManager.Instance.PlaySfx2D(Constants.GAMEOVER_SFX);
         }
 
+        /*private void OpenShop(BlacksmithOpenEvent e)
+        {
+	        Menu();
+        }
+        private void CloseShop(BlacksmithCloseEvent e)
+        {
+	        Play();
+        }*/
         #endregion
 
         #region GameState methods
