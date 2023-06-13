@@ -135,6 +135,16 @@ public class PlayerGoldUpdate : SDD.Events.Event
     public int Gold { get; }
 }
 
+public class PlayerHealUpdate : SDD.Events.Event
+{
+    public PlayerHealUpdate(int health)
+    {
+        Health = health;
+    }
+    
+    public int Health { get; }
+}
+
 public class TriggeringMenu : SDD.Events.Event
 {
     public bool menuState { get; set; }
