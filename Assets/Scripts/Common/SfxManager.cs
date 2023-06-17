@@ -5,6 +5,7 @@ using System;
 using System.Xml;
 using System.Linq;
 using Random = UnityEngine.Random;
+using UnityEngine.UIElements;
 
 [System.Serializable]
 public class MyAudioClip
@@ -81,7 +82,10 @@ public class SfxManager : Singleton<SfxManager> {
 
 	public void PlaySfx2D(string sfxName)
 	{
-		//PlaySfx3D(sfxName, Camera.main.transform.position);
+		if (Camera.main != null)
+		{
+            PlaySfx3D(sfxName, Camera.main.transform.position);
+        }
 	}
 
 	void PlaySfx(string sfxName, Vector3 pos)
@@ -107,7 +111,6 @@ public class SfxManager : Singleton<SfxManager> {
 	void OnGUI()
 	{
 		if(!m_ShowGui) return;
-
 
 		GUILayout.BeginArea(new Rect(Screen.width*.5f+10,10,200,Screen.height));
 		GUILayout.Label("SFX MANAGER");

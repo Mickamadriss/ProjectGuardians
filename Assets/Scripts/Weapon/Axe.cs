@@ -11,16 +11,11 @@ public class Axe : SidedWeapon
     public bool CanAttack = true;
     private bool IsAttacking = false;
     [Header("References")]
-    public AudioClip AttackSound;
     private Animator anim;
-    private AudioSource ac;
-    private Collider axeCcollider;
 
     private void Awake()
     {
        anim = GetComponent<Animator>();
-       ac = GetComponent<AudioSource>();
-        axeCcollider = GetComponent<Collider>();
     }
 
     //L'attaque lance une animation, et donc si le collider de la Axe touche un ennemy ça va déclencher le OnTriggerEnter
@@ -33,9 +28,9 @@ public class Axe : SidedWeapon
 
         //Animation
         anim.SetTrigger("Attack");
-        
+
         //Son
-        ac.PlayOneShot(AttackSound);
+        if (SfxManager.Instance) SfxManager.Instance.PlaySfx3D(Constants.AXE_SWING, gameObject.transform.position);
 
         //Cooldown de l'arme
         StartCoroutine(ResetAttack());

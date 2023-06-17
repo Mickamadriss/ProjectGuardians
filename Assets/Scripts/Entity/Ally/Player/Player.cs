@@ -104,7 +104,6 @@ public class Player : Entity, IEventHandler, IAlly
 
     public override void kill(GameObject killer)
     {
-        //todo event game over
         EventManager.Instance.Raise(new GameOverEvent());
         Destroy(gameObject);
     }

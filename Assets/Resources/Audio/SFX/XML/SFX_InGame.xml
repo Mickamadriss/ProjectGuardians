@@ -4,5 +4,6 @@
 	<SFX name="LetsGo" volume="1" />
 	<SFX name="Tick" volume="1" />  
 	<SFX name="Victory" volume="1" /> 
-	<SFX name="GameOver" volume="1" /> 
+	<SFX name="GameOver" volume="1" />
+  <SFX name="Swing" volume="1" />
 </SFX_SETUP>

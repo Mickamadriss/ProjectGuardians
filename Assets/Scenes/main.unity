@@ -616,6 +616,11 @@ PrefabInstance:
       objectReference: {fileID: 1461436562}
     - target: {fileID: 114078314171263514, guid: 68480a01e4a00ab45b3d746ae2fc86ee,
         type: 3}
+      propertyPath: m_MenuCamera
+      value: 
+      objectReference: {fileID: 1531984497}
+    - target: {fileID: 114078314171263514, guid: 68480a01e4a00ab45b3d746ae2fc86ee,
+        type: 3}
       propertyPath: m_PanelCredits
       value: 
       objectReference: {fileID: 293466176}
@@ -1097,9 +1102,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1531984500}
   - component: {fileID: 1531984499}
+  - component: {fileID: 1531984501}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1162,6 +1168,14 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!81 &1531984501
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1531984497}
+  m_Enabled: 1
 --- !u!114 &1594940706 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2666534294985770322, guid: 2d4cc07e22d85374b8d15cd15f4e18e1,
@@ -1431,6 +1445,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 133434427470152654, guid: 2d4cc07e22d85374b8d15cd15f4e18e1,
+        type: 3}
+      propertyPath: m_SoundName
+      value: Button
+      objectReference: {fileID: 0}
     - target: {fileID: 224296235275038180, guid: 2d4cc07e22d85374b8d15cd15f4e18e1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1635,6 +1654,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 382296919911169258, guid: 2d4cc07e22d85374b8d15cd15f4e18e1,
+        type: 3}
+      propertyPath: m_SoundName
+      value: Button
       objectReference: {fileID: 0}
     - target: {fileID: 396049487472991491, guid: 2d4cc07e22d85374b8d15cd15f4e18e1,
         type: 3}
