@@ -39,7 +39,7 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
     {
         if (m_IsPlaying)
         {
-            if(ennemyCount == 0)
+            if(ennemyCount <= 0)
             {
                 float timeSinceLastWave = Time.time - LastEndWave;
                 EventManager.Instance.Raise(new TimeNextWaveChanged() { eTime = (WaveDelay-timeSinceLastWave)/WaveDelay * 100 });
@@ -107,6 +107,7 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
 
     protected override void GameOver(GameOverEvent e)
     {
+        EventManager.Instance.Raise(new WaveChanged() { eWave = WaveNumber-1}); //car si on est mort on a pas fini la wave
         Reset();
     }
 
@@ -163,7 +164,6 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
         {
             Destroy(aIEntity.gameObject);
             WaveNumber = 0;
-            EventManager.Instance.Raise(new WaveChanged() { eWave = WaveNumber });
         }
         m_IsPlaying = false;
     }
