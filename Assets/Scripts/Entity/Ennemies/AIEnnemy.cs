@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using SDD.Events;
 using System.Collections;
@@ -5,6 +6,7 @@ using System.Collections.Generic;
 using STUDENT_NAME.Entity;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class AIEnnemy : Entity, IEventHandler
 {
@@ -15,6 +17,8 @@ public class AIEnnemy : Entity, IEventHandler
     public float exp;
     public int gold;
 
+    [SerializeField] Slider m_HealthBar;
+    
     public LayerMask whatIsGround, whatIsPlayer, whatIsCity;
 
     //Patrolling
@@ -31,6 +35,11 @@ public class AIEnnemy : Entity, IEventHandler
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+    }
+
+    private void Start()
+    {
+        m_HealthBar.value = life;
     }
 
     private void Update()
@@ -85,5 +94,11 @@ public class AIEnnemy : Entity, IEventHandler
         bool isPlayer = killer.layer == whatIsPlayer;
         EventManager.Instance.Raise(new EnnemyKilled() { eEntity = this , ePlayerKill = isPlayer});
         Destroy(gameObject);
+    }
+
+    public override void TakeDamage(int damage, GameObject dammager)
+    {
+        base.TakeDamage(damage, dammager);
+        m_HealthBar.value = life;
     }
 }
