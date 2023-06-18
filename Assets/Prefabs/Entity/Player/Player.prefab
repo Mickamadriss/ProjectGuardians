@@ -301,7 +301,7 @@ MonoBehaviour:
   maxPotionCount: 3
   potionCount: 3
   useKey: 323
-  healAmount: 10
+  healAmount: 2000
 --- !u!1 &745965689500852009
 GameObject:
   m_ObjectHideFlags: 0
@@ -676,6 +676,7 @@ Transform:
   - {fileID: 2759411558745263570}
   - {fileID: 2129081284397509806}
   - {fileID: 5720769887435697252}
+  - {fileID: 4847360449079553993}
   - {fileID: 4747002632261751420}
   m_Father: {fileID: 745965689861491778}
   m_RootOrder: 1
@@ -1151,7 +1152,7 @@ PrefabInstance:
     - target: {fileID: 2867988008333663528, guid: 939c55370621e2841883952087559a52,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2867988008333663528, guid: 939c55370621e2841883952087559a52,
         type: 3}
@@ -1214,12 +1215,6 @@ Transform:
 --- !u!4 &5516096751289531592 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2883842552034266665, guid: 939c55370621e2841883952087559a52,
-    type: 3}
-  m_PrefabInstance: {fileID: 7244157925821051617}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8250900342290448787 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1587938220433994610, guid: 939c55370621e2841883952087559a52,
     type: 3}
   m_PrefabInstance: {fileID: 7244157925821051617}
   m_PrefabAsset: {fileID: 0}

@@ -54,6 +54,7 @@ public class Player : Entity, IEventHandler, IAlly
         heal((int) maxLife);
         expNeeded += 10;
         exp = 0;
+        EventManager.Instance.Raise(new PlayerPotionRestart());
     }
 
     public override void SubscribeEvents()

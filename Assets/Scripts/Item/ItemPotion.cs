@@ -3,8 +3,8 @@ using UnityEngine;
 public abstract class ItemPotion : Item
 {
     [SerializeField] private GameObject potion;
-    [SerializeField] private int maxPotionCount;
-    [SerializeField] private int potionCount;
+    [SerializeField] protected int maxPotionCount;
+    [SerializeField] protected int potionCount;
     
     [Header("KeyBinds")]
     public KeyCode useKey = KeyCode.Mouse0;
