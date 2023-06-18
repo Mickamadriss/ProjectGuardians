@@ -107,6 +107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4939996705135754}
   - component: {fileID: 1116545025123856106}
+  - component: {fileID: 8264834778358820803}
   - component: {fileID: 7297626919784857843}
   - component: {fileID: 5777185786936858125}
   m_Layer: 8
@@ -149,17 +150,35 @@ MonoBehaviour:
   maxLife: 300
   side: 0
   m_IsPlaying: 1
-  head: {fileID: 3866662852665593069}
   weapon: {fileID: 7297626919784857843}
   target: {fileID: 0}
   whatIsEnnemy:
     serializedVersion: 2
     m_Bits: 1024
-  timeBetweenAttacks: 0.5
-  projectile: {fileID: 6158986230157310442, guid: debf7c61f1220cb4d8e57954a1606c32,
-    type: 3}
-  attackPoint: {fileID: 6274074071464948212}
   attackRange: 50
+--- !u!114 &8264834778358820803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1326093064322132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 579e003cf1924afbac067ace38d2e1a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  life: 300
+  maxLife: 300
+  side: 0
+  m_IsPlaying: 1
+  weapon: {fileID: 7297626919784857843}
+  target: {fileID: 0}
+  whatIsEnnemy:
+    serializedVersion: 2
+    m_Bits: 1024
+  attackRange: 50
+  head: {fileID: 3866662852665593069}
 --- !u!114 &7297626919784857843
 MonoBehaviour:
   m_ObjectHideFlags: 0
