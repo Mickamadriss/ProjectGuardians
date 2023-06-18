@@ -5,8 +5,9 @@ Player:
 	CTRL : Permet de s'accroupir
 	1: item 1 (Axe)
 	2: item 2 (Pistol)
-	3: item 3 (Tourelle 1)
-	4: item 4 (Potion)
+	3: item 3 (Tourelle 1, coute 10 golds)
+	4: Item 4 (Piege 1, coute 10 golds)
+ 	5: item 5 (Potion, Attention -> Trois utilisations)
 	Clic gauche : utilise l'item
 	E: Permet d'intéragire avec différents objets (portes, pnj, ect...)
 
@@ -19,6 +20,8 @@ Vos remarques particulières : limitations, bugs connus, voies d'amélioration
 	- La courbe d'apprentissage pour le joueur est trop petite à cause d'un système de combat trop basique.
 	- Les tourelles, pas assez diverse, ne permettent pas au joueur de mettre en place une vrai stratégie.
 	- Durée de jeu assez courte car malgré des waves infini on arrive vite à une difficulté trop élevé.
+	- Avec le systeme de vagues actuel, certains ennemis ne peuvent pas apparaitre. De ce fait certaines vagues ont
+	  moins d'ennemis que prévu intialement.
 	
 		Les bugs connues:
 	- On ne peut pas sauter sur autre choses que le ground (terrain).
@@ -34,21 +37,23 @@ Vos remarques particulières : limitations, bugs connus, voies d'amélioration
 Qui a fait quoi sur le projet ?
 	
 	Player Mouvement, Environnement, Ville, UI & Menus, Ennemies, Waves, Système d'intéraction, Sons, HighScore : Idriss
-	Armes, PNJ : Amalaric
-	Tourelles : Mickael
+	Armes, PNJ/SHOP, animations, meshes : Amalaric
+	Tourelles, PostProcess, Items, Inventaire d'item, HUD inventaire : Mickael
 
 
 L’origine des assets (modèles 3D, textures, sprites, animations, images, sons, musiques, etc) non fabriqués par vous-mêmes. Pour chaque asset, ou groupe d’assets :
 
-o   URL du site d’origine de(s) l’asset(s)
+o   Gratuit / payant -> Tous gratuits
 
-o   Gratuit / payant ?
-
-o   Quelle licence d’utilisation ?
+o   Quelle licence d’utilisation -> Tous Standard Unity Asset Store EULA
 
 - Pièce de monnaie pour l'UI: "https://www.flaticon.com/fr/icones-gratuites/piece-de-monnaie", Gratuite avec Mention du Graphiste.
 - Ville, Arbres et Textures: "https://assetstore.unity.com/packages/3d/environments/fantasy/free-slavic-medieval-environment-town-interior-and-exterior-167010#publisher" 
 - Herbes et fleurs: "https://assetstore.unity.com/packages/2d/textures-materials/nature/grass-and-flowers-pack-1-17100"
+- Potion  : https://assetstore.unity.com/packages/3d/props/potions-115115
+- Piege : https://assetstore.unity.com/packages/3d/props/interior/dungeon-floor-traps-77765
+- Marteau : https://assetstore.unity.com/packages/3d/props/tools/urethane-hammer-170156
+- Tourelle : https://assetstore.unity.com/packages/3d/environments/fantasy/meshtint-free-turret-tower-mega-toon-series-155310
 
 Sounds
 - Les sons déjà présents

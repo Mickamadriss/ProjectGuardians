@@ -39,7 +39,7 @@ public class AIEnnemy : Entity, IEventHandler
 
     private void Start()
     {
-        m_HealthBar.value = life;
+        m_HealthBar.value = life * 100 / maxLife;
     }
 
     private void Update()
@@ -99,7 +99,7 @@ public class AIEnnemy : Entity, IEventHandler
     public override void TakeDamage(int damage, GameObject dammager)
     {
         base.TakeDamage(damage, dammager);
-        m_HealthBar.value = life;
+        m_HealthBar.value = life * 100 / maxLife;
     }
 
     public void Boost(int number)
