@@ -20,6 +20,7 @@ namespace STUDENT_NAME
 		[SerializeField] GameObject m_PanelHUD;
 		[SerializeField] GameObject m_PanelCredits;
 		[SerializeField] GameObject m_MenuCamera;
+		[SerializeField] GameObject m_PanelBlacksmith;
 
 		List<GameObject> m_AllPanels;
 		#endregion
@@ -68,6 +69,7 @@ namespace STUDENT_NAME
 			m_AllPanels.Add(m_PanelGameOver);
 			m_AllPanels.Add(m_PanelHUD);
 			m_AllPanels.Add(m_PanelCredits);
+			m_AllPanels.Add(m_PanelBlacksmith);
 		}
 
 		void OpenPanel(GameObject panel)
@@ -147,6 +149,17 @@ namespace STUDENT_NAME
 			OpenPanel(m_PanelGameOver);
 			m_MenuCamera.SetActive(true);
 			EnableMouse();
+		}
+
+		protected override void BlacksmithOpen(BlacksmithOpenEvent e)
+		{
+			OpenPanel(m_PanelBlacksmith);
+			EnableMouse();
+		}
+		protected override void BlacksmithClose(BlacksmithCloseEvent e)
+		{
+			OpenPanel(m_PanelHUD);
+			DisableMouse();
 		}
 		#endregion
 

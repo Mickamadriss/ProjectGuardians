@@ -101,9 +101,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   side: 0
   damage: 0
+  price: 0
   AttackCooldown: 0
   CanAttack: 1
-  AttackSound: {fileID: 8300000, guid: 8609eb66b0ae7134a8d47521a8654910, type: 3}
 --- !u!82 &6336239014475819157
 AudioSource:
   m_ObjectHideFlags: 0

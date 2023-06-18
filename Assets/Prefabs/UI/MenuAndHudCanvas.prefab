@@ -5088,11 +5088,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 224619773890871106}
     m_Modifications:
+    - target: {fileID: 1287023566176149762, guid: 8d7a9a75940b36c4380c3fd22bb9d106,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 89aa8a29dfbc3d14c938f9c56543047f,
+        type: 3}
+    - target: {fileID: 4066327057599305552, guid: 8d7a9a75940b36c4380c3fd22bb9d106,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6595661004719054073, guid: a4be26f4afd594643a17d3b59e103f83,
+        type: 3}
+    - target: {fileID: 4066327057599305552, guid: 8d7a9a75940b36c4380c3fd22bb9d106,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ExitShop
+      objectReference: {fileID: 0}
+    - target: {fileID: 4066327057599305552, guid: 8d7a9a75940b36c4380c3fd22bb9d106,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Blacksmith, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4747957568801961532, guid: 8d7a9a75940b36c4380c3fd22bb9d106,
         type: 3}
       propertyPath: m_Name
       value: PanelBlacksmith
       objectReference: {fileID: 0}
+    - target: {fileID: 5718389149029340096, guid: 8d7a9a75940b36c4380c3fd22bb9d106,
+        type: 3}
+      propertyPath: itemPicture
+      value: 
+      objectReference: {fileID: 2800000, guid: 89aa8a29dfbc3d14c938f9c56543047f, type: 3}
     - target: {fileID: 5971756006123253584, guid: 8d7a9a75940b36c4380c3fd22bb9d106,
         type: 3}
       propertyPath: m_Pivot.x
@@ -5198,6 +5225,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9079704040348381544, guid: 8d7a9a75940b36c4380c3fd22bb9d106,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 098da46c1d5074242b5366dff3af99d3,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d7a9a75940b36c4380c3fd22bb9d106, type: 3}
 --- !u!224 &6721338165788161135 stripped

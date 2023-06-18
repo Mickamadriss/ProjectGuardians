@@ -13,7 +13,6 @@ public class ShopItem : MonoBehaviour
     {
         //Set les valeurs du nom / prix de l'item au début du jeu
         Text[] itemTexts = GetComponentsInChildren<Text>();
-
         foreach (Text t in itemTexts)
         {
             switch (t.name)
