@@ -18,13 +18,13 @@ public class IAStatic : Entity
 
     private void Start()
     {
-        m_HealthBar.value = life;
+        m_HealthBar.value = life * 100 / maxLife;
     }
 
     public override void TakeDamage(int damage, GameObject dammager)
     {
         base.TakeDamage(damage, dammager);
-        m_HealthBar.value = life;
+        m_HealthBar.value = life * 100 / maxLife;
     }
 
     // Update is called once per frame
