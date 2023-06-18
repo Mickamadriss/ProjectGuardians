@@ -39,7 +39,7 @@
 			EventManager.Instance.AddListener<EscapeButtonClickedEvent>(EscapeButtonClicked);
 			EventManager.Instance.AddListener<QuitButtonClickedEvent>(QuitButtonClicked);
 			EventManager.Instance.AddListener<GameOverEvent>(Over);
-        }
+		}
 
 		public override void UnsubscribeEvents()
 		{
@@ -52,7 +52,7 @@
 			EventManager.Instance.RemoveListener<EscapeButtonClickedEvent>(EscapeButtonClicked);
 			EventManager.Instance.RemoveListener<QuitButtonClickedEvent>(QuitButtonClicked);
             EventManager.Instance.RemoveListener<GameOverEvent>(Over);
-        }
+		}
         #endregion
 
         #region Manager implementation
@@ -106,6 +106,16 @@
             m_GameState = GameState.gameOver;
         }
 
+        private void OpenShop(BlacksmithOpenEvent e)
+        {
+	        m_GameState = GameState.gameMenu;
+	        Pause();
+        }
+        private void CloseShop(BlacksmithCloseEvent e)
+        {
+	        m_GameState = GameState.gamePlay;
+	        Resume();
+        }
         #endregion
 
         #region GameState methods

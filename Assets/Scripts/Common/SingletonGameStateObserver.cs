@@ -15,6 +15,9 @@ public abstract class SingletonGameStateObserver<T> :  Singleton<T>,IEventHandle
 		EventManager.Instance.AddListener<GameOverEvent>(GameOver);
 		EventManager.Instance.AddListener<GameVictoryEvent>(GameVictory);
 		EventManager.Instance.AddListener<GameStatisticsChangedEvent>(GameStatisticsChanged);
+		
+		EventManager.Instance.AddListener<BlacksmithOpenEvent>(BlacksmithOpen);
+		EventManager.Instance.AddListener<BlacksmithCloseEvent>(BlacksmithClose);
 	}
 
 	public virtual void UnsubscribeEvents()
@@ -26,6 +29,9 @@ public abstract class SingletonGameStateObserver<T> :  Singleton<T>,IEventHandle
 		EventManager.Instance.RemoveListener<GameOverEvent>(GameOver);
 		EventManager.Instance.RemoveListener<GameVictoryEvent>(GameVictory);
 		EventManager.Instance.RemoveListener<GameStatisticsChangedEvent>(GameStatisticsChanged);
+		
+		EventManager.Instance.RemoveListener<BlacksmithOpenEvent>(BlacksmithOpen);
+		EventManager.Instance.RemoveListener<BlacksmithCloseEvent>(BlacksmithClose);
 	}
 
 	protected override void Awake()
@@ -66,6 +72,11 @@ public abstract class SingletonGameStateObserver<T> :  Singleton<T>,IEventHandle
 	protected virtual void GameStatisticsChanged(GameStatisticsChangedEvent e)
 	{
 	}
-
-
+	
+	protected virtual void BlacksmithOpen(BlacksmithOpenEvent e)
+	{
+	}
+	protected virtual void BlacksmithClose(BlacksmithCloseEvent e)
+	{
+	}
 }

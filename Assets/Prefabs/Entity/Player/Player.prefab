@@ -170,6 +170,7 @@ MonoBehaviour:
   runKey: 304
   crouchKey: 306
   orientation: {fileID: 745965689500852010}
+  isInMenu: 0
   state: 0
   dashing: 0
 --- !u!114 &7018154155872987953
@@ -238,7 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082c58d176e60014b965765db202f48c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 8250900342290448787}
+  weapon: {fileID: 0}
   AttackKey: 323
 --- !u!114 &4479478591842318798
 MonoBehaviour:
@@ -428,6 +429,7 @@ MonoBehaviour:
   sensX: 300
   sensY: 300
   orientation: {fileID: 745965689500852010}
+  isInMenu: 0
 --- !u!81 &9027374238889639964
 AudioListener:
   m_ObjectHideFlags: 0
@@ -671,7 +673,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4847360449079553993}
   - {fileID: 2759411558745263570}
   - {fileID: 2129081284397509806}
   - {fileID: 5720769887435697252}
@@ -817,7 +818,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2999748106215116, guid: 87695425190601f4bac053c80ffdbf52, type: 3}
       propertyPath: m_Name
-      value: Axe
+      value: MeleeWeapon
       objectReference: {fileID: 0}
     - target: {fileID: 2999748106215116, guid: 87695425190601f4bac053c80ffdbf52, type: 3}
       propertyPath: m_IsActive
@@ -826,7 +827,7 @@ PrefabInstance:
     - target: {fileID: 811062370745517174, guid: 87695425190601f4bac053c80ffdbf52,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 811062370745517174, guid: 87695425190601f4bac053c80ffdbf52,
         type: 3}
@@ -919,7 +920,7 @@ PrefabInstance:
     - target: {fileID: 6492964595147021555, guid: 0df2fd2cf7ffcd14689d7f708b1b50a5,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6492964595147021555, guid: 0df2fd2cf7ffcd14689d7f708b1b50a5,
         type: 3}
@@ -1032,7 +1033,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4173680155241510, guid: d027d4bce170c4abf8619a7d7980440e, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4173680155241510, guid: d027d4bce170c4abf8619a7d7980440e, type: 3}
       propertyPath: m_LocalScale.x

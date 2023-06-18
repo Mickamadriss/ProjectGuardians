@@ -15,7 +15,7 @@ public class ItemManager : MonoBehaviour
     public Item RangeWeaponItem
     {
         get => rangeWeaponItem;
-        set => rangeWeaponItem = value;
+        set => meleeWeaponItem = value;
     }
 
     public Item TurretItem
@@ -31,11 +31,11 @@ public class ItemManager : MonoBehaviour
     }
 
     [Header("Items")]
-    [SerializeField] private Item meleeWeaponItem;
-    [SerializeField] private Item rangeWeaponItem;
-    [SerializeField] private Item turretItem;
+    [SerializeField] private Item meleeWeaponItem = null;
+    [SerializeField] private Item rangeWeaponItem = null;
+    [SerializeField] private Item turretItem = null;
     [SerializeField] private Item trapItem;
-    [SerializeField] private ItemPotion potionItem;
+    [SerializeField] private ItemPotion potionItem = null;
     private Item[] _items;
 
     [Header("KeyBinds")]
@@ -69,6 +69,10 @@ public class ItemManager : MonoBehaviour
                 enableItem(itemIndex);
             }
         }
+        //
+        // Debug.Log(_items.Length);
+        // Debug.Log(_items.GetValue(0));
+        // Debug.Log(_items.GetValue(1));
     }
 
     private void enableItem(int itemIndex)
@@ -82,8 +86,17 @@ public class ItemManager : MonoBehaviour
     {
         foreach (var item in _items)
         {
-            item.enabled = false;
+            if (item != null)
+                item.enabled = false;
         }
+    }
+
+    public void replaceItem(int index, Item item)
+    {
+        // Debug.Log(_items.Length);
+        // _items[index] = item;
+        // Debug.Log(item);
+        // RangeWeaponItem = item;
     }
 
     public void RefillPotion(int quantity)

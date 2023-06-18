@@ -17,7 +17,7 @@
         [Header("Labels & Values")]
         [SerializeField] Text m_Waves;
         [SerializeField] Text m_EnnemyRemaining;
-        [SerializeField] Text m_NumberGold;
+        [SerializeField] public Text m_NumberGold;
         [SerializeField] GameObject m_InteractionHUD;
         [SerializeField] TextMeshProUGUI m_InteractionPromt;
         [SerializeField] Slider m_TimeWave;

@@ -83,7 +83,13 @@ public class AIEnnemy : Entity, IEventHandler
     public override void kill(GameObject killer)
     {
         bool isPlayer = killer.layer == whatIsPlayer;
-        EventManager.Instance.Raise(new EnnemyKilled() { eEntity = this , ePlayerKill = isPlayer});
+        EventManager.Instance.Raise(new EnnemyKilled() { eEntity = this, ePlayerKill = isPlayer });
         Destroy(gameObject);
+    }
+
+    public void Boost(int number)
+    {
+        maxLife += number;
+        life += number;
     }
 }

@@ -19,6 +19,7 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
 
     //parameters
     private float LastEndWave = 0;
+    private float StartWave = 0;
     private int ennemyCount = 0;
     private bool m_IsPlaying = false;
     
@@ -27,8 +28,10 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
     //wave Description
     private int WaveNumber = 0;
     [SerializeField] private float WaveDelay = 10;
+    [SerializeField] private float TimeForceNextWave = 80;
     [SerializeField] private int numberEnnemiesToSpawn = 5;
     private int distancePack = 15;
+    private bool forceNextWave = false;
 
     protected override void Awake()
     {
@@ -40,14 +43,17 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
     {
         if (m_IsPlaying)
         {
-            if(ennemyCount <= 0)
+            if(ennemyCount <= 0 || forceNextWave)
             {
                 float timeSinceLastWave = Time.time - LastEndWave;
                 EventManager.Instance.Raise(new TimeNextWaveChanged() { eTime = (WaveDelay-timeSinceLastWave)/WaveDelay * 100 });
-                if (timeSinceLastWave > WaveDelay) //si le temps d'attente est fini
+                if (timeSinceLastWave > WaveDelay || forceNextWave) //si le temps d'attente est fini
                 {
+                    forceNextWave = false;
                     if (SfxManager.Instance) SfxManager.Instance.PlaySfx3D(Constants.WAVE_START, gameObject.transform.position);
                     WaveNumber++;
+                    TimeForceNextWave++;
+                    StartWave = Time.time;
                     EventManager.Instance.Raise(new WaveChanged() { eWave = WaveNumber });
 
                     //zone de spawn
@@ -68,6 +74,15 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
 
                         SpawnEnnemy(posSpawn, random);
                     }
+                }
+            }
+            else
+            {
+                float timeSinceWaveStart = Time.time - StartWave;
+                EventManager.Instance.Raise(new TimeNextWaveChanged() { eTime = (TimeForceNextWave - timeSinceWaveStart) / TimeForceNextWave * 100 });
+                if (timeSinceWaveStart > TimeForceNextWave)
+                {
+                    forceNextWave = true;
                 }
             }
         }
@@ -153,7 +168,9 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
             //set la direction de l'ennemy vers la ville
             m_Ennemies[idEnnemy].player = player.transform;
             m_Ennemies[idEnnemy].city = m_City.transform;
-            spawnEnnemies.Add(Instantiate(m_Ennemies[idEnnemy], results[0].point, Quaternion.identity));
+            AIEnnemy ennemy = Instantiate(m_Ennemies[idEnnemy], results[0].point, Quaternion.identity);
+            spawnEnnemies.Add(ennemy);
+            ennemy.Boost(WaveNumber);
             ennemyCount++;
             LastEndWave = Time.time;
             EventManager.Instance.Raise(new EnnemyCountChanged() { eNumberEnnemy = ennemyCount });

@@ -158,7 +158,7 @@ MonoBehaviour:
   walkPointRange: 5
   weapon: {fileID: 2163048872911861026}
   sightRange: 20
-  attackRange: 2
+  attackRange: 1.61
   playerInSightRange: 0
   playerInAttackRange: 0
 --- !u!54 &4657148493023109455

@@ -29,6 +29,13 @@ public class GameStatisticsChangedEvent : SDD.Events.Event
 	public float eScore { get; set; }
 	public int eNLives { get; set; }
 }
+
+public class BlacksmithOpenEvent : SDD.Events.Event
+{
+}
+public class BlacksmithCloseEvent : SDD.Events.Event
+{
+}
 #endregion
 
 #region MenuManager Events
@@ -136,6 +143,11 @@ public class PlayerHealUpdate : SDD.Events.Event
     }
     
     public int Health { get; }
+}
+
+public class TriggeringMenu : SDD.Events.Event
+{
+    public bool menuState { get; set; }
 }
 
 #endregion

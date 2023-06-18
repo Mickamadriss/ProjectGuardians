@@ -2,6 +2,7 @@ using System;
 using SDD.Events;
 using System.Collections;
 using System.Collections.Generic;
+using STUDENT_NAME;
 using STUDENT_NAME.Entity;
 using UnityEngine;
 using UnityEngine.Analytics;
@@ -23,7 +24,7 @@ public class Player : Entity, IEventHandler, IAlly
     private void Start() { }
 
     // Update is called once per frame
-    void Update() { }
+    void Update() {}
 
     public override Side getSide()
     {
@@ -61,6 +62,7 @@ public class Player : Entity, IEventHandler, IAlly
         EventManager.Instance.AddListener<EnnemyKilled>(ennemyKilled);
         EventManager.Instance.AddListener<MainMenuButtonClickedEvent>(mainMenuHasBeenCliked);
         EventManager.Instance.AddListener<PlayerGoldUpdate>(playerGoldUpdate);
+        EventManager.Instance.AddListener<PlayerGoldChanged>(playerGoldChanged);
         EventManager.Instance.AddListener<PlayerHealUpdate>(playerHealUpdate);
     }
 
@@ -70,6 +72,7 @@ public class Player : Entity, IEventHandler, IAlly
         EventManager.Instance.RemoveListener<EnnemyKilled>(ennemyKilled);
         EventManager.Instance.RemoveListener<MainMenuButtonClickedEvent>(mainMenuHasBeenCliked);
         EventManager.Instance.RemoveListener<PlayerGoldUpdate>(playerGoldUpdate);
+        EventManager.Instance.RemoveListener<PlayerGoldChanged>(playerGoldChanged);
         EventManager.Instance.RemoveListener<PlayerHealUpdate>(playerHealUpdate);
     }
 
@@ -110,6 +113,10 @@ public class Player : Entity, IEventHandler, IAlly
         Destroy(gameObject);
     }
 
+    private void playerGoldChanged(PlayerGoldChanged e)
+    {
+        gold = (int) e.eGold;
+    }
     private void playerGoldUpdate(PlayerGoldUpdate e)
     {
         setGold(gold + e.Gold);
@@ -118,5 +125,76 @@ public class Player : Entity, IEventHandler, IAlly
     private void playerHealUpdate(PlayerHealUpdate e)
     {
         heal(e.Health);
+    }
+
+    public void BuyItem(GameObject newWeapon)
+    {
+        //Récupération gold (ne marche pas avec this.gold)
+        HudManager hud = GameObject.Find("HudManager").GetComponent<HudManager>();
+        int playerGold = int.Parse(hud.m_NumberGold.text);
+        //Récupération script newWeapon, pour des infos
+        SidedWeapon newWeaponScript;
+        int weaponIndex;
+        switch (newWeapon.name)
+        {
+            case "Pistol":
+                weaponIndex = 1;
+                newWeaponScript = newWeapon.GetComponent<Pistol>();
+                break;
+            case "Mace":
+                weaponIndex = 0;
+                newWeaponScript = newWeapon.GetComponent<Mace>();
+                break;
+            default:
+                weaponIndex = 0;
+                newWeaponScript = newWeapon.GetComponent<Mace>();
+                break;
+        }
+        int weaponPrice = newWeaponScript.price;
+
+        
+        //Vérification assez d'argent
+        if (playerGold >= weaponPrice)
+        {
+            //Ajout du prefab de la new arme au WeaponHolder
+            GameObject wpHolder = GameObject.Find("WeaponHolder");
+            GameObject newWeaponPrefab = Instantiate(newWeapon, wpHolder.transform);
+            //Récupération du Player clone
+            GameObject player = GameObject.Find("Player(Clone)");
+            
+            switch (newWeapon.name)
+            {
+                case "Pistol":
+                    //S'il existe déjà alors on supp
+                    if (GameObject.Find("RangeWeapon"))
+                    {
+                        Destroy(GameObject.Find("RangeWeapon"));
+                    }
+                    newWeaponPrefab.name = "RangeWeapon";
+                    //Set position
+                    newWeaponPrefab.transform.localPosition = new Vector3(.75f, -0.3f, .63f);
+                    break;
+                case "Mace":
+                    
+                    //S'il existe déjà alors on supp
+                    if (GameObject.Find("MeleeWeapon"))
+                    {
+                        Destroy(GameObject.Find("MeleeWeapon"));
+                    }
+                    newWeaponPrefab.name = "MeleeWeapon";
+                    newWeaponPrefab.transform.localPosition = new Vector3(.75f, -0.3f, .63f);
+                    break;
+            }
+
+        
+            //Edit de l'item
+            ItemIWeapon rangeWeapon = player.GetComponents<ItemIWeapon>()[weaponIndex];
+            rangeWeapon.weapon = newWeaponPrefab;
+            rangeWeapon.enabled = false;
+            newWeaponPrefab.SetActive(false);
+            
+            //On perd l'argent
+            EventManager.Instance.Raise(new PlayerGoldUpdate(-weaponPrice));
+        }
     }
 }

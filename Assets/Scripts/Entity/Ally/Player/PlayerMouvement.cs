@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMouvement : MonoBehaviour
+public class PlayerMouvement : MonoBehaviour, IEventHandler
 {
     public Player player;
 
@@ -39,6 +39,7 @@ public class PlayerMouvement : MonoBehaviour
     public KeyCode crouchKey = KeyCode.LeftControl;
 
     public Transform orientation;
+    public bool isInMenu = false;
 
     float horizontalInput;
     float verticalInput;
@@ -60,6 +61,19 @@ public class PlayerMouvement : MonoBehaviour
 
     public bool dashing;
 
+    #region Events' subscription
+    public virtual void SubscribeEvents()
+    {
+        EventManager.Instance.AddListener<TriggeringMenu>(triggeringMenu);
+    }
+
+    public virtual void UnsubscribeEvents()
+    {
+        EventManager.Instance.RemoveListener<TriggeringMenu>(triggeringMenu);
+    }
+
+    #endregion
+    
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -89,7 +103,7 @@ public class PlayerMouvement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!player.m_IsPlaying) return;
+        if (!player.m_IsPlaying || isInMenu) return;
         MovePlayer();
     }
 
@@ -239,4 +253,13 @@ public class PlayerMouvement : MonoBehaviour
     {
         readyToJump = true;
     }
+    
+    #region Event callback
+
+    private void triggeringMenu(TriggeringMenu e)
+    {
+        Debug.Log(e.menuState);
+        isInMenu = e.menuState;
+    }
+    #endregion
 }
