@@ -124,6 +124,9 @@ public class PlayerGoldChanged : SDD.Events.Event
     public float eGold { get; set; }
 }
 
+public class PlayerPotionRestart : SDD.Events.Event { 
+}
+
 public class PlayerGoldUpdate : SDD.Events.Event
 {
     public PlayerGoldUpdate(int gold)
