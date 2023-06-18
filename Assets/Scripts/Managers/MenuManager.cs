@@ -17,11 +17,11 @@ namespace STUDENT_NAME
 		[SerializeField] GameObject m_PanelMainMenu;
 		[SerializeField] GameObject m_PanelInGameMenu;
 		[SerializeField] GameObject m_PanelGameOver;
-        [SerializeField] GameObject m_PanelHUD;
+		[SerializeField] GameObject m_PanelHUD;
 		[SerializeField] GameObject m_PanelCredits;
-		[SerializeField] GameObject m_PanelBlacksmith;
+		[SerializeField] GameObject m_MenuCamera;
 
-        List<GameObject> m_AllPanels;
+		List<GameObject> m_AllPanels;
 		#endregion
 
 		#region Events' subscription
@@ -67,11 +67,10 @@ namespace STUDENT_NAME
 			m_AllPanels.Add(m_PanelInGameMenu);
 			m_AllPanels.Add(m_PanelGameOver);
 			m_AllPanels.Add(m_PanelHUD);
-            m_AllPanels.Add(m_PanelCredits);
-            m_AllPanels.Add(m_PanelBlacksmith);
-        }
+			m_AllPanels.Add(m_PanelCredits);
+		}
 
-		void OpenPanel(GameObject panel = null)
+		void OpenPanel(GameObject panel)
 		{
 			foreach (var item in m_AllPanels)
 				if (item) item.SetActive(item == panel);
@@ -104,72 +103,64 @@ namespace STUDENT_NAME
 			EventManager.Instance.Raise(new QuitButtonClickedEvent());
 		}
 
-        public void QuitButtonCreditsHasBeenClicked()
-        {
-            OpenPanel(m_PanelMainMenu);
-        }
-
-        public void CreditsButtonHasBeenClicked()
-        {
-            OpenPanel(m_PanelCredits);
-        }
-
-        #endregion
-
-        #region Callbacks to GameManager events
-        protected override void GameMenu(GameMenuEvent e)
+		public void QuitButtonCreditsHasBeenClicked()
 		{
 			OpenPanel(m_PanelMainMenu);
+		}
+
+		public void CreditsButtonHasBeenClicked()
+		{
+			OpenPanel(m_PanelCredits);
+		}
+
+		#endregion
+
+		#region Callbacks to GameManager events
+		protected override void GameMenu(GameMenuEvent e)
+		{
+			OpenPanel(m_PanelMainMenu);
+			m_MenuCamera.SetActive(true); 
 			EnableMouse();
 		}
 
 		protected override void GamePlay(GamePlayEvent e)
 		{
 			OpenPanel(m_PanelHUD);
+			m_MenuCamera.SetActive(false);
 			DisableMouse();
 		}
 
-        protected override void GamePause(GamePauseEvent e)
+		protected override void GamePause(GamePauseEvent e)
 		{
 			OpenPanel(m_PanelInGameMenu);
-            EnableMouse();
-        }
+			EnableMouse();
+		}
 
-        protected override void GameResume(GameResumeEvent e)
+		protected override void GameResume(GameResumeEvent e)
 		{
-            OpenPanel(m_PanelHUD);
-            DisableMouse(); 
-        }
+			OpenPanel(m_PanelHUD);
+			DisableMouse(); 
+		}
 
-        protected override void GameOver(GameOverEvent e)
+		protected override void GameOver(GameOverEvent e)
 		{
 			OpenPanel(m_PanelGameOver);
-            EnableMouse();
-        }
+			m_MenuCamera.SetActive(true);
+			EnableMouse();
+		}
+		#endregion
 
-        protected override void BlacksmithOpen(BlacksmithOpenEvent e)
-        {
-	        OpenPanel(m_PanelBlacksmith);
-	        EnableMouse();
-        }
-        protected override void BlacksmithClose(BlacksmithCloseEvent e)
-        {
-	        OpenPanel(m_PanelHUD);
-	        DisableMouse();
-        }
-        #endregion
+		private void DisableMouse()
+		{
+			Cursor.lockState = CursorLockMode.Locked;
+			Cursor.visible = false;
+		}
 
-        private void DisableMouse()
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-
-        private void EnableMouse()
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-    }
+		private void EnableMouse()
+		{
+			Cursor.lockState = CursorLockMode.None;
+			Cursor.visible = true;
+		}
+	}
 
 }
