@@ -10,4 +10,9 @@ public class IAStaticHeaded : IAStatic
         base.Attack(target);
         head.LookAt(target);
     }
+
+    public override void TakeDamage(int damage, GameObject dammager)
+    {
+        base.TakeDamage(damage, dammager);
+    }
 }

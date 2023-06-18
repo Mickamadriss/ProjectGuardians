@@ -1,16 +1,31 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class IAStatic : Entity
 {
     public IWeapon weapon;
+    [SerializeField] Slider m_HealthBar;
     
     public Transform target;
     public LayerMask whatIsEnnemy;
 
     //States
     public float attackRange;
+
+
+    private void Start()
+    {
+        m_HealthBar.value = life;
+    }
+
+    public override void TakeDamage(int damage, GameObject dammager)
+    {
+        base.TakeDamage(damage, dammager);
+        m_HealthBar.value = life;
+    }
 
     // Update is called once per frame
     private void FixedUpdate()
@@ -30,6 +45,7 @@ public class IAStatic : Entity
 
     public override void kill(GameObject killer)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("pre destroy");
+        Destroy(gameObject);
     }
 }
