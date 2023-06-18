@@ -45,6 +45,7 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
                 EventManager.Instance.Raise(new TimeNextWaveChanged() { eTime = (WaveDelay-timeSinceLastWave)/WaveDelay * 100 });
                 if (timeSinceLastWave > WaveDelay) //si le temps d'attente est fini
                 {
+                    if (SfxManager.Instance) SfxManager.Instance.PlaySfx3D(Constants.WAVE_START, gameObject.transform.position);
                     WaveNumber++;
                     EventManager.Instance.Raise(new WaveChanged() { eWave = WaveNumber });
 
@@ -164,7 +165,10 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
         {
             Destroy(aIEntity.gameObject);
             WaveNumber = 0;
+            ennemyCount = 0;
+            EventManager.Instance.Raise(new EnnemyCountChanged() { eNumberEnnemy = ennemyCount });
         }
+        spawnEnnemies.Clear();
         m_IsPlaying = false;
     }
 }

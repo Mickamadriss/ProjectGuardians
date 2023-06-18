@@ -114,7 +114,6 @@
 
         private void SelectedItemChanged(SelectedItemChangedEvent e)
         {
-            Debug.Log("Child count is " + m_Inventory.transform.childCount);
             for (int i = 0; i < m_Inventory.transform.childCount; i++)
             {
                 GameObject itemBox = m_Inventory.transform.GetChild(i).gameObject;

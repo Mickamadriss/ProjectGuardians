@@ -9,4 +9,8 @@ public static class Constants {
 	//Sfx
 	public static string GAMEOVER_SFX = "GameOver";
 	public static string AXE_SWING = "Swing";
+    public static string GUN_SHOOT = "GunShoot";
+    public static string WAVE_START = "WaveStart";
+    public static string DASH = "Dash";
+    public static string DOOR = "Door";
 }

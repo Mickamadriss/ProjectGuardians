@@ -1,5 +1,6 @@
 ﻿
 using STUDENT_NAME.Entity;
+using System;
 using UnityEngine;
 
 public abstract class SidedWeapon: IWeapon
@@ -8,4 +9,5 @@ public abstract class SidedWeapon: IWeapon
     public Side side;
     public int damage;
     public int price;
+    public String attackSound;
 }

@@ -100,10 +100,10 @@
 
         private void Over(GameOverEvent e)
         {
+            if (SfxManager.Instance) SfxManager.Instance.PlaySfx2D(Constants.GAMEOVER_SFX);
             Destroy(playerInGame);
             SetTimeScale(0);
             m_GameState = GameState.gameOver;
-            if (SfxManager.Instance) SfxManager.Instance.PlaySfx2D(Constants.GAMEOVER_SFX);
         }
 
         private void OpenShop(BlacksmithOpenEvent e)
@@ -123,7 +123,7 @@
 		{
 			SetTimeScale(1);
 			m_GameState = GameState.gameMenu;
-			//if(MusicLoopsManager.Instance)MusicLoopsManager.Instance.PlayMusic(Constants.MENU_MUSIC);
+			if(MusicLoopsManager.Instance)MusicLoopsManager.Instance.PlayMusic(Constants.MENU_MUSIC);
 			EventManager.Instance.Raise(new GameMenuEvent());
 		}
 
@@ -133,7 +133,7 @@
 			SetTimeScale(1);
 			m_GameState = GameState.gamePlay;
 
-			//if (MusicLoopsManager.Instance) MusicLoopsManager.Instance.PlayMusic(Constants.GAMEPLAY_MUSIC);
+			if (MusicLoopsManager.Instance) MusicLoopsManager.Instance.PlayMusic(Constants.GAMEPLAY_MUSIC);
 			EventManager.Instance.Raise(new GamePlayEvent());
 		}
 
