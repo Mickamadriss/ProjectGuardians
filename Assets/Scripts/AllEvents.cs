@@ -124,6 +124,9 @@ public class PlayerGoldChanged : SDD.Events.Event
     public float eGold { get; set; }
 }
 
+public class PlayerPotionRestart : SDD.Events.Event { 
+}
+
 public class PlayerGoldUpdate : SDD.Events.Event
 {
     public PlayerGoldUpdate(int gold)
@@ -162,6 +165,21 @@ public class SelectedItemChangedEvent : SDD.Events.Event
     }
 
     public int ItemIndex { get; }
+}
+
+
+#endregion
+
+#region turret Events
+
+public class RegisterTurret : SDD.Events.Event
+{
+    public RegisterTurret(GameObject turret)
+    {
+        Turret = turret;
+    }
+
+    public GameObject Turret { get; }
 }
 
 

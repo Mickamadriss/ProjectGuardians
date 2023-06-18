@@ -13,4 +13,5 @@ public static class Constants {
     public static string WAVE_START = "WaveStart";
     public static string DASH = "Dash";
     public static string DOOR = "Door";
+    public static string SPIKE = "Spike";
 }

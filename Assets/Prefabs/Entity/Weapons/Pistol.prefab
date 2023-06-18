@@ -47,10 +47,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   side: 0
-  damage: 20
+  damage: 29
   price: 25
   attackSound: GunShoot
-  AttackCooldown: 0
+  AttackCooldown: 0.2
   CanAttack: 1
   projectileObject: {fileID: -4239139962212848624, guid: debf7c61f1220cb4d8e57954a1606c32,
     type: 3}
