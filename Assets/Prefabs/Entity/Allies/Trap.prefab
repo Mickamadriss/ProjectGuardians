@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f62c4b4cd4384814a26c37e0f537cfb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 10
+  life: 100
   maxLife: 100
   side: 2
   m_IsPlaying: 1
