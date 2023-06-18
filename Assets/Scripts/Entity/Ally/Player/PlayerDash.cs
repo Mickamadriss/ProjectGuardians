@@ -54,6 +54,7 @@ public class PlayerDash : MonoBehaviour
 
     private void Dash()
     {
+        if (SfxManager.Instance) SfxManager.Instance.PlaySfx3D(Constants.DASH, gameObject.transform.position);
         if (dashCdTimer > 0) return;
         else dashCdTimer = dashCd;
         pm.dashing = true;

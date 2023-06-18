@@ -105,6 +105,8 @@ public class Player : Entity, IEventHandler, IAlly
     public override void kill(GameObject killer)
     {
         EventManager.Instance.Raise(new GameOverEvent());
+        setGold(0);
+        EventManager.Instance.Raise(new PlayerExpChanged() { eExp = 0 / expNeeded * 100 });
         Destroy(gameObject);
     }
 

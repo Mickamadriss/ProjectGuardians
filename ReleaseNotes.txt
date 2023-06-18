@@ -48,3 +48,8 @@ o   Quelle licence d’utilisation ?
 - Pièce de monnaie pour l'UI: "https://www.flaticon.com/fr/icones-gratuites/piece-de-monnaie", Gratuite avec Mention du Graphiste.
 - Ville, Arbres et Textures: "https://assetstore.unity.com/packages/3d/environments/fantasy/free-slavic-medieval-environment-town-interior-and-exterior-167010#publisher" 
 - Herbes et fleurs: "https://assetstore.unity.com/packages/2d/textures-materials/nature/grass-and-flowers-pack-1-17100"
+
+Sounds
+- Les sons déjà présents
+- https://mixkit.co/free-sound-effects/game/
+- Youtube

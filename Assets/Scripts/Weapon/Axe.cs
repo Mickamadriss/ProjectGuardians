@@ -30,7 +30,7 @@ public class Axe : SidedWeapon
         anim.SetTrigger("Attack");
 
         //Son
-        if (SfxManager.Instance) SfxManager.Instance.PlaySfx3D(Constants.AXE_SWING, gameObject.transform.position);
+        if (SfxManager.Instance) SfxManager.Instance.PlaySfx3D(attackSound, gameObject.transform.position);
 
         //Cooldown de l'arme
         StartCoroutine(ResetAttack());

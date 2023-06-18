@@ -31,6 +31,9 @@ public class Pistol : SidedWeapon
         projectileScript.damage = damage;
         projectileScript.side = side;
 
+        //lance le son
+        if (SfxManager.Instance) SfxManager.Instance.PlaySfx3D(attackSound, gameObject.transform.position);
+
         //Calcul direction
         Vector3 forceDirection = attackPoint.transform.forward;
 

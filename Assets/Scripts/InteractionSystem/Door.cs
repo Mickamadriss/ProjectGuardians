@@ -11,6 +11,8 @@ public class Door : MonoBehaviour, IInteractable
 
     public bool Interact(Interactor interactor)
     {
+        if (SfxManager.Instance) SfxManager.Instance.PlaySfx3D(Constants.DOOR, gameObject.transform.position);
+
         float distanceToEnter = Vector3.Distance(interactor.transform.position, enter.position);
         float distanceToOuter = Vector3.Distance(interactor.transform.position, outer.position);
 
