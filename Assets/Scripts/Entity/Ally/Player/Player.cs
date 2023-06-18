@@ -131,15 +131,18 @@ public class Player : Entity, IEventHandler, IAlly
             GameObject newGo = new GameObject("Pistol");
             newGo.transform.parent = wpHolder.transform;
             
+            //Récupération du Player clone
+            GameObject player = GameObject.Find("Player(Clone)");
             //Création de l'item
             GameObject pistolPrefab = GameObject.Find("Pistol");
-            ItemIWeapon newItem = gameObject.AddComponent<ItemIWeapon>();
+            ItemIWeapon newItem = player.AddComponent<ItemIWeapon>();
             newItem.weapon = pistolPrefab;
-            /*//Ajout de l'item au ItemManager
+            newItem.enabled = false;
+            //Ajout de l'item au ItemManager
             GetComponent<ItemManager>().RangeWeaponItem = newItem;
             
             //MaJ du gold du joueur
-            setGold(gold - price);*/
+            setGold(gold - price);
         }
 
         //Si on n'a pas l'argent : popup "t'es pauvre"

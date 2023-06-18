@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5036202, g: 0.65492237, b: 0.71342844, a: 1}
+  m_IndirectSpecularColor: {r: 0.50367045, g: 0.65505713, b: 0.71343756, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -433,7 +433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_DoNotDestroyGameObjectOnLoad: 0
-  MaxLife: 1000
+  MaxLife: 2000
 --- !u!1 &567381895
 GameObject:
   m_ObjectHideFlags: 0
@@ -1828,13 +1828,13 @@ PrefabInstance:
     - target: {fileID: 3796171793715744234, guid: 2d4cc07e22d85374b8d15cd15f4e18e1,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 19.299988
+      value: 19.300049
       objectReference: {fileID: 0}
     - target: {fileID: 4032819448205806703, guid: 2d4cc07e22d85374b8d15cd15f4e18e1,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 11500000, guid: c849368f8e4a7f249ba7ae7707f16aea,
+      objectReference: {fileID: 6595661004719054073, guid: a4be26f4afd594643a17d3b59e103f83,
         type: 3}
     - target: {fileID: 4032819448205806703, guid: 2d4cc07e22d85374b8d15cd15f4e18e1,
         type: 3}
@@ -1844,7 +1844,12 @@ PrefabInstance:
     - target: {fileID: 4032819448205806703, guid: 2d4cc07e22d85374b8d15cd15f4e18e1,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: ExitShop
+      objectReference: {fileID: 0}
+    - target: {fileID: 4032819448205806703, guid: 2d4cc07e22d85374b8d15cd15f4e18e1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Blacksmith, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4056605550911385351, guid: 2d4cc07e22d85374b8d15cd15f4e18e1,
         type: 3}

@@ -14,42 +14,26 @@ public class Blacksmith : MonoBehaviour, IInteractable
     public void ExitShop()
     {
         //Hide le menu (nécéssaire de réécrire ici, si on quitte le menu avec le bouton quitter)
-        EventManager.Instance.Raise(new BlacksmithOpenEvent());
+        EventManager.Instance.Raise(new BlacksmithCloseEvent());
         isShopOpened = false;
-        
-        
-        //Trigger l'event pour bloquer ou non (cam/déplacement) le player
-        // EventManager.Instance.Raise(new TriggeringMenu() { menuState = isShopOpened });
     }
-    
-    private void Update()
+
+    private void OpenShop()
     {
-        // //Fait l'update que si le menu est actuellement ouvert
-        if (isShopOpened)
-        {
-            //Ferme le shop si press "E"
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                //Ferme le menu
-                // EventManager.Instance.Raise(new TriggeringMenu() { menuState = false });
-                EventManager.Instance.Raise(new BlacksmithCloseEvent());
-                isShopOpened = false;
-            }
-        }
+        EventManager.Instance.Raise(new BlacksmithOpenEvent());
+        isShopOpened = true;
     }
 
     public bool Interact(Interactor interactor)
     {
         //Trigger le menu
-        isShopOpened = !isShopOpened;
-
-        if (isShopOpened == false)
+        if (isShopOpened)
         {
-            EventManager.Instance.Raise(new BlacksmithCloseEvent());
+            ExitShop();
         }
         else
         {
-            EventManager.Instance.Raise(new BlacksmithOpenEvent());
+            OpenShop();
         }
 
         return true;
