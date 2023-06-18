@@ -45,7 +45,6 @@ public class IAStatic : Entity
 
     public override void kill(GameObject killer)
     {
-        Debug.Log("pre destroy");
         Destroy(gameObject);
     }
 }
