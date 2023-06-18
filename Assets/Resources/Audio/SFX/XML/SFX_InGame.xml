@@ -10,4 +10,5 @@
   <SFX name="WaveStart" volume="1" />
   <SFX name="Dash" volume="1" />
   <SFX name="Door" volume="1" />
+  <SFX name="Spike" volume="1" />
 </SFX_SETUP>

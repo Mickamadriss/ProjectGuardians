@@ -28,6 +28,7 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
     private int WaveNumber = 0;
     [SerializeField] private float WaveDelay = 10;
     [SerializeField] private int numberEnnemiesToSpawn = 5;
+    private int distancePack = 15;
 
     protected override void Awake()
     {
@@ -54,15 +55,15 @@ public class WaveManger : Manager<WaveManger>, IEventHandler
                     int posz;
                     do
                     {
-                        posx = UnityEngine.Random.Range(-100, 100);
-                        posz = UnityEngine.Random.Range(-100, 100);
-                    } while ((posx > 30 || posx < -30) && (posz > 30 || posz < -30));
+                        posx = UnityEngine.Random.Range(-150, 150);
+                        posz = UnityEngine.Random.Range(-150, 150);
+                    } while ((posx > 100 || posx < -100) && (posz > 100 || posz < -100));
                     Vector3 pos = new(posx + m_City.transform.position.x, 20,posz + m_City.transform.position.z);
 
                     for (int j = 0; j < (numberEnnemiesToSpawn + WaveNumber); j++)
                     {
                         //flou de spawn
-                        Vector3 posSpawn = new(UnityEngine.Random.Range(-5, 5) + pos.x, 20, UnityEngine.Random.Range(-5, 5) + pos.z);
+                        Vector3 posSpawn = new(UnityEngine.Random.Range(-distancePack, distancePack) + pos.x, 20, UnityEngine.Random.Range(-distancePack, distancePack) + pos.z);
                         int random = UnityEngine.Random.Range(0, m_Ennemies.Count);
 
                         SpawnEnnemy(posSpawn, random);
