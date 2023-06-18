@@ -22,6 +22,7 @@ public class Mace : SidedWeapon
     public override void Attack()
     {
         if (!CanAttack) return;
+        Debug.Log("attacking");
         CanAttack = false;
         IsAttacking = true;
         GetComponent<Collider>().enabled = true;
@@ -55,6 +56,7 @@ public class Mace : SidedWeapon
     {
         //On ne peut attaquer qu'un gameObject damageable
         IDamageable[] targets = other.gameObject.GetComponentsInParent<IDamageable>();
+        Debug.Log("trigger with "+targets.Length);
         if (targets.Length > 0 && IsAttacking)
         {
             foreach (IDamageable target in targets)

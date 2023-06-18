@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5256144156288298361}
   - component: {fileID: 1152659989953285400}
   - component: {fileID: 8510192563123840735}
+  - component: {fileID: 2469113084401152891}
   m_Layer: 0
   m_Name: Mace
   m_TagString: Untagged
@@ -27,14 +28,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2243361179402302637}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.000010106, y: 0.085967, z: 0.00000030135}
-  m_LocalScale: {x: 0.77019, y: 0.77019, z: 0.77019}
+  m_LocalRotation: {x: -0.0046417387, y: -0.079895765, z: 0.057813596, w: 0.9951144}
+  m_LocalPosition: {x: 0.15, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -4.031852, y: 90.87994, z: 12.867045}
 --- !u!33 &3282384201450434339
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -100,6 +101,7 @@ MonoBehaviour:
   side: 0
   damage: 100
   price: 50
+  attackSound: 
   AttackCooldown: 2
   CanAttack: 1
 --- !u!95 &8510192563123840735
@@ -112,7 +114,7 @@ Animator:
   m_GameObject: {fileID: 2243361179402302637}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0e37a2acc3aacc94f9ff41e7b9a8af95, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -122,3 +124,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!65 &2469113084401152891
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243361179402302637}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8199558, y: 0.72573805, z: 0.6}
+  m_Center: {x: 0.17745961, y: 0.6456727, z: -0.0000015086745}

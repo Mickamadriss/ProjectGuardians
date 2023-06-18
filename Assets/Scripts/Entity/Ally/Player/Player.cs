@@ -159,6 +159,7 @@ public class Player : Entity, IEventHandler, IAlly
             //Ajout du prefab de la new arme au WeaponHolder
             GameObject wpHolder = GameObject.Find("WeaponHolder");
             GameObject newWeaponPrefab = Instantiate(newWeapon, wpHolder.transform);
+            Debug.Log(newWeapon);
             //Récupération du Player clone
             GameObject player = GameObject.Find("Player(Clone)");
             
@@ -175,14 +176,13 @@ public class Player : Entity, IEventHandler, IAlly
                     newWeaponPrefab.transform.localPosition = new Vector3(.75f, -0.3f, .63f);
                     break;
                 case "Mace":
-                    
                     //S'il existe déjà alors on supp
                     if (GameObject.Find("MeleeWeapon"))
                     {
                         Destroy(GameObject.Find("MeleeWeapon"));
                     }
                     newWeaponPrefab.name = "MeleeWeapon";
-                    newWeaponPrefab.transform.localPosition = new Vector3(.75f, -0.3f, .63f);
+                    newWeaponPrefab.transform.localPosition = new Vector3(.56f, -.71f, .81f);
                     break;
             }
 
