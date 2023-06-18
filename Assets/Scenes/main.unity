@@ -315,6 +315,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbc68089f1bff7d4c8eba6659b433d53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &257859393 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5655728664144080131, guid: 2d4cc07e22d85374b8d15cd15f4e18e1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1872545305}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &293466176 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3336202565660994055, guid: 2d4cc07e22d85374b8d15cd15f4e18e1,
@@ -640,6 +646,11 @@ PrefabInstance:
       propertyPath: m_PanelMainMenu
       value: 
       objectReference: {fileID: 1872545308}
+    - target: {fileID: 114078314171263514, guid: 68480a01e4a00ab45b3d746ae2fc86ee,
+        type: 3}
+      propertyPath: m_PanelBlacksmith
+      value: 
+      objectReference: {fileID: 257859393}
     - target: {fileID: 114078314171263514, guid: 68480a01e4a00ab45b3d746ae2fc86ee,
         type: 3}
       propertyPath: m_PanelInGameMenu
@@ -1964,6 +1975,11 @@ PrefabInstance:
     - target: {fileID: 5655014496047073413, guid: 2d4cc07e22d85374b8d15cd15f4e18e1,
         type: 3}
       propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5655728664144080131, guid: 2d4cc07e22d85374b8d15cd15f4e18e1,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6007145183604254532, guid: 2d4cc07e22d85374b8d15cd15f4e18e1,
