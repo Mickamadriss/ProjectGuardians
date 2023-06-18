@@ -166,3 +166,18 @@ public class SelectedItemChangedEvent : SDD.Events.Event
 
 
 #endregion
+
+#region turret Events
+
+public class RegisterTurret : SDD.Events.Event
+{
+    public RegisterTurret(GameObject turret)
+    {
+        Turret = turret;
+    }
+
+    public GameObject Turret { get; }
+}
+
+
+#endregion

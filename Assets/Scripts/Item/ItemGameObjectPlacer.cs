@@ -63,8 +63,9 @@ public class ItemGameObjectPlacer: Item, IEventHandler
         Quaternion normalRot = Quaternion.LookRotation(objectHit.normal);
         Quaternion x90degressRot = Quaternion.Euler(90,0, 0); 
         Quaternion turretAimDirection = Quaternion.Euler(0, turretTransform.rotation.eulerAngles.y, 0);
-        Instantiate(turretPrefab, objectHit.point, normalRot * x90degressRot * turretAimDirection);
+        GameObject turret = Instantiate(turretPrefab, objectHit.point, normalRot * x90degressRot * turretAimDirection);
         
+        EventManager.Instance.Raise(new RegisterTurret(turret));
         EventManager.Instance.Raise(new PlayerGoldUpdate(-turretCost));
     }
     
