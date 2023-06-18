@@ -139,3 +139,18 @@ public class PlayerHealUpdate : SDD.Events.Event
 }
 
 #endregion
+
+#region ItemManager Events
+
+public class SelectedItemChangedEvent : SDD.Events.Event
+{
+    public SelectedItemChangedEvent(int itemIndex)
+    {
+        ItemIndex = itemIndex;
+    }
+
+    public int ItemIndex { get; }
+}
+
+
+#endregion

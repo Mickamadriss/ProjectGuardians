@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using SDD.Events;
 using UnityEngine;
 
 public class ItemManager : MonoBehaviour
@@ -72,6 +73,7 @@ public class ItemManager : MonoBehaviour
     {
         disableAllItems();
         _items[itemIndex].enabled = true;
+        EventManager.Instance.Raise(new SelectedItemChangedEvent(itemIndex));
     }
 
     private void disableAllItems()
