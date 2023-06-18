@@ -25,6 +25,7 @@
         [SerializeField] Slider m_PlayerHealth;
         [SerializeField] Slider m_CityHealth;
         [SerializeField] Slider m_PlayerExp;
+        [SerializeField] GameObject m_Inventory;
 
         #endregion
 
@@ -41,6 +42,7 @@
             EventManager.Instance.AddListener<EraseInteractionHud>(eraseInteractionHUD);
             EventManager.Instance.AddListener<PlayerExpChanged>(playerExpChanged);
             EventManager.Instance.AddListener<PlayerGoldChanged>(playerGoldChanged);
+            EventManager.Instance.AddListener<SelectedItemChangedEvent>(SelectedItemChanged);
         }
 
         public override void UnsubscribeEvents()
@@ -55,7 +57,7 @@
             EventManager.Instance.RemoveListener<EraseInteractionHud>(eraseInteractionHUD);
             EventManager.Instance.RemoveListener<PlayerExpChanged>(playerExpChanged);
             EventManager.Instance.RemoveListener<PlayerGoldChanged>(playerGoldChanged);
-
+            EventManager.Instance.RemoveListener<SelectedItemChangedEvent>(SelectedItemChanged);
         }
 
         #endregion
@@ -108,6 +110,22 @@
         private void eraseInteractionHUD(EraseInteractionHud e)
         {
             m_InteractionHUD.SetActive(false);
+        }
+
+        private void SelectedItemChanged(SelectedItemChangedEvent e)
+        {
+            Debug.Log("Child count is " + m_Inventory.transform.childCount);
+            for (int i = 0; i < m_Inventory.transform.childCount; i++)
+            {
+                GameObject itemBox = m_Inventory.transform.GetChild(i).gameObject;
+                GameObject selector = itemBox.transform.Find("SelectorImage").gameObject;
+                if (i != e.ItemIndex)
+                {
+                    selector.SetActive(false);
+                    continue;
+                }
+                selector.SetActive(true);
+            }
         }
 
         #endregion
