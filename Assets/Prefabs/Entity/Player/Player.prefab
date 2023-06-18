@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 7018154155872987953}
   - component: {fileID: 2485166311227019859}
   - component: {fileID: 4867227579323313523}
+  - component: {fileID: 4160301951349660148}
   - component: {fileID: 4479478591842318798}
   - component: {fileID: 6113794635318265945}
   m_Layer: 7
@@ -202,7 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meleeWeaponItem: {fileID: 4867227579323313523}
-  rangeWeaponItem: {fileID: 0}
+  rangeWeaponItem: {fileID: 4160301951349660148}
   turretItem: {fileID: 4479478591842318798}
   potionItem: {fileID: 6113794635318265945}
   meleeWeaponItemKey: 49
@@ -222,6 +223,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 3242792520600393576}
+  AttackKey: 323
+--- !u!114 &4160301951349660148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745965689458715291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 082c58d176e60014b965765db202f48c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 0}
   AttackKey: 323
 --- !u!114 &4479478591842318798
 MonoBehaviour:

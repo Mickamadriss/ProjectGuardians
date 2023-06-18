@@ -15,7 +15,7 @@ public class ItemManager : MonoBehaviour
     public Item RangeWeaponItem
     {
         get => rangeWeaponItem;
-        set => replaceItem(1, value);
+        set => meleeWeaponItem = value;
     }
 
     public Item TurretItem
@@ -67,10 +67,10 @@ public class ItemManager : MonoBehaviour
                 enableItem(itemIndex);
             }
         }
-
-        Debug.Log(_items.Length);
-        Debug.Log(_items.GetValue(0));
-        Debug.Log(_items.GetValue(1));
+        //
+        // Debug.Log(_items.Length);
+        // Debug.Log(_items.GetValue(0));
+        // Debug.Log(_items.GetValue(1));
     }
 
     private void enableItem(int itemIndex)
@@ -90,10 +90,10 @@ public class ItemManager : MonoBehaviour
 
     public void replaceItem(int index, Item item)
     {
-        Debug.Log(_items.Length);
-        _items[index] = item;
-        Debug.Log(item);
-        RangeWeaponItem = item;
+        // Debug.Log(_items.Length);
+        // _items[index] = item;
+        // Debug.Log(item);
+        // RangeWeaponItem = item;
     }
 
     public void RefillPotion(int quantity)

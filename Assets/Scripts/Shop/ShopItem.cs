@@ -6,8 +6,7 @@ using UnityEngine.UI;
 
 public class ShopItem : MonoBehaviour
 {
-    [SerializeField] private string price;
-    [SerializeField] private string itemName;
+    public SidedWeapon itemToBuy;
     
     // Start is called before the first frame update
     void Start()
@@ -20,18 +19,12 @@ public class ShopItem : MonoBehaviour
             switch (t.name)
             {
                 case "TextPrice":
-                    t.text = price;
+                    t.text = itemToBuy.price.ToString();
                     break;
                 case "ItemName":
-                    t.text = itemName;
+                    t.text = itemToBuy.name;
                     break;
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

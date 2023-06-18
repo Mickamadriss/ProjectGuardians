@@ -112,6 +112,7 @@ public class Player : Entity, IEventHandler, IAlly
     private void playerGoldUpdate(PlayerGoldUpdate e)
     {
         setGold(gold + e.Gold);
+        Debug.Log(this.gold);
     }
 
     private void playerHealUpdate(PlayerHealUpdate e)
@@ -119,36 +120,43 @@ public class Player : Entity, IEventHandler, IAlly
         heal(e.Health);
     }
     
-    public void BuyItem(int price)
+    public void BuyItem(GameObject newWeapon)
     {
-        //Si on à l'argent : on achète / équipe l'item, et perd l'argent
-        Debug.Log(gold + " / " + price);
-        if (gold >= price)
+        Debug.Log("achat item avec: "+ this.gold);
+        //Ajout du prefab requis au WeaponHolder
+        GameObject wpHolder = GameObject.Find("WeaponHolder");
+        GameObject newWeaponPrefab = Instantiate(newWeapon, wpHolder.transform);
+
+        int weaponIndex = 0;
+        switch (newWeapon.name)
         {
-            Debug.Log("achat item");
-            //Ajout du prefab requis au WeaponHolder
-            GameObject wpHolder = GameObject.Find("WeaponHolder");
-            GameObject newGo = new GameObject("Pistol");
-            newGo.transform.parent = wpHolder.transform;
-            
-            //Récupération du Player clone
-            GameObject player = GameObject.Find("Player(Clone)");
-            //Création de l'item
-            GameObject pistolPrefab = GameObject.Find("Pistol");
-            ItemIWeapon newItem = player.AddComponent<ItemIWeapon>();
-            newItem.weapon = pistolPrefab;
-            newItem.enabled = false;
-            //Ajout de l'item au ItemManager
-            GetComponent<ItemManager>().RangeWeaponItem = newItem;
-            
-            //MaJ du gold du joueur
-            setGold(gold - price);
+            case "Pistol":
+                weaponIndex = 1;
+                newWeaponPrefab.name = "Pistol";
+                newWeaponPrefab.transform.position = wpHolder.transform.position + new Vector3(0f, -0.3f, 0.75f);
+                break;
         }
 
+        //Récupération du Player clone
+        GameObject player = GameObject.Find("Player(Clone)");
+        //Edit de l'item
+        ItemIWeapon rangeWeapon = player.GetComponents<ItemIWeapon>()[weaponIndex];
+        rangeWeapon.weapon = newWeaponPrefab;
+        rangeWeapon.enabled = false;
+        
+        
+        
+        //Ajout de l'item au ItemManager
+        // GetComponent<ItemManager>().RangeWeaponItem = newItem;
+        
+        // //MaJ du gold du joueur
+        // setGold(gold - price);
+        // }
+
         //Si on n'a pas l'argent : popup "t'es pauvre"
-        else
-        {
-            Debug.Log("achat impossible, gold :"+gold);
-        }
+        // else
+        // {
+        //     Debug.Log("achat impossible, gold :"+gold);
+        // }
     }
 }

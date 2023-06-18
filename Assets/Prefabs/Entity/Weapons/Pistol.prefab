@@ -47,11 +47,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   side: 0
-  damage: 0
-  AttackCooldown: 0
+  damage: 50
+  price: 25
+  AttackCooldown: 0.2
   CanAttack: 1
-  projectileObject: {fileID: 0}
-  attackPoint: {fileID: 0}
+  projectileObject: {fileID: -4239139962212848624, guid: debf7c61f1220cb4d8e57954a1606c32,
+    type: 3}
+  attackPoint: {fileID: 2883842552034266665}
   throwForce: 70
 --- !u!1 &2292161318171187229
 GameObject:
