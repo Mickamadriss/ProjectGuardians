@@ -36,17 +36,19 @@ public class DamageArea : SidedWeapon
     //Repasse le IsAttacking à false après 1 seconde (évite les doubles attaques)
     IEnumerator ResetAttackBool()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(AttackCooldown);
         IsAttacking = false;
         GetComponent<Collider>().enabled = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Enter trigger trap");
         //On ne peut attaquer qu'un gameObject damageable
         IDamageable target = other.gameObject.GetComponentInParent<IDamageable>();
         if (target != null)
         {
+            Debug.Log(target.getSide());
             if (side != target.getSide() && IsAttacking)
             {
                 target.TakeDamage(damage, this.gameObject);
