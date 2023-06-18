@@ -50,6 +50,7 @@ GameObject:
   - component: {fileID: 4867227579323313523}
   - component: {fileID: 3517289246981595491}
   - component: {fileID: 4479478591842318798}
+  - component: {fileID: 8628017604259456739}
   - component: {fileID: 6113794635318265945}
   m_Layer: 7
   m_Name: Player
@@ -204,11 +205,13 @@ MonoBehaviour:
   meleeWeaponItem: {fileID: 4867227579323313523}
   rangeWeaponItem: {fileID: 3517289246981595491}
   turretItem: {fileID: 4479478591842318798}
+  trapItem: {fileID: 8628017604259456739}
   potionItem: {fileID: 6113794635318265945}
   meleeWeaponItemKey: 49
   rangeWeaponItemKey: 50
   turretItemKey: 51
-  potionItemKey: 52
+  trapItemKey: 52
+  potionItemKey: 53
 --- !u!114 &4867227579323313523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,6 +256,28 @@ MonoBehaviour:
     type: 3}
   turretCost: 10
   tool: {fileID: 3159097005803101885}
+  usePoint: {fileID: 745965689861491778}
+  maxDistance: 10
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
+  placeKey: 323
+--- !u!114 &8628017604259456739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745965689458715291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c46fae808d144a76b8810a52ab7a8bd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turretPrefab: {fileID: 1662257490259159931, guid: 3de9036fd517b1145b562da4e2e26f24,
+    type: 3}
+  turretCost: 10
+  tool: {fileID: 8627740640653385839}
   usePoint: {fileID: 745965689861491778}
   maxDistance: 10
   whatIsGround:
@@ -650,6 +675,7 @@ Transform:
   - {fileID: 2759411558745263570}
   - {fileID: 2129081284397509806}
   - {fileID: 5720769887435697252}
+  - {fileID: 4747002632261751420}
   m_Father: {fileID: 745965689861491778}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -666,6 +692,112 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 1739868959753433917}
+--- !u!1001 &2016233139548147343
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6809689873571102139}
+    m_Modifications:
+    - target: {fileID: 6492964595147021555, guid: 0df2fd2cf7ffcd14689d7f708b1b50a5,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6492964595147021555, guid: 0df2fd2cf7ffcd14689d7f708b1b50a5,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6492964595147021555, guid: 0df2fd2cf7ffcd14689d7f708b1b50a5,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6492964595147021555, guid: 0df2fd2cf7ffcd14689d7f708b1b50a5,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6492964595147021555, guid: 0df2fd2cf7ffcd14689d7f708b1b50a5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.636
+      objectReference: {fileID: 0}
+    - target: {fileID: 6492964595147021555, guid: 0df2fd2cf7ffcd14689d7f708b1b50a5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.415
+      objectReference: {fileID: 0}
+    - target: {fileID: 6492964595147021555, guid: 0df2fd2cf7ffcd14689d7f708b1b50a5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.621
+      objectReference: {fileID: 0}
+    - target: {fileID: 6492964595147021555, guid: 0df2fd2cf7ffcd14689d7f708b1b50a5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6492964595147021555, guid: 0df2fd2cf7ffcd14689d7f708b1b50a5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6492964595147021555, guid: 0df2fd2cf7ffcd14689d7f708b1b50a5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6492964595147021555, guid: 0df2fd2cf7ffcd14689d7f708b1b50a5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6492964595147021555, guid: 0df2fd2cf7ffcd14689d7f708b1b50a5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6492964595147021555, guid: 0df2fd2cf7ffcd14689d7f708b1b50a5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6492964595147021555, guid: 0df2fd2cf7ffcd14689d7f708b1b50a5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6492964595147021555, guid: 0df2fd2cf7ffcd14689d7f708b1b50a5,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7800512993166094048, guid: 0df2fd2cf7ffcd14689d7f708b1b50a5,
+        type: 3}
+      propertyPath: m_Name
+      value: hammer (trap)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7800512993166094048, guid: 0df2fd2cf7ffcd14689d7f708b1b50a5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0df2fd2cf7ffcd14689d7f708b1b50a5, type: 3}
+--- !u!4 &4747002632261751420 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6492964595147021555, guid: 0df2fd2cf7ffcd14689d7f708b1b50a5,
+    type: 3}
+  m_PrefabInstance: {fileID: 2016233139548147343}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8627740640653385839 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7800512993166094048, guid: 0df2fd2cf7ffcd14689d7f708b1b50a5,
+    type: 3}
+  m_PrefabInstance: {fileID: 2016233139548147343}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3245440413978806692
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -862,7 +994,7 @@ PrefabInstance:
     - target: {fileID: 7800512993166094048, guid: 0df2fd2cf7ffcd14689d7f708b1b50a5,
         type: 3}
       propertyPath: m_Name
-      value: hammer
+      value: hammer (turret)
       objectReference: {fileID: 0}
     - target: {fileID: 7800512993166094048, guid: 0df2fd2cf7ffcd14689d7f708b1b50a5,
         type: 3}

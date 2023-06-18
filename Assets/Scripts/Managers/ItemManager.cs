@@ -34,6 +34,7 @@ public class ItemManager : MonoBehaviour
     [SerializeField] private Item meleeWeaponItem;
     [SerializeField] private Item rangeWeaponItem;
     [SerializeField] private Item turretItem;
+    [SerializeField] private Item trapItem;
     [SerializeField] private ItemPotion potionItem;
     private Item[] _items;
 
@@ -41,14 +42,15 @@ public class ItemManager : MonoBehaviour
     public KeyCode meleeWeaponItemKey = KeyCode.Alpha1;
     public KeyCode rangeWeaponItemKey = KeyCode.Alpha2;
     public KeyCode turretItemKey = KeyCode.Alpha3;
-    public KeyCode potionItemKey = KeyCode.Alpha4;
+    public KeyCode trapItemKey = KeyCode.Alpha4;
+    public KeyCode potionItemKey = KeyCode.Alpha5;
     private KeyCode[] _keyCodes;
     
     private void Awake()
     {
         // Order is important
-        _items = new[] { meleeWeaponItem, rangeWeaponItem, turretItem, potionItem };
-        _keyCodes = new[] { meleeWeaponItemKey, rangeWeaponItemKey, turretItemKey, potionItemKey };
+        _items = new[] { meleeWeaponItem, rangeWeaponItem, turretItem, trapItem, potionItem };
+        _keyCodes = new[] { meleeWeaponItemKey, rangeWeaponItemKey, turretItemKey, trapItemKey, potionItemKey };
     }
 
     // Start is called before the first frame update
